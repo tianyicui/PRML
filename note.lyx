@@ -1,0 +1,228 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrbook
+\begin_preamble
+\renewcommand\[{\begin{equation}}
+\renewcommand\]{\end{equation}}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format pdf4
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_amsmath 2
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Reading Notes of
+\begin_inset Newline newline
+\end_inset
+
+Pattern Classification and Machine Learning
+\end_layout
+
+\begin_layout Author
+Tianyi Cui
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+Different kinds of tasks of machine learning:
+\end_layout
+
+\begin_layout Itemize
+supervised learning: known input and target vectors
+\end_layout
+
+\begin_layout Itemize
+classification: output is one of a finite number of discrete categories
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+regression: output is one or more continuous variables
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+unsupervised learning: no corresponding target values
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+clustering: discover groups of similar examples within the data
+\end_layout
+
+\begin_layout Itemize
+density estimation: determine the distribution of data within the input
+ space
+\end_layout
+
+\begin_layout Itemize
+dimension reduction
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+reinforcement learning: finding suitable actions to take in a given situation
+ in order to maximize a reward
+\end_layout
+
+\begin_layout Section
+Example: Polynomial Curve Fitting
+\end_layout
+
+\begin_layout Standard
+In regression problems, we can use a polynomial function
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+y(x,\mathbf{w})=w_{0}+w_{1}+w_{2}x^{2}+\ldots+w_{M}x^{M}=\sum_{j=0}^{M}w_{j}x^{j}
+\]
+
+\end_inset
+
+ to fit the underlying function.
+\end_layout
+
+\begin_layout Standard
+We need to minimize the error function 
+\begin_inset Formula 
+\begin{equation}
+E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}\label{eq:E(w)}
+\end{equation}
+
+\end_inset
+
+in which unique solution 
+\begin_inset Formula $\mathbf{w^{*}}$
+\end_inset
+
+ can be found in closed form.
+\end_layout
+
+\begin_layout Standard
+The root-mean-square (RMS) is error defined by 
+\begin_inset Formula 
+\[
+E_{RMS}=\sqrt{2E(\mathbf{w^{*})/N}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When 
+\begin_inset Formula $M$
+\end_inset
+
+ is large, over-fitting occurs, i.e.
+ 
+\begin_inset Formula $E_{RMS}$
+\end_inset
+
+ against test data becomes large.
+ One technique to control over-fitting is regularization, by adding a penalty
+ term to the error function (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:E(w)"
+
+\end_inset
+
+) in order to discourage the coefficients from reaching large values:
+\begin_inset Formula 
+\[
+\widetilde{E}(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
