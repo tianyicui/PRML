@@ -167,7 +167,11 @@ y(x,\mathbf{w})=w_{0}+w_{1}+w_{2}x^{2}+\ldots+w_{M}x^{M}=\sum_{j=0}^{M}w_{j}x^{j
 \end_layout
 
 \begin_layout Standard
-We need to minimize the error function 
+We need to minimize the 
+\emph on
+error function
+\emph default
+ 
 \begin_inset Formula 
 \begin{equation}
 E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}\label{eq:E(w)}
@@ -199,14 +203,21 @@ When
 \begin_inset Formula $M$
 \end_inset
 
- is large, over-fitting occurs, i.e.
+ is large, 
+\emph on
+over-fitting
+\emph default
+ occurs, i.e.
  
 \begin_inset Formula $E_{RMS}$
 \end_inset
 
  against test data becomes large.
- One technique to control over-fitting is regularization, by adding a penalty
- term to the error function (
+ One technique to control over-fitting is 
+\emph on
+regularization
+\emph default
+, by adding a penalty term to the error function (
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "eq:E(w)"
@@ -218,6 +229,413 @@ reference "eq:E(w)"
 \[
 \widetilde{E}(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}
 \]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Probability Theory
+\end_layout
+
+\begin_layout Standard
+Equations for probability:
+\end_layout
+
+\begin_layout Standard
+Sum rule
+\begin_inset Formula 
+\[
+p(X)=\sum_{Y}p(X,Y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Product rule
+\begin_inset Formula 
+\[
+p(X,Y)=p(Y|X)p(X)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bayes' theorem
+\begin_inset Formula 
+\begin{equation}
+p(Y|X)=\frac{p(X|Y)p(Y)}{p(X)}\label{eq:bayes}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The denominator in (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bayes"
+
+\end_inset
+
+) can be expressed in terms of the quantities appearing in the numerator
+\begin_inset Formula 
+\[
+p(X)=\sum_{Y}p(X|Y)p(Y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can view the denominator in Bayes' theorem as being the normalization
+ constant required to ensure that the sum of the conditional probability
+ on the left-hand side of (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:bayes"
+
+\end_inset
+
+) over all values of 
+\begin_inset Formula $Y$
+\end_inset
+
+ equals 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Before any observation, we have a probability of a certain event 
+\begin_inset Formula $Y$
+\end_inset
+
+, this is called 
+\emph on
+prior probability
+\emph default
+ 
+\begin_inset Formula $p(Y)$
+\end_inset
+
+, after some observation 
+\begin_inset Formula $X$
+\end_inset
+
+, the probability of event 
+\begin_inset Formula $Y$
+\end_inset
+
+ becomes the 
+\emph on
+posterior probability
+\emph default
+ 
+\begin_inset Formula $p(Y|X)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X$
+\end_inset
+
+ and 
+\begin_inset Formula $Y$
+\end_inset
+
+ are said to be 
+\emph on
+independent
+\emph default
+ if 
+\begin_inset Formula $p(X,Y)=p(X)p(Y)$
+\end_inset
+
+, which is equivaent to 
+\begin_inset Formula $P(Y|X)=p(Y)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Probability densities
+\end_layout
+
+\begin_layout Standard
+If the probability that 
+\begin_inset Formula $x$
+\end_inset
+
+ will lie in 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ is given by 
+\begin_inset Formula 
+\[
+p(x\in(a,b))=\int_{a}^{b}p(x)\mathrm{d}x
+\]
+
+\end_inset
+
+then 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ is called the 
+\emph on
+probability density
+\emph default
+ over 
+\begin_inset Formula $x$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Apparently 
+\begin_inset Formula $p(x)\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\int_{-\infty}^{\infty}p(x)\mathrm{d}x=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Under a nonlinear change of variable, a probability density transforms different
+ly from a simple function, due to the Jacobian factor.
+ If 
+\begin_inset Formula $x=g(y)$
+\end_inset
+
+, since 
+\begin_inset Formula $p_{x}(x)\mathrm{d}x=p_{y}(y)\mathrm{d}y$
+\end_inset
+
+, hence
+\begin_inset Formula 
+\begin{eqnarray}
+p_{y}(y) & = & p_{x}(x)\left|\frac{\mathrm{d}x}{\mathrm{d}y}\right|\nonumber \\
+ & = & p_{x}(g(y))\left|g'(y)\right|
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+cuculative distribution function
+\emph default
+ 
+\begin_inset Formula 
+\[
+P(z)=\int_{-\infty}^{z}p(x)\mathrm{d}x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For several continuous variables 
+\begin_inset Formula $x_{1},\ldots,x_{D}$
+\end_inset
+
+, denoted collectively by the vector 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+, then we can define a joint probability density 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ such that 
+\begin_inset Formula $p\left(\mathbf{x}\in(\mathbf{x}_{0},\mathbf{x}_{0}+\delta\mathbf{x})\right)=p(\mathbf{x}_{0})\delta\mathbf{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Expectations and covariances
+\end_layout
+
+\begin_layout Standard
+The average value of some function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ under a probability distribution 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ is called the 
+\emph on
+expectaion
+\emph default
+ of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ and denoted by 
+\begin_inset Formula $\mathbb{E}[f]$
+\end_inset
+
+.
+ For a descrite distribution,
+\begin_inset Formula 
+\[
+\mathbb{E}[f]=\sum_{x}p(x)f(x)
+\]
+
+\end_inset
+
+For continuous variables,
+\begin_inset Formula 
+\[
+\mathbb{E}[f]=\int p(x)f(x)\mathrm{d}x
+\]
+
+\end_inset
+
+In either case, the expectation can be approximated given 
+\begin_inset Formula $N$
+\end_inset
+
+ samples,
+\begin_inset Formula 
+\[
+\mathbb{E}[f]\simeq\frac{1}{N}\sum_{n=1}^{N}f(x_{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When considering expectations of functions of several variables, we use
+ subscript to indicate which variable is being averaged over, e.g.
+ 
+\begin_inset Formula $\mathbb{E}_{x}[f(x,y)]$
+\end_inset
+
+ is a function of 
+\begin_inset Formula $y$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can also consider 
+\emph on
+conditional expectation
+\begin_inset Formula 
+\[
+\mathbb{E}_{x}[f|y]=\sum_{x}p(x|y)f(x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+variance
+\emph default
+ of 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ is defined by
+\begin_inset Formula 
+\begin{eqnarray}
+\mathrm{var}[f] & = & \mathbb{E}\left[(f(x)-\mathbb{E}[f(x)]\right]{}^{2}\\
+ & = & \mathbb{E}\left[f(x)^{2}\right]-\mathbb{E}\left[f(x)\right]{}^{2}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+covariance
+\emph default
+ of two random variable 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ is defined by
+\begin_inset Formula 
+\begin{eqnarray}
+\mathrm{cov}[x,y] & = & \mathbb{E}_{x,y}\left[\{x-\mathbb{E}[x]\}\{y-\mathbb{E}[y]\}\right]\nonumber \\
+ & = & \mathbb{E}_{x,y}[xy]-\mathbb{E}[x]\mathbb{E}[y]
+\end{eqnarray}
+
+\end_inset
+
+which expresses the extent to which 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ vary together.
+ If they are independent, then thei covariance vanishes.
+\end_layout
+
+\begin_layout Standard
+In the case of two vectors of random variables 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+, the covariance is a matrix
+\begin_inset Formula 
+\begin{eqnarray}
+\mathrm{cov}[\mathbf{x},\mathbf{y}] & = & \mathbb{E}_{x,y}\left[\left\{ \mathbf{x}-\mathbb{E}[\mathbf{x]}\right\} \left\{ \mathbf{y}^{\mathrm{T}}-\mathbb{E}[\mathbf{y^{\mathrm{T}}]}\right\} \right]\nonumber \\
+ & = & \mathbb{E}_{x,y}[\mathbf{x}\mathbf{y}^{\mathrm{T}}]-\mathbb{E}[\mathbf{x]}\mathbb{E}[\mathbf{y^{\mathrm{T}}]}
+\end{eqnarray}
 
 \end_inset
 
