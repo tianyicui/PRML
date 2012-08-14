@@ -11,6 +11,9 @@
 \renewcommand\]{\end{equation}}
 \end_preamble
 \use_default_options true
+\begin_modules
+enumitem
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -81,7 +84,11 @@ Reading Notes of
 \begin_inset Newline newline
 \end_inset
 
-Pattern Classification and Machine Learning
+Pattern Classification and
+\begin_inset Newline newline
+\end_inset
+
+Machine Learning
 \end_layout
 
 \begin_layout Author
@@ -370,7 +377,7 @@ independent
 \begin_inset Formula $p(X,Y)=p(X)p(Y)$
 \end_inset
 
-, which is equivaent to 
+, which is equivalent to 
 \begin_inset Formula $P(Y|X)=p(Y)$
 \end_inset
 
@@ -499,7 +506,7 @@ The average value of some function
 
  is called the 
 \emph on
-expectaion
+expectation
 \emph default
  of 
 \begin_inset Formula $f(x)$
@@ -510,7 +517,7 @@ expectaion
 \end_inset
 
 .
- For a descrite distribution,
+ For a discrete distribution,
 \begin_inset Formula 
 \[
 \mathbb{E}[f]=\sum_{x}p(x)f(x)
@@ -621,7 +628,7 @@ which expresses the extent to which
 \end_inset
 
  vary together.
- If they are independent, then thei covariance vanishes.
+ If they are independent, then the covariance vanishes.
 \end_layout
 
 \begin_layout Standard
@@ -713,7 +720,7 @@ likelihood function
 \end_layout
 
 \begin_layout Standard
-Given the definition of liklihood, we can state Bayes' theorem in words
+Given the definition of likelihood, we can state Bayes' theorem in words
 \begin_inset Formula 
 \[
 \text{posterior}\propto\text{likelihood}\times\text{prior}
@@ -1555,7 +1562,7 @@ One major drawback of cross-validation is that the number of training runs
 , and this can be problematic when training is computationally expensive.
  And when there are multiple parameters to explore, required number of training
  runs is exponential in the number of parameters.
- We therefore need a measure of performence which depends only on the training
+ We therefore need a measure of performance which depends only on the training
  data (i.e.
  not validation-based) and which does not suffer from bias due to over-fitting.
 \end_layout
@@ -1712,6 +1719,814 @@ curse of dimensionality
 manifold
 \emph default
  embedded within the high-dimensional space.
+\end_layout
+
+\begin_layout Section
+Decision Theory
+\end_layout
+
+\begin_layout Standard
+Decision theory, when combined with probability theory, allows us to make
+ optimal decisions in situations involving uncertainty.
+\end_layout
+
+\begin_layout Standard
+Suppose we have an input vector 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ together with a corresponding vector 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+ of target variables, and our goal is to predict 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+ given a new value for 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+ are continuous variables or class labels for regression and classification
+ problems.
+ The joint probability distribution 
+\begin_inset Formula $p(\mathbf{x},\mathbf{t})$
+\end_inset
+
+ provides a complete summary of the uncertainty associated with these variables.
+ Determination of 
+\begin_inset Formula $p(\mathbf{x},\mathbf{t})$
+\end_inset
+
+ from a set of training data is an example of 
+\emph on
+inference
+\emph default
+ and is typically very difficult.
+ In practice, what we need is the prediction of 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+, or more generally take a specific action based on our understudying of
+ values 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+ is likely to take, and this aspect is the subject of decision theory.
+\end_layout
+
+\begin_layout Standard
+Consider, for example, a medical diagnosis problem, we have a X-ray image
+ input vector 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+, and output value 
+\begin_inset Formula $t$
+\end_inset
+
+ to be a binary variable such that 
+\begin_inset Formula $t=0$
+\end_inset
+
+ corresponds to class 
+\begin_inset Formula $\mathcal{C}_{1}$
+\end_inset
+
+, the presence of cancer, and 
+\begin_inset Formula $t=1$
+\end_inset
+
+ corresponds to 
+\begin_inset Formula $\mathcal{C}_{2}$
+\end_inset
+
+.
+ The general inference problem involves determining the joint distribution
+ 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+, or equivalently 
+\begin_inset Formula $p(\mathbf{x},t)$
+\end_inset
+
+.
+ Although this can be very useful and informative, in the end we must decide
+ whether to give treatment, and we would like this choice to be optimal
+ in some appropriate sense.
+ This is the 
+\emph on
+decision
+\emph default
+ step.
+\end_layout
+
+\begin_layout Standard
+When we obtained 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+, we're interested in the probabilities of the two classes given the image,
+ which are given by 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+, using Bayes' theorem, it can be expressed in the form
+\begin_inset Formula 
+\[
+p(\mathcal{C}_{k}|\mathbf{x})=\frac{p(\mathbf{x}|\mathcal{C}_{k})p(\mathcal{C}_{k})}{p(\mathbf{x})}
+\]
+
+\end_inset
+
+If our aim is to minimize the chance of assigning 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to the wrong class, then intuitively we would choose the class having the
+ higher posterior probability.
+\end_layout
+
+\begin_layout Subsection
+Minimizing the misclassification rate
+\end_layout
+
+\begin_layout Standard
+We need a rule to assign each value of 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to one of the available classes.
+ Such a rule will divide the input space into regions 
+\begin_inset Formula $\mathcal{R}_{k}$
+\end_inset
+
+ called 
+\emph on
+decision regions
+\emph default
+, one for each class.
+ The boundaries between decision regions are called 
+\emph on
+decision boundaries
+\emph default
+ or 
+\emph on
+decision surfaces
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+In the case of two classes, the probability of misclassification is
+\begin_inset Formula 
+\begin{eqnarray}
+p(\text{mistake}) & = & p(\mathbf{x}\in\mathcal{R}_{1},\mathcal{C}_{2})+p(\mathbf{x}\in\mathcal{R}_{2},\mathcal{C}_{1})\nonumber \\
+ & = & \int_{\mathcal{R}_{1}}p(\mathbf{x},\mathcal{C}_{2})\mathrm{d}\mathbf{x}+\int_{\mathcal{R}_{2}}p(\mathbf{x},\mathcal{C}_{1})\mathrm{d}\mathbf{x}\label{eq:p(mistake)}
+\end{eqnarray}
+
+\end_inset
+
+Clearly to minimize 
+\begin_inset Formula $p(\text{mistake})$
+\end_inset
+
+ we should arrange that each 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ is assigned to whichever class has the smaller value of the integrand in
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(mistake)"
+
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})=p(\mathcal{C}_{k}|\mathbf{x})p(\mathbf{x})$
+\end_inset
+
+, it's equivalent to assign 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to the class for which the posterior probability 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+ is largest.
+\end_layout
+
+\begin_layout Standard
+For the more general case of 
+\begin_inset Formula $K$
+\end_inset
+
+ classes, it's slightly easier to maximize the probability of being correct,
+ which is given by
+\begin_inset Formula 
+\begin{eqnarray}
+p(\text{correct}) & = & \sum_{k=1}^{K}p(\mathbf{x}\in\mathcal{R}_{k},\mathcal{C}_{k})\nonumber \\
+ & = & \sum_{k=1}^{K}\int_{\mathcal{R}_{k}}p(\mathbf{x},\mathcal{C}_{k})\mathrm{d}\mathbf{x}
+\end{eqnarray}
+
+\end_inset
+
+which is maximized when the regions 
+\begin_inset Formula $\mathcal{R}_{k}$
+\end_inset
+
+ are chosen such that each 
+\begin_inset Formula $\mathrm{x}$
+\end_inset
+
+ is assigned to the class for which 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+ or 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+ is the largest.
+\end_layout
+
+\begin_layout Subsection
+Minimizing the expected loss
+\end_layout
+
+\begin_layout Standard
+For many applications, different kinds of misclassifications lead to different
+ penalty, which can be formalized through a 
+\emph on
+loss function
+\emph default
+, also called a 
+\emph on
+cost function
+\emph default
+, which is a single, overall measure of loss incurred in taking any of the
+ available decisions or actions.
+ Our goal is then to minimize the total loss incurred.
+ Suppose 
+\begin_inset Formula $L_{kj}$
+\end_inset
+
+ represents the loss when the true class is 
+\begin_inset Formula $\mathcal{C}_{k}$
+\end_inset
+
+ and we assign the input to class 
+\begin_inset Formula $\mathcal{C}_{j}$
+\end_inset
+
+, 
+\begin_inset Formula $L$
+\end_inset
+
+ is called a 
+\emph on
+loss matrix
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The optimal solution is the one which minimizes the loss function.
+ However, the loss function depends on the true class, which is unknown.
+ So we seek instead of minimize the average loss respect to the distribution
+ 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+, which is given by
+\begin_inset Formula 
+\[
+\mathbb{E}[L]=\sum_{k}\sum_{j}\int_{\mathcal{R}_{j}}L_{kj}p(\mathbf{x},\mathcal{C}_{k})\mathrm{d}\mathbf{x}
+\]
+
+\end_inset
+
+Each 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ can be assigned to one of 
+\begin_inset Formula $\mathcal{R}_{j}$
+\end_inset
+
+, which implies that for each 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ we should minimize 
+\begin_inset Formula $\sum_{k}L_{kj}p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+.
+ As before we can use the product rule 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})=p(\mathcal{C}_{k}|\mathbf{x})p(\mathbf{x})$
+\end_inset
+
+ to eliminate the common factor of 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+.
+ Thus the decision rule that minimizes the expected loss is the one that
+ assigns each new 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to the class 
+\begin_inset Formula $j$
+\end_inset
+
+ for which the quantity
+\begin_inset Formula 
+\[
+\sum_{k}L_{kj}p(\mathbf{x},\mathcal{C}_{k})
+\]
+
+\end_inset
+
+is a minimum.
+\end_layout
+
+\begin_layout Subsection
+The reject option
+\end_layout
+
+\begin_layout Standard
+The classification errors arise from the regions of input space where the
+ largest of the posterior probabilities 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+ is significantly less than unity, or equivalently where the joint distributions
+ 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+ have comparable values.
+ These are the regions where we are relatively uncertain about class membership.
+ In some applications, it will be appropriate to avoid making decisions
+ on the difficult cases in anticipation of a lower error rate on those examples
+ for which a classification decision is made.
+ This is known as the reject option.
+ We can achieve this by introducing a threshold 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and rejecting those inputs 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ for which the largest of the posterior probabilities 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+ is less than or equal to 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can easily extend the reject criterion to minimize the expected loss,
+ when a loss matrix include the loss incurred when a reject decision is
+ made.
+\end_layout
+
+\begin_layout Subsection
+Inference and decision
+\end_layout
+
+\begin_layout Standard
+We have broken the classification problem down into two separate stages,
+ the 
+\emph on
+inference stage
+\emph default
+ in which we use training data to learn a model for 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+, and the subsequent 
+\emph on
+decision stage
+\emph default
+ in which we use these posterior probabilities to make optimal class assignments.
+ In fact, we can identity three distinct approaches to solving decision
+ problems.
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Argument
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+label=(
+\backslash
+alph*)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+First solve the inference problem of determining the class-conditional densities
+ 
+\begin_inset Formula $p(\mathbf{x}|\mathcal{C}_{k})$
+\end_inset
+
+.
+ Also separately infer the prior class probabilities 
+\begin_inset Formula $p(\mathcal{C}_{k})$
+\end_inset
+
+.
+ Then use Bayes' theorem to find the posterior class probabilities 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+.
+ Equivalently, we can model the joint distribution 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+ directly and then normalize to obtain the posterior probabilities.
+ Then we use decision theory to determine class membership.
+ Approaches that explicitly or implicitly model the distribution of inputs
+ as well as outputs are known as 
+\emph on
+generative models
+\emph default
+, because by sampling from them it is possible to generate synthetic data
+ points in the data space.
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:generative models"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+First solve the inference problem of determining the posterior class probabiliti
+es 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+, and then use decision theory to assign each new 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to one of the classes.
+ Approaches that model the posterior probabilities directly are called 
+\emph on
+discriminative models
+\emph default
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:discriminative models"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Find a function 
+\begin_inset Formula $f(\mathbf{x})$
+\end_inset
+
+, called a 
+\emph on
+discriminant function
+\emph default
+, which maps each input 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ directly onto a class label.
+ In this case, probabilities play no role.
+\begin_inset CommandInset label
+LatexCommand label
+name "enu:discriminant function"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:generative models"
+
+\end_inset
+
+ is the most demanding, because for many applications 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ will have high dimensionality, and consequently we need a large training
+ set in order to determine the class-conditional densities 
+\begin_inset Formula $p(\mathbf{x}|\mathcal{C}_{k})$
+\end_inset
+
+ or the joint distribution 
+\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\end_inset
+
+ to reasonable accuracy.
+ However, one advantage is it can also determine 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+.
+ This can be useful for detecting new data points that have low probability
+ under the model and for which the predictions may be of low accuracy, which
+ is known as 
+\emph on
+outlier detection
+\emph default
+ or 
+\emph on
+novelty detection
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+The class-conditional densities may contain a lot of structure that has
+ little effect on the posterior probabilities, so in approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:discriminative models"
+
+\end_inset
+
+ we find the posterior probabilities 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+ directly.
+\end_layout
+
+\begin_layout Standard
+Approach 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "enu:discriminant function"
+
+\end_inset
+
+ is even simpler, in which we combine the inference and decision stages
+ into a simple learning problem.
+\end_layout
+
+\begin_layout Standard
+There are many powerful reasons for wanting to compute the posterior probabiliti
+es 
+\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\end_inset
+
+ before making decisions:
+\end_layout
+
+\begin_layout Itemize
+The loss matrix may be subjected to revision.
+\end_layout
+
+\begin_layout Itemize
+The possibility of reject option.
+\end_layout
+
+\begin_layout Itemize
+Compensating for class priors.
+ Consider the medical X-ray problem, since cancer is rare, only 0.1% of our
+ samples are in the cancer class.
+ A classifier that assigned every point to the normal class would already
+ achieve 99.9% accuracy and it would be difficult to avoid this trivial solution.
+ Also, the learning algorithm will not be exposed to a broad range of examples
+ in the cancer class and hence is not likely to generalize well.
+ A balanced data set in which we have selected equal numbers of examples
+ from each of the classes would allow us to find a more accurate model.
+ However, we must compensate for the effects of our modifications to the
+ training data.
+ We can simply take the posterior probabilities obtained from our artificially
+ balanced data set and first divide by the class fractions in that data
+ set and then multiply by the class fractions in the population to which
+ we wish to apply the model.
+ Finally, we need to normalize to ensure that the new posterior probabilities
+ sum to one.
+ Note that this procedure cannot be applied if we have learned a discriminant
+ function directly instead of determining posterior probabilities.
+\end_layout
+
+\begin_layout Itemize
+Combining models.
+ For complex applications, we can break the problem into a number of smaller
+ subproblems each of which can be tackled by a separate model.
+ For example in the medical X-ray problem, we may assume that the distribution
+ of inputs for X-ray images 
+\begin_inset Formula $\mathbf{x}_{\mathrm{I}}$
+\end_inset
+
+ and the blood data 
+\begin_inset Formula $\mathbf{x}_{\mathrm{B}}$
+\end_inset
+
+ are independently, so that
+\begin_inset Formula 
+\[
+p(\mathbf{x}_{\mathrm{I}},\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})=p(\mathbf{x}_{\mathrm{I}}|\mathcal{C}_{k})p(\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})
+\]
+
+\end_inset
+
+This is an example of 
+\emph on
+conditional independence
+\emph default
+ property.
+ Then the posterior probability given both the data is given by
+\begin_inset Formula 
+\begin{eqnarray}
+p(\mathcal{C}_{k}|\mathbf{x}_{\mathrm{I}},\mathbf{x}_{\mathrm{B}}) & \propto & p(\mathbf{x}_{\mathrm{I}},\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})p(\mathcal{C}_{k})\nonumber \\
+ & \propto & p(\mathbf{x}_{\mathrm{I}}|\mathcal{C}_{k})p(\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})p(\mathcal{C}_{k})\nonumber \\
+ & \propto & p(\mathcal{C}_{k}|\mathbf{x}_{\mathrm{I}})p(\mathcal{C}_{k}|\mathbf{x}_{\mathrm{B}})
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Loss functions for regression
+\end_layout
+
+\begin_layout Standard
+In regression problems, the decision stage consists of choosing a specific
+ estimate 
+\begin_inset Formula $y(\mathbf{x})$
+\end_inset
+
+ of the value of 
+\begin_inset Formula $t$
+\end_inset
+
+ for each input 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+.
+ Suppose that in doing so, we incur a loss 
+\begin_inset Formula $L(t,y(\mathbf{x}))$
+\end_inset
+
+.
+ The expected loss is given by
+\begin_inset Formula 
+\[
+\mathbb{E}[L]=\iint L(t,y(\mathbf{x}))p(\mathbf{x},t)\mathrm{d}\mathbf{x}\mathrm{d}t
+\]
+
+\end_inset
+
+A common choice of the loss function is the squared loss 
+\begin_inset Formula $L(t,y(\mathbf{x}))=\left\{ y(\mathbf{x})-t\right\} ^{2}$
+\end_inset
+
+.
+ In this case
+\begin_inset Formula 
+\[
+\mathbb{E}[L]=\iint\left\{ y(\mathbf{x})-t\right\} ^{2}p(\mathbf{x},t)\mathrm{d}\mathbf{x}\mathrm{d}t
+\]
+
+\end_inset
+
+Our goal is to choose 
+\begin_inset Formula $y(\mathbf{x})$
+\end_inset
+
+ so as to minimize 
+\begin_inset Formula $\mathbb{E}[L]$
+\end_inset
+
+.
+ If we assume a completely flexible function 
+\begin_inset Formula $y(\mathbf{x})$
+\end_inset
+
+, we can do this formally using the calculus of variations to give
+\begin_inset Formula 
+\[
+\frac{\delta\mathbb{E}[L]}{\delta y(\mathbf{x})}=2\int\left\{ y(\mathbf{x})-t\right\} p(\mathbf{x},t)\mathrm{d}t=0
+\]
+
+\end_inset
+
+Solving for 
+\begin_inset Formula $y(\mathbf{x})$
+\end_inset
+
+, and using the sum and product rules of probability, we obtain
+\begin_inset Formula 
+\[
+y(\mathbf{x})=\frac{\int tp(\mathbf{x},t)\mathrm{d}t}{p(\mathbf{x})}=\int tp(t|\mathbf{x})\mathrm{d}t=\mathbb{E}_{t}[t|\mathbf{x}]
+\]
+
+\end_inset
+
+which is the conditional average of 
+\begin_inset Formula $t$
+\end_inset
+
+ conditioned on 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and is known as the 
+\emph on
+regression function
+\emph default
+.
+ It can readily be extended to multiple variables represented by the vector
+ 
+\begin_inset Formula $\mathbf{t}$
+\end_inset
+
+, in which case the optimal solution is the conditional average 
+\begin_inset Formula $\mathbf{y}(\mathbf{x})=\mathbb{E}_{\mathbf{t}}[\mathbf{t}|\mathbf{x}]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The squared loss is not the only possible choice of loss function for regression.
+ Indeed, there are situations in which squared loss can lead to very poor
+ results and where we need to develop more sophisticated approaches.
+ An important example concerns situations in which the conditional distribution
+ 
+\begin_inset Formula $p(t|\mathbf{x})$
+\end_inset
+
+ is multimodal, as often arises in the solution of inverse problems.
+ One simple generalization of the squared loss is the 
+\begin_inset Formula $Minkowski$
+\end_inset
+
+ loss, whose expectation is given by
+\begin_inset Formula 
+\[
+\mathbb{E}[L_{q}]=\iint\left|y(\mathbf{x})-t\right|^{q}p(\mathbf{x},t)\mathrm{d}\mathbf{x}\mathrm{d}t
+\]
+
+\end_inset
+
+The minimum of 
+\begin_inset Formula $\mathbb{E}[L_{q}]$
+\end_inset
+
+ is given by the conditional mean for 
+\begin_inset Formula $q=2$
+\end_inset
+
+, the conditional media for 
+\begin_inset Formula $q=1$
+\end_inset
+
+, and the conditional mode for 
+\begin_inset Formula $q\to0$
+\end_inset
+
+.
 \end_layout
 
 \end_body
