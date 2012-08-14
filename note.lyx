@@ -1485,5 +1485,101 @@ reference "eq:s^2(x)"
  and is a consequence of the Bayesian treatment.
 \end_layout
 
+\begin_layout Section
+Model Selection
+\end_layout
+
+\begin_layout Standard
+Model selection is to find the appropriate values of complexity parameters
+ within a given model and to find the best model for a particular application.
+\end_layout
+
+\begin_layout Standard
+Due to the problem of over-fitting, performance on the training set is not
+ a good indicator of predictive performance.
+ If data is plentiful, we can set aside a 
+\emph on
+validation set
+\emph default
+ for comparing models.
+ If the model design is iterated many times using a limited size data set,
+ some over-fitting to the validation data can occur so it may be necessary
+ to keep aside a third 
+\emph on
+test set
+\emph default
+ on which the performance of the selected model is finally evaluated.
+\end_layout
+
+\begin_layout Standard
+But the supply of data for training and testing will be limited.
+ To use as much of the available data as possible for training, one solution
+ is to use 
+\emph on
+cross-validation
+\emph default
+, which is, to divide the data into 
+\begin_inset Formula $S$
+\end_inset
+
+ sets, and use 
+\begin_inset Formula $S-1$
+\end_inset
+
+ sets for training and 
+\begin_inset Formula $1$
+\end_inset
+
+ set for validation, in total 
+\begin_inset Formula $S$
+\end_inset
+
+ runs.
+ When 
+\begin_inset Formula $S=N$
+\end_inset
+
+, it's called the 
+\emph on
+leave-one-out
+\emph default
+ technique.
+\end_layout
+
+\begin_layout Standard
+One major drawback of cross-validation is that the number of training runs
+ is increased by a factor of 
+\begin_inset Formula $S$
+\end_inset
+
+, and this can be problematic when training is computationally expensive.
+ And when there are multiple parameters to explore, required number of training
+ runs is exponential in the number of parameters.
+ We therefore need a measure of performence which depends only on the training
+ data (i.e.
+ not validation-based) and which does not suffer from bias due to over-fitting.
+\end_layout
+
+\begin_layout Standard
+Historically various `information criteria' have been proposed that attempt
+ to correct for the bias of maximum likelihood by the addition of a penalty
+ term to compensate for the over-fitting of more complex models.
+ For example, the 
+\emph on
+Akaike information criterion
+\emph default
+, or AIC, chooses the model for which the quantity
+\begin_inset Formula 
+\[
+\ln p(\mathcal{D}|\mathbf{w}_{\mathrm{ML}})-M
+\]
+
+\end_inset
+
+is largest.
+ Later we'll see how complexity penalties arise in a natural and principled
+ way in a fully Bayesian approach.
+\end_layout
+
 \end_body
 \end_document
