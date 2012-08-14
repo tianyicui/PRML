@@ -4,6 +4,9 @@
 \begin_header
 \textclass scrbook
 \begin_preamble
+\usepackage{indentfirst}
+\usepackage{helvet}
+
 \renewcommand\[{\begin{equation}}
 \renewcommand\]{\end{equation}}
 \end_preamble
@@ -157,9 +160,9 @@ In regression problems, we can use a polynomial function
 
 \begin_layout Standard
 \begin_inset Formula 
-\[
-y(x,\mathbf{w})=w_{0}+w_{1}+w_{2}x^{2}+\ldots+w_{M}x^{M}=\sum_{j=0}^{M}w_{j}x^{j}
-\]
+\begin{equation}
+y(x,\mathbf{w})=w_{0}+w_{1}+w_{2}x^{2}+\ldots+w_{M}x^{M}=\sum_{j=0}^{M}w_{j}x^{j}\label{eq:y(x,w)}
+\end{equation}
 
 \end_inset
 
@@ -187,7 +190,7 @@ in which unique solution
 \end_layout
 
 \begin_layout Standard
-The root-mean-square (RMS) is error defined by 
+The root-mean-square (RMS) error is defined by 
 \begin_inset Formula 
 \[
 E_{RMS}=\sqrt{2E(\mathbf{w^{*})/N}}
@@ -217,18 +220,18 @@ over-fitting
 \emph on
 regularization
 \emph default
-, by adding a penalty term to the error function (
+, by adding a penalty term to the error function 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:E(w)"
 
 \end_inset
 
-) in order to discourage the coefficients from reaching large values:
+ in order to discourage the coefficients from reaching large values:
 \begin_inset Formula 
-\[
-\widetilde{E}(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}
-\]
+\begin{equation}
+\widetilde{E}(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\Vert \mathbf{w}\right\Vert ^{2}\label{eq:regularized E(w)}
+\end{equation}
 
 \end_inset
 
@@ -243,7 +246,7 @@ Probability Theory
 Equations for probability:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Sum rule
 \begin_inset Formula 
 \[
@@ -255,7 +258,7 @@ p(X)=\sum_{Y}p(X,Y)
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Product rule
 \begin_inset Formula 
 \[
@@ -267,7 +270,7 @@ p(X,Y)=p(Y|X)p(X)
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 Bayes' theorem
 \begin_inset Formula 
 \begin{equation}
@@ -280,14 +283,14 @@ p(Y|X)=\frac{p(X|Y)p(Y)}{p(X)}\label{eq:bayes}
 \end_layout
 
 \begin_layout Standard
-The denominator in (
+The denominator in 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:bayes"
 
 \end_inset
 
-) can be expressed in terms of the quantities appearing in the numerator
+ can be expressed in terms of the quantities appearing in the numerator
 \begin_inset Formula 
 \[
 p(X)=\sum_{Y}p(X|Y)p(Y)
@@ -301,14 +304,14 @@ p(X)=\sum_{Y}p(X|Y)p(Y)
 \begin_layout Standard
 We can view the denominator in Bayes' theorem as being the normalization
  constant required to ensure that the sum of the conditional probability
- on the left-hand side of (
+ on the left-hand side of 
 \begin_inset CommandInset ref
-LatexCommand ref
+LatexCommand eqref
 reference "eq:bayes"
 
 \end_inset
 
-) over all values of 
+ over all values of 
 \begin_inset Formula $Y$
 \end_inset
 
@@ -448,7 +451,7 @@ p_{y}(y) & = & p_{x}(x)\left|\frac{\mathrm{d}x}{\mathrm{d}y}\right|\nonumber \\
 \begin_layout Standard
 The 
 \emph on
-cuculative distribution function
+cumulative distribution function
 \emph default
  
 \begin_inset Formula 
@@ -640,6 +643,846 @@ In the case of two vectors of random variables
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Bayesian probabilities
+\end_layout
+
+\begin_layout Standard
+In the 
+\emph on
+classical
+\emph default
+ or 
+\emph on
+frequentist
+\emph default
+ interpretation of probability, probabilities is viewed in terms of the
+ frequencies of random, repeatable events.
+ In the more general 
+\emph on
+Beyesian
+\emph default
+ view, probabilities provide a quantification of uncertainty, so we can
+ say the probability of an uncertain event, like whether the Arctic ice
+ cap will have disappeared by the end of the century, which is not events
+ that can be repeated.
+\end_layout
+
+\begin_layout Standard
+In the polynomial curve fitting example, we assume the parameters 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ have a prior probability distribution 
+\begin_inset Formula $p(\mathbf{w})$
+\end_inset
+
+, then given the observed data 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+, the posterior probability is
+\begin_inset Formula 
+\[
+p(\mathbf{w}|\mathcal{D})=\frac{p(\mathcal{D}|\mathbf{w})p(\mathbf{w)}}{p(\mathcal{D})}
+\]
+
+\end_inset
+
+where the quantity 
+\begin_inset Formula $p(\mathcal{D}|\mathbf{w})$
+\end_inset
+
+ is called the 
+\emph on
+likelihood function
+\emph default
+, which expresses how probable the observed data set is for different settings
+ of the parameter vector 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+.
+ The likelihood is not a probability distribution over 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+, and its integral does not necessarily equal one.
+\end_layout
+
+\begin_layout Standard
+Given the definition of liklihood, we can state Bayes' theorem in words
+\begin_inset Formula 
+\[
+\text{posterior}\propto\text{likelihood}\times\text{prior}
+\]
+
+\end_inset
+
+where all of these quantities are viewed as functions of 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In the likelihood function 
+\begin_inset Formula $p(\mathcal{D}|\mathbf{w})$
+\end_inset
+
+, in the frequentist setting, 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ is considered to be a fixed parameter, whose value is determines by some
+ form of `estimator', and error bars on this estimate are obtained by considerin
+g the distribution of possible data sets 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+.
+ By contrast, from Bayesian viewpoint there is only a single data set 
+\begin_inset Formula $\mathcal{D}$
+\end_inset
+
+ (the one actually observed), and the uncertainty in the parameters is expressed
+ through a probability distribution over 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+The Gaussian distribution
+\end_layout
+
+\begin_layout Standard
+The Gaussian distribution on a single real-valued variable 
+\begin_inset Formula $x$
+\end_inset
+
+ is defined by
+\begin_inset Formula 
+\[
+\mathcal{N}(x|\mu,\sigma^{2})=\frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right\} 
+\]
+
+\end_inset
+
+which is governed by two parameters: 
+\begin_inset Formula $\mu$
+\end_inset
+
+ the 
+\emph on
+mean
+\emph default
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ the 
+\emph on
+variance
+\emph default
+.
+ 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ is called the 
+\emph on
+standard deviation
+\emph default
+, and 
+\begin_inset Formula $\beta=1/\sigma^{2}$
+\end_inset
+
+ is called the 
+\emph on
+precision
+\emph default
+.
+ The mean of 
+\begin_inset Formula $x$
+\end_inset
+
+ is given by 
+\begin_inset Formula $\mathbb{E}[x]=\mu$
+\end_inset
+
+ and the variance of 
+\begin_inset Formula $x$
+\end_inset
+
+ is given by 
+\begin_inset Formula $\mathrm{var}[x]=\mathbb{E}[x^{2}]-\mathbb{E}[x]^{2}=\sigma^{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The Gaussian distribution defined over a 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional vector 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ of continuous variables is given by
+\begin_inset Formula 
+\[
+\mathcal{N}(\mathbf{x}|\mathbf{\mu},\mathbf{\Sigma})=\frac{1}{(2\pi)^{D/2}}\frac{1}{\left|\bm{\Sigma}\right|^{1/2}}\exp\left\{ -\frac{1}{2}(\mathbf{x}-\bm{\mu})^{\mathrm{T}}\bm{\Sigma}^{-1}(\mathbf{x}-\bm{\mu})\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we have a data set of observation 
+\begin_inset Formula $\textbf{\textsf{x}}=(x_{1},\ldots,x_{N})^{\mathrm{T}}$
+\end_inset
+
+ which is 
+\emph on
+independent and identically distributed
+\emph default
+ (often abbreviated to i.i.d.) from a Gaussian distribution.
+ The likelihood of the data set, which is a function of 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+, is in the form
+\begin_inset Formula 
+\[
+p\left(\textbf{\textsf{x}}|\mu,\sigma^{2}\right)=\prod_{n=1}^{N}\mathcal{N}(x_{n}|\mu,\sigma^{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One common criterion for determining the parameters in a probability distributio
+n using an observed data set is to find the parameter values that maximize
+ the likelihood function.
+\end_layout
+
+\begin_layout Standard
+In practice, for mathematical and numerical reasons, it's more convenient
+ to maximize the log of the likelihood functions
+\begin_inset Formula 
+\begin{equation}
+\ln p\left(\textbf{\textsf{x}}|\mu,\sigma^{2}\right)=-\frac{1}{2\sigma^{2}}\sum_{n=1}^{N}(x_{n}-\mu)^{2}-\frac{N}{2}\ln\sigma^{2}-\frac{N}{2}\ln(2\pi)\label{eq:ln p(x|mu,sigma^2)}
+\end{equation}
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Maximizing 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(x|mu,sigma^2)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mu$
+\end_inset
+
+ gives the maximum likelihood solution
+\begin_inset Formula 
+\[
+\mu_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_{n}
+\]
+
+\end_inset
+
+which is the 
+\emph on
+sample mean
+\emph default
+.
+ Similarly, Maximize 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(x|mu,sigma^2)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+gives
+\begin_inset Formula 
+\[
+\sigma_{\mathrm{ML}}^{2}=\frac{1}{N}\sum_{n=1}^{N}(x_{n}-\mu_{\mathrm{ML}})^{2}
+\]
+
+\end_inset
+
+which is the 
+\emph on
+sample variance.
+\end_layout
+
+\begin_layout Standard
+The maximum likelihood approach systematically underestimates the variance
+ of the distribution.
+ This is an example of a phenomenon called 
+\emph on
+bias
+\emph default
+ and is related to the problem of over-fitting encountered in the context
+ of polynomial curve fitting.
+ First, we note that 
+\begin_inset Formula $\mu_{\mathrm{ML}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{\mathrm{ML}}^{2}$
+\end_inset
+
+ are functions of the data set values 
+\begin_inset Formula $x_{1},\ldots,x_{N}$
+\end_inset
+
+.
+ Consider the expectations of these quantities with respect to the data
+ set values, which themselves come from a Gaussian distribution with parameters
+ 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray}
+\mathbb{E}[\mu_{\mathrm{ML}}] & = & \mu\\
+\mathbb{E}[\sigma_{\mathrm{ML}}^{2}] & = & \left(\frac{N-1}{N}\right)\sigma^{2}\label{eq:E[sigma_ML^2]}
+\end{eqnarray}
+
+\end_inset
+
+so on average the maximum likelihood approach will underestimate the true
+ variance by a factor 
+\begin_inset Formula $(N-1)/N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:E[sigma_ML^2]"
+
+\end_inset
+
+ we see the following estimate for the variance parameter is unbiased
+\begin_inset Formula 
+\[
+\widetilde{\sigma}^{2}=\frac{N}{N-1}\sigma_{\mathrm{ML}}^{2}=\frac{1}{N-1}\sum_{n=1}^{N}(x_{n}-\mu_{\mathrm{ML}})^{2}
+\]
+
+\end_inset
+
+ this result arises automatically when we adopt a Bayesian approach (Section
+ 10.1.3).
+\end_layout
+
+\begin_layout Subsection
+Curve fitting re-visited
+\end_layout
+
+\begin_layout Standard
+The goal of curve fitting problem is to make predictions for the target
+ variable 
+\begin_inset Formula $t$
+\end_inset
+
+ given some new value of the input variable 
+\begin_inset Formula $x$
+\end_inset
+
+ on the basis of a set of training data 
+\begin_inset Formula $\textbf{\textsf{x}}=(x_{1},\ldots,x_{N})^{\mathrm{T}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\textbf{\textsf{t}}=(t_{1},\ldots,t_{N})^{\mathrm{T}}$
+\end_inset
+
+.
+ We can express out uncertainty over the value of the target variable using
+ a probability distribution.
+ Assume that, given the value of 
+\begin_inset Formula $x$
+\end_inset
+
+, the corresponding value of 
+\begin_inset Formula $t$
+\end_inset
+
+ has a Gaussian distribution with a mean equal to the value 
+\begin_inset Formula $y(x,\mathbf{w})$
+\end_inset
+
+ given by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:y(x,w)"
+
+\end_inset
+
+.
+ Thus we have
+\begin_inset Formula 
+\begin{equation}
+p(t|x,\mathbf{w},\beta)=\mathcal{N}\left(t|y(x,\mathbf{w}),\beta^{-1}\right)\label{eq:p(t|x,w,beta)}
+\end{equation}
+
+\end_inset
+
+ where 
+\begin_inset Formula $\beta$
+\end_inset
+
+ is the precision parameter.
+\end_layout
+
+\begin_layout Standard
+Use the training data 
+\begin_inset Formula $\{\textbf{\textsf{x}},\textbf{\textsf{t}}\}$
+\end_inset
+
+ to determine the values of the unknown parameters 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ by maximum likelihood, the likelihood function is
+\begin_inset Formula 
+\[
+p(\textbf{\textsf{t}}|\textbf{\textsf{x}},\mathbf{w},\beta)=\prod_{n=1}^{N}\mathcal{N}\left(t_{n}|y(x_{n},\mathbf{w}),\beta^{-1}\right)
+\]
+
+\end_inset
+
+and its logarithm is
+\begin_inset Formula 
+\begin{equation}
+\ln p(\textbf{\textsf{t}}|\textbf{\textsf{x}},\mathbf{w},\beta)=-\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},\mathbf{w})-t_{n}\right\} ^{2}+\frac{N}{2}\ln\beta-\frac{N}{2}\ln(2\pi)\label{eq:ln p(t|x,w,beta)}
+\end{equation}
+
+\end_inset
+
+Maximizing 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(t|x,w,beta)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ gives us 
+\begin_inset Formula $\mathbf{w}_{\mathrm{ML}}$
+\end_inset
+
+, which is the same as minimize the 
+\emph on
+sum-of-squares error function
+\emph default
+ defined by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:E(w)"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Maximizing 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(t|x,w,beta)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\beta$
+\end_inset
+
+ gives
+\begin_inset Formula 
+\[
+\frac{1}{\beta_{\mathrm{ML}}}=\frac{1}{N}\sum_{n=1}^{N}\left\{ y(x_{n},\mathrm{w}_{\mathrm{ML}})-t_{n}\right\} ^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Having determined the parameters 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+, we can now make predictions for new values of 
+\begin_inset Formula $x$
+\end_inset
+
+, and in probabilistic model, these are expressed in terms of the 
+\emph on
+predictive distribution
+\emph default
+ that gives the probability distribution over 
+\emph on
+t
+\begin_inset Formula 
+\[
+p(t|x,\mathrm{w}_{\mathrm{ML}},\beta_{\mathrm{ML}})=\mathcal{N}\left(t|y(x,\mathbf{w}_{ML}),\beta_{\mathrm{ML}}^{-1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In a more Bayesian approach, we introduce a Gaussian prior distribution
+ over the polynomial coefficients 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+p(\mathbf{w}|\alpha)=\mathcal{N}(\mathbf{w}|\mathbf{0},\alpha^{-1}\mathbf{I})=\left(\frac{\alpha}{2\pi}\right)^{(M+1)/2}\exp\left\{ -\frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}\right\} \label{eq:p(w|alpha)}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is the precision of the distribution and 
+\begin_inset Formula $M+1$
+\end_inset
+
+ is the number of elements in 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+.
+ Values such as 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, which controls the distribution of model parameters, are called 
+\emph on
+hyperparameters
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Using Bayes' theorem
+\begin_inset Formula 
+\begin{equation}
+p(\mathbf{w}|\textbf{\textsf{x}},\textbf{\textsf{t }},\alpha,\beta)\propto p(\textsf{t }|\textsf{x},\mathbf{w},\beta)p(\mathbf{w}|\alpha)\label{eq:p(w|x,t,alpha,beta)}
+\end{equation}
+
+\end_inset
+
+We can now determine 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ by finding the most probable value of 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ given the data, in other words by maximizing the posterior distribution.
+ This technique is called 
+\emph on
+maximum posterior
+\emph default
+, or simply 
+\emph on
+MAP
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Taking the negative logarithm of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(w|x,t,alpha,beta)"
+
+\end_inset
+
+ and combining with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(t|x,w,beta)"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(w|alpha)"
+
+\end_inset
+
+, we find that the maximum of the posterior is given by the minimum of
+\begin_inset Formula 
+\[
+\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},\mathbf{w})-t_{n}\right\} ^{2}+\frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}
+\]
+
+\end_inset
+
+Thus we see that maximizing the posterior distribution is equivalent to
+ minimizing the regularized sum-of-squares error function 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:regularized E(w)"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Bayesian curve fitting
+\end_layout
+
+\begin_layout Standard
+Although we have included a prior distribution 
+\begin_inset Formula $p(\mathbf{w}|\alpha)$
+\end_inset
+
+, we are still making a point estimate of 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ and so this does not yet amount to a Bayesian treatment.
+ In a fully Bayesian approach, we should consistently apply the sum and
+ product rules of probability, which requires, as we shall see shortly,
+ that we integrate over all values of 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+.
+ Such marginalizations lie at the heart of Bayesian methods for pattern
+ recognition.
+\end_layout
+
+\begin_layout Standard
+In curve fitting, we are given the training data 
+\begin_inset Formula $\{\textbf{\textsf{x}},\textbf{\textsf{t}}\}$
+\end_inset
+
+, along with a new test point 
+\begin_inset Formula $x$
+\end_inset
+
+, and our goal is to predict the value of 
+\begin_inset Formula $t$
+\end_inset
+
+.
+ Assuming the parameters 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ are fixed and known in advance by now, we wish the evaluate the predictive
+ distribution 
+\begin_inset Formula $p(t|\textbf{\textsf{x}},\textbf{\textsf{t}})$
+\end_inset
+
+.
+ Using the product rules of probability
+\begin_inset Formula 
+\begin{equation}
+p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})=\int p(t|x,\mathbf{w})p(\mathbf{w}|\textbf{\textsf{x}},\textbf{\textsf{t}})\mathrm{d}\mathbf{w}\label{eq:p(t|x,x,t)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $p(t|x,\mathbf{w})$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ and 
+\begin_inset Formula $p(\mathbf{w}|\textbf{\textsf{x}},\textbf{\textsf{t}})$
+\end_inset
+
+ are given by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(t|x,w,beta)"
+
+\end_inset
+
+ and normalizing the right-hand side of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(w|x,t,alpha,beta)"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The calculation and integration in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(t|x,x,t)"
+
+\end_inset
+
+ can be performed analytically with the result in a Gaussian distribution
+\begin_inset Formula 
+\begin{equation}
+p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})=\mathcal{N}\left(t|m(x),s^{2}(x)\right)\label{eq:p(t|x,x,t)=}
+\end{equation}
+
+\end_inset
+
+where the mean and variance are given by
+\begin_inset Formula 
+\begin{eqnarray}
+m(x) & = & \beta\bm{\phi}(x)^{\mathrm{T}}\mathbf{S}\sum_{n=1}^{N}\bm{\phi}(x_{n})t_{n}\\
+s^{2}(x) & = & \beta^{-1}+\bm{\phi}(x)^{\mathrm{T}}\mathbf{S}\bm{\phi}(x)\label{eq:s^2(x)}
+\end{eqnarray}
+
+\end_inset
+
+Here the matrix 
+\begin_inset Formula $\mathbf{S}$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\[
+\mathbf{S}^{-1}=\alpha\mathbf{I}+\beta\sum_{n=1}^{N}\bm{\phi}(x_{n})\bm{\phi}(x)^{\mathrm{T}}
+\]
+
+\end_inset
+
+and we have defined the vector 
+\begin_inset Formula $\bm{\phi}(x)$
+\end_inset
+
+ with elements 
+\begin_inset Formula $\phi_{i}(x)=x^{i}$
+\end_inset
+
+ for 
+\begin_inset Formula $i=0,\ldots,M$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The matrix and the mean of the predictive distribution in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(t|x,x,t)="
+
+\end_inset
+
+ is dependent on 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ The first term in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:s^2(x)"
+
+\end_inset
+
+ represents the uncertainty due to the noise on the target variables, and
+ the second term arises from the uncertainty in the parameters 
+\begin_inset Formula $\mathbf{w}$
+\end_inset
+
+ and is a consequence of the Bayesian treatment.
 \end_layout
 
 \end_body
