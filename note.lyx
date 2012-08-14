@@ -1581,5 +1581,138 @@ is largest.
  way in a fully Bayesian approach.
 \end_layout
 
+\begin_layout Section
+The Curse of Dimensionality
+\end_layout
+
+\begin_layout Standard
+In the polynomial curve fitting example we had just one input variable 
+\begin_inset Formula $x$
+\end_inset
+
+, but in practice we will deal with spaces of high dimensionality comprising
+ many input variables.
+ This poses some serious challenges and is an important factor influencing
+ the design of pattern recognition techniques.
+\end_layout
+
+\begin_layout Standard
+For example, a simple approach for classification is to divide the input
+ space into regular cells and classify each cell independently.
+ But the number of cells grows exponentially with the dimensionality of
+ the space, so we need exponentially large quantity of training data in
+ order to ensure that the cells are not empty, which is not practical in
+ a space of more than a few variables.
+ High-dimensional general polynomial curve fitting have similar problems,
+ as 
+\begin_inset Formula $D$
+\end_inset
+
+ the number of input variables increases, the number of independent coefficients
+ grows proportionally to 
+\begin_inset Formula $D^{M}$
+\end_inset
+
+ for a polynomial of order 
+\begin_inset Formula $M$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Our geometrical intuitions formed from life can fail badly when we consider
+ spaces of higher dimensionality.
+ For example, consider a sphere of radius 
+\begin_inset Formula $r=1$
+\end_inset
+
+ in a space of 
+\begin_inset Formula $D$
+\end_inset
+
+ dimensions, the fraction of the volume of the sphere that lies between
+ radius 
+\begin_inset Formula $r=1-\epsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $r=1$
+\end_inset
+
+ is given by 
+\begin_inset Formula $1-(1-\epsilon)^{D}$
+\end_inset
+
+.
+ For large 
+\begin_inset Formula $D$
+\end_inset
+
+, this fraction tends to 
+\begin_inset Formula $1$
+\end_inset
+
+ even for small values of 
+\begin_inset Formula $\epsilon$
+\end_inset
+
+.
+ Thus, in spaces of high dimensionality, most of the volume of a sphere
+ is concentrated in a thin shell near the surface! 
+\end_layout
+
+\begin_layout Standard
+Similarly, consider Gaussian distribution in high-dimensional space.
+ If we transform from Cartesian to polar coordinates, and then integrate
+ out the directional variables, we obtain an expression for the density
+ 
+\begin_inset Formula $p(r)$
+\end_inset
+
+ as a function of radius 
+\begin_inset Formula $r$
+\end_inset
+
+ from the origin.
+ We can see that for large 
+\begin_inset Formula $D$
+\end_inset
+
+ the probability mass of the Gaussian is concentrated in a thin shell.
+\end_layout
+
+\begin_layout Standard
+The severe difficulty that can arise in spaces of many dimensions is sometimes
+ called the 
+\emph on
+curse of dimensionality
+\emph default
+.
+ But it does not prevent us from finding effective techniques applicable
+ to high-dimensional spaces.
+ First, real data will often be confined to a region of the space having
+ lower effective dimensionality, and in particular the directions over which
+ important variations in the target variables occur may be so confined.
+ Second, real data will typically exhibit some smoothness properties (at
+ least locally) so that for the most part small changes in the input variables
+ will produce small changes in the target variables, and so we can exploit
+ local interpolation-like techniques to allow us to make predictions of
+ the target variables for new values of the input variables.
+ Successful pattern recognition techniques exploit one or both of these
+ properties.
+ For example, an application in manufacturing in which images are captured
+ of identical planar objects on a conveyor belt, in which the goal is to
+ determine their orientation.
+ Each image is a point in a space whose dimensionality is determined by
+ the number of pixels.
+ But since there are three degrees of freedom of variability between images,
+ actually a set of images will live on a three dimensional 
+\emph on
+manifold
+\emph default
+ embedded within the high-dimensional space.
+\end_layout
+
 \end_body
 \end_document
