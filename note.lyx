@@ -9,6 +9,8 @@
 
 \renewcommand\[{\begin{equation}}
 \renewcommand\]{\end{equation}}
+\renewcommand\geq{\geqslant}
+\renewcommand\leq{\leqslant}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -539,9 +541,9 @@ In either case, the expectation can be approximated given
 
  samples,
 \begin_inset Formula 
-\[
-\mathbb{E}[f]\simeq\frac{1}{N}\sum_{n=1}^{N}f(x_{n})
-\]
+\begin{equation}
+\mathbb{E}[f]\simeq\frac{1}{N}\sum_{n=1}^{N}f(x_{n})\label{eq:E[f] simeq}
+\end{equation}
 
 \end_inset
 
@@ -2524,6 +2526,906 @@ The minimum of
 
 , and the conditional mode for 
 \begin_inset Formula $q\to0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Information Theory
+\end_layout
+
+\begin_layout Standard
+Consider a discrete random variable 
+\begin_inset Formula $x$
+\end_inset
+
+ and we ask how much information is received when we observe a specific
+ value for this variable.
+ The amount of information can be viewed as the `degree of surprise' on
+ learning the value of 
+\begin_inset Formula $x$
+\end_inset
+
+ therefore will depend on 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+ We should look for a quantity 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ that is a monotonic function of the probability 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ and that expresses the information content.
+ The form of 
+\begin_inset Formula $h(\cdot)$
+\end_inset
+
+ can be found by noting that if we have two events 
+\begin_inset Formula $x$
+\end_inset
+
+ and 
+\begin_inset Formula $y$
+\end_inset
+
+ that are unrelated, then the information gain from observing both of them
+ should be the sum of the information gained from each of them separately,
+ so that 
+\begin_inset Formula $h(x,y)=h(x)+h(y)$
+\end_inset
+
+.
+ Two unrelated events will be statistically independent and so 
+\begin_inset Formula $p(x,y)=p(x)p(y)$
+\end_inset
+
+.
+ From these two relationships, it is easily shown that 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ must be given by the logarithm of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ and so we have
+\begin_inset Formula 
+\begin{equation}
+h(x)=-\log_{2}p(x)\label{eq:h(x)}
+\end{equation}
+
+\end_inset
+
+where the negative sign ensures that information is positive or zero.
+ The choice of basis is arbitrary, and in the case of base of 
+\begin_inset Formula $2$
+\end_inset
+
+, the units of 
+\begin_inset Formula $h(x)$
+\end_inset
+
+ are bits.
+\end_layout
+
+\begin_layout Standard
+Suppose that a sender wishes to transmit the value of a random variable
+ to a receiver.
+ The average amount of information that they transmit is obtained by taking
+ the expectation of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:h(x)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ and is given by
+\begin_inset Formula 
+\[
+\mathrm{H}[x]=-\sum_{x}p(x)\log_{2}p(x)
+\]
+
+\end_inset
+
+This important quantity is called the 
+\emph on
+entropy
+\emph default
+ of the random variable 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ Note that 
+\begin_inset Formula $\lim_{p\to0}p\ln p=0$
+\end_inset
+
+ so we shall take 
+\begin_inset Formula $p(x)\ln p(x)=0$
+\end_inset
+
+ whenever we encounter a value for 
+\begin_inset Formula $x$
+\end_inset
+
+ such that 
+\begin_inset Formula $p(x)=0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The concept of entropy indeed possess useful properties.
+ For example, the 
+\emph on
+noiseless coding theorem
+\emph default
+ states that the entropy is a lower bound on the number of bits needed to
+ transmit the state of a random variable.
+\end_layout
+
+\begin_layout Standard
+From now on, we shall switch to the use of natural logarithms in defining
+ entropy, as this will provide a more convenient link with ideas elsewhere
+ in this book.
+ In this case, the entropy is measured in units of `nats' instead of bits,
+ which differ simply by a factor of 
+\begin_inset Formula $\ln2$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Actually, the concept of entropy has much earlier origins in physics through
+ development in statical mechanics.
+\end_layout
+
+\begin_layout Standard
+The minimum of entropy is 
+\begin_inset Formula $0$
+\end_inset
+
+ when one of the 
+\begin_inset Formula $p_{i}=1$
+\end_inset
+
+ and all other 
+\begin_inset Formula $p_{j\not\not=i}=0$
+\end_inset
+
+.
+ Using the Lagrange multiplier method, we can see the maximum of entropy
+ 
+\begin_inset Formula $\mathrm{H}$
+\end_inset
+
+ is 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\ln M$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ when all of the 
+\begin_inset Formula $p(x_{i})=1/M$
+\end_inset
+
+ where 
+\begin_inset Formula $M$
+\end_inset
+
+ is the total number of states 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can extend the definition of entropy to include distribution 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ over continuous variables 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ First divide 
+\begin_inset Formula $x$
+\end_inset
+
+ into bins of width 
+\begin_inset Formula $\Delta$
+\end_inset
+
+.
+ Then, assuming 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ is continuous, the 
+\emph on
+mean value theorem
+\emph default
+ tells us that, for each such bin, there must exist a value 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ such that
+\begin_inset Formula 
+\[
+\int_{i\Delta}^{(i+1)\Delta}p(x)\mathrm{d}x=p(x_{i})\Delta
+\]
+
+\end_inset
+
+We can now quantize the continuous variable 
+\begin_inset Formula $x$
+\end_inset
+
+ by assigning any value 
+\begin_inset Formula $x$
+\end_inset
+
+ to the value 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ whenever 
+\begin_inset Formula $x$
+\end_inset
+
+ falls in the 
+\begin_inset Formula $i^{\mathrm{th}}$
+\end_inset
+
+ bin.
+ This gives a discrete distribution for which the entropy takes the form
+\begin_inset Formula 
+\begin{equation}
+\mathrm{H}_{\Delta}=-\sum_{i}p(x_{i})\Delta\ln(p(x_{i})\Delta)=-\sum_{i}p(x_{i})\Delta\ln p(x_{i})-\ln\Delta\label{eq:H_Delta}
+\end{equation}
+
+\end_inset
+
+Omit the second term 
+\begin_inset Formula $-\ln\Delta$
+\end_inset
+
+ on the right-hand side of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:H_Delta"
+
+\end_inset
+
+ and consider the limit 
+\begin_inset Formula $\Delta\to0$
+\end_inset
+
+.
+ The first term on the right-hand side of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:H_Delta"
+
+\end_inset
+
+ will became
+\begin_inset Formula 
+\[
+\lim_{\Delta\to0}\left\{ \sum_{i}p(x_{i})\Delta\ln p(x_{i})\right\} =-\int p(x)\ln p(x)\mathrm{d}x
+\]
+
+\end_inset
+
+where the quantity on the right-hand side is called the 
+\emph on
+differential entropy
+\emph default
+.
+ We see that the discrete and continuous forms of the entropy differ by
+ a quantity 
+\begin_inset Formula $\ln\Delta$
+\end_inset
+
+, which diverges in the limit 
+\begin_inset Formula $\Delta\to0$
+\end_inset
+
+.
+ This reflects the fact that to specify a continuous variable very precisely
+ requires a large number of bits.
+ For a density defined over multiple continuous variables, denoted collectively
+ by the vector 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+, the differential entropy is given by
+\begin_inset Formula 
+\[
+\mathrm{H}[\mathbf{x}]=-\int p(\mathbf{x})\ln p(\mathbf{x})\mathrm{d}\mathbf{x}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Let us now consider the maximum entropy configuration for a continuous variable.
+ In order for this maximum to be well defined, it will be necessary to constrain
+ the first and second moments of 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ as well as preserving the normalization constraint.
+ We therefore maximize the differential entropy with the three constraints
+\begin_inset Formula 
+\begin{eqnarray}
+\int_{-\infty}^{\infty}p(x)\mathrm{d}x & = & 1\\
+\int_{-\infty}^{\infty}xp(x)\mathrm{d}x & = & \mu\\
+\int_{-\infty}^{\infty}(x-\mu)^{2}p(x)\mathrm{d}x & = & \sigma^{2}
+\end{eqnarray}
+
+\end_inset
+
+The constrained maximization can be performed using Lagrange multipliers,
+ leading finally to the result
+\begin_inset Formula 
+\[
+p(x)=\frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{(x-\mu)^{2}}{2\sigma^{2}}\right\} 
+\]
+
+\end_inset
+
+and so the distribution that maximizes the differential entropy is the Gaussian.
+ Note that we did not constrain the distribution to be nonnegative when
+ we maximized the entropy.
+ However, because the resulting distribution is indeed nonnegative, we see
+ with hindsight that such a constraint is not necessary.
+\end_layout
+
+\begin_layout Standard
+The differential entropy of the Gaussian is
+\begin_inset Formula 
+\[
+\mathrm{H}[x]=\frac{1}{2}\left\{ 1+\ln(2\pi\sigma^{2})\right\} 
+\]
+
+\end_inset
+
+Thus we see again that the entropy increases as the distribution becomes
+ broader, i.e., as 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ increases.
+ This result also shows that the differential entropy, unlike the discrete
+ entropy, can be negative.
+\end_layout
+
+\begin_layout Standard
+In a joint distribution 
+\begin_inset Formula $p(\mathbf{x},\mathbf{y})$
+\end_inset
+
+, if a value of 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ is already known, then the additional information needed to specify the
+ corresponding value of 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+ is given by 
+\begin_inset Formula $-\ln p(\mathbf{y}|\mathbf{x})$
+\end_inset
+
+.
+ Thus the average additional information needed to specify can be written
+ as
+\begin_inset Formula 
+\[
+\mathrm{H}[\mathbf{y}|\mathbf{x}]=-\iint p(\mathbf{y},\mathbf{x})\ln p(\mathbf{y}|\mathbf{x})\mathrm{d}\mathbf{y}\mathrm{d}\mathbf{x}
+\]
+
+\end_inset
+
+which is called the 
+\emph on
+conditional entropy
+\emph default
+ of 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+ given 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+.
+ It is easily seen, using the product rule, that the conditional satisfies
+ the relation
+\begin_inset Formula 
+\[
+\mathrm{H}[\mathbf{x},\mathbf{y}]=\mathrm{H}[\mathbf{y}|\mathbf{x}]+\mathrm{H}[\mathbf{x}]
+\]
+
+\end_inset
+
+Thus the information needed to describe 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\series bold
+
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+
+\series default
+ is given by the sum of the information needed to describe 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ alone plus the additional information required to specify 
+\series bold
+
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+
+\series default
+ given 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Relative entropy and mutual information
+\end_layout
+
+\begin_layout Standard
+Consider some unknown distribution 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+, and suppose that we have modeled this using an approximating distribution
+ 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+.
+ If we use 
+\begin_inset Formula $q(\mathbf{x})$
+\end_inset
+
+ to construct a coding scheme for the purpose of transmitting values of
+ 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ to a receiver, then the average 
+\emph on
+additional
+\emph default
+ amount of information (in nats) required to specify the value of 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ as a result of using 
+\begin_inset Formula $q(\mathbf{x})$
+\end_inset
+
+ instead of the true distribution 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\begin{eqnarray}
+\mathrm{KL}(p\Vert q) & = & -\int p(\mathbf{x})\ln q(\mathbf{x})\mathrm{d}\mathbf{x}-\left(-\int p(\mathbf{x})\ln p(\mathbf{x})\mathrm{d}\mathbf{x}\right)\nonumber \\
+ & = & -\int p(\mathbf{x})\ln\left\{ \frac{q(\mathbf{x})}{p(\mathbf{x})}\right\} \mathrm{d}\mathbf{x}\label{eq:KL(p||q)}
+\end{eqnarray}
+
+\end_inset
+
+This is known as the 
+\emph on
+relative entropy
+\emph default
+ or 
+\emph on
+Kullback-Leibler divergence
+\emph default
+, or 
+\emph on
+KL divergence
+\emph default
+, between the distributions 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ and 
+\begin_inset Formula $q(\mathbf{x})$
+\end_inset
+
+.
+ Note that it is not a symmetrical quantity, that is to say 
+\begin_inset Formula $\mathrm{KL}(p\Vert q)\not\equiv\mathrm{KL}(q\Vert p)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The KL divergence satisfies 
+\begin_inset Formula $\mathrm{KL}(p\Vert q)\geq0$
+\end_inset
+
+ with equality if and only if 
+\begin_inset Formula $p(\mathbf{x})=q(\mathbf{x})$
+\end_inset
+
+.
+ This can be proved by using 
+\emph on
+Jensen's inequality,
+\emph default
+ which is, a convex function 
+\begin_inset Formula $f(x)$
+\end_inset
+
+ satisfies
+\begin_inset Formula 
+\begin{equation}
+f\left(\sum_{i=1}^{M}\lambda_{i}x_{i}\right)\leq\sum_{i=1}^{M}\lambda_{i}f(x_{i})\label{eq:Jensen's inequality (discrete)}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\lambda_{i}\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum_{i}\lambda_{i}=1$
+\end_inset
+
+, for any set of points 
+\begin_inset Formula $\{x_{i}\}$
+\end_inset
+
+.
+ If we interpret 
+\begin_inset Formula $\lambda_{i}=p(x_{i})$
+\end_inset
+
+ in a probability distribution over 
+\begin_inset Formula $x$
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Jensen's inequality (discrete)"
+
+\end_inset
+
+ can be written
+\begin_inset Formula 
+\[
+f(\mathbb{E}[x])\leq\mathbb{E}[f(x)]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathbb{E}[\cdot]$
+\end_inset
+
+ denotes the expectation.
+ For continuous variables, Jensen's inequality takes the form
+\begin_inset Formula 
+\begin{equation}
+f\left(\int\mathbf{x}p(\mathbf{x})\mathrm{d}\mathbf{x}\right)\leq\int f(\mathbf{x})p(\mathbf{x})\mathrm{d}\mathbf{x}\label{eq:Jensen’s inequality}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Apply 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Jensen’s inequality"
+
+\end_inset
+
+ to the Kullback-Leibler divergence 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:KL(p||q)"
+
+\end_inset
+
+ to give
+\begin_inset Formula 
+\[
+\mathrm{KL}(p\Vert q)=-\int p(\mathbf{x})\ln\left\{ \frac{q(\mathbf{x})}{p(\mathbf{x})}\right\} \mathrm{d}\mathbf{x}\geq-\ln\int q(\mathbf{x})\mathrm{d}\mathbf{x}=0
+\]
+
+\end_inset
+
+where we have used the fact that 
+\begin_inset Formula $-\ln x$
+\end_inset
+
+ is a convex function, together with the normalization condition 
+\begin_inset Formula $\int q(\mathbf{x})\mathrm{d}\mathbf{x}=1$
+\end_inset
+
+.
+ In fact, 
+\begin_inset Formula $-\ln x$
+\end_inset
+
+ is a strictly convex function, so the equality will hold if and only if
+ 
+\begin_inset Formula $q(\mathbf{x})=p(\mathbf{x})$
+\end_inset
+
+ for all 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+.
+ Thus we can interpret the Kullback-Leibler divergence as a measure of the
+ dissimilarity of the two distributions 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ and 
+\begin_inset Formula $q(\mathbf{x})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Suppose that data is being generated from an unknown distribution 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ that we wish to model.
+ We can try to approximate this distribution using some parametric distribution
+ 
+\begin_inset Formula $q(\mathbf{x}|\bm{\theta})$
+\end_inset
+
+, governed by a set of adjustable parameters 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+, for example a multivariate Gaussian.
+ One way to determine 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+ is to minimize the KL divergence between 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ and 
+\begin_inset Formula $q(\mathbf{x}|\bm{\theta})$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+.
+ We cannot do this directly because we don't know 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+.
+ Suppose, however, that we have observed a finite set of training points
+ 
+\begin_inset Formula $\mathbf{x}_{n}$
+\end_inset
+
+, for 
+\begin_inset Formula $n=1,\ldots,N$
+\end_inset
+
+, drawn from 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+.
+ Then the expectation with respect to 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ can be approximated by a finite sum over these points, using 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:E[f] simeq"
+
+\end_inset
+
+, so that
+\begin_inset Formula 
+\[
+\mathrm{KL}(p\Vert q)\simeq\sum_{n=1}^{N}\left\{ -\ln q(\mathbf{x}_{n}|\bm{\theta})+\ln p(\mathbf{x}_{n})\right\} 
+\]
+
+\end_inset
+
+The second term on the right-hand side is independent of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+, and the first term is the negative log likelihood function for 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+ under the distribution 
+\begin_inset Formula $q(\mathbf{x}|\bm{\theta})$
+\end_inset
+
+ evaluated using the training set.
+ Thus we see that minimizing the KL divergence is equivalent to maximizing
+ the likelihood function.
+\end_layout
+
+\begin_layout Standard
+If two sets of variables 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+ given by 
+\begin_inset Formula $p(\mathbf{x},\mathbf{y})$
+\end_inset
+
+ are independent, then 
+\begin_inset Formula $p(\mathbf{x},\mathbf{y})=p(\mathbf{x})p(\mathbf{y})$
+\end_inset
+
+.
+ If the variables are not independent, we can gain some idea of whether
+ they are `close' to being independent by considering the KL divergence
+ between 
+\begin_inset Formula $p(\mathbf{x},\mathbf{y})$
+\end_inset
+
+ and 
+\begin_inset Formula $p(\mathbf{x})p(\mathbf{y})$
+\end_inset
+
+, given by
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathrm{I}[\mathbf{x},\mathbf{y}] & \equiv & \mathrm{KL}(p(\mathbf{x},\mathbf{y})\Vert p(\mathbf{x})p(\mathbf{y}))\\
+ & = & -\iint p(\mathbf{x},\mathbf{y})\ln\left(\frac{p(\mathbf{x})p(\mathbf{y})}{p(\mathbf{x},\mathbf{y})}\right)\mathrm{d}\mathbf{x}\mathrm{d}\mathbf{y}
+\end{eqnarray*}
+
+\end_inset
+
+which is called the 
+\emph on
+mutual information
+\emph default
+ between the variables 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\mathrm{I}(\mathbf{x},\mathbf{y})\geq0$
+\end_inset
+
+ with equality if and only if 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+ are independent.
+ Use the sum and product rules of probability, we see that the mutual informatio
+n is related to the conditional entropy through
+\begin_inset Formula 
+\[
+\mathrm{I}[\mathbf{x},\mathbf{y}]=\mathrm{H}[\mathbf{x}]-\mathrm{H}[\mathbf{x}|\mathbf{y}]=\mathrm{H}[\mathbf{y}]-\mathrm{H}[\mathbf{y}|\mathbf{x}]
+\]
+
+\end_inset
+
+Thus we can view the mutual information as the reduction in the uncertainty
+ about 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ by virtue of being told the value of 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+ (or vice versa).
+ From a Bayesian perspective, we can view 
+\begin_inset Formula $p(\mathbf{x})$
+\end_inset
+
+ as the prior distribution for 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ and 
+\begin_inset Formula $p(\mathbf{x}|\mathbf{y})$
+\end_inset
+
+ as the posterior distribution after we have observed new data 
+\begin_inset Formula $\mathbf{y}$
+\end_inset
+
+.
+ The mutual information therefore represents the reduction in uncertainty
+ about 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ as a consequence of the new observation 
+\begin_inset Formula $\mathbf{y}$
 \end_inset
 
 .
