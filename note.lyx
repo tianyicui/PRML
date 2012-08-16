@@ -9,8 +9,6 @@
 
 \renewcommand\[{\begin{equation}}
 \renewcommand\]{\end{equation}}
-\renewcommand\geq{\geqslant}
-\renewcommand\leq{\leqslant}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -113,6 +111,78 @@ today
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\geq}{\geqslant}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\leq}{\leqslant}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\d}{{\rm d}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\EE}{\mathbb{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\cov}{{\rm cov}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\var}{{\rm var}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\H}{{\rm H}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\KL}{{\rm KL}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\I}{{\rm I}}
+\end_inset
+
+
+\end_layout
+
 \begin_layout Chapter
 Introduction
 \end_layout
@@ -170,7 +240,7 @@ In regression problems, we can use a polynomial function
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-y(x,\mathbf{w})=w_{0}+w_{1}+w_{2}x^{2}+\ldots+w_{M}x^{M}=\sum_{j=0}^{M}w_{j}x^{j}\label{eq:y(x,w)}
+y(x,{\bf w})=w_{0}+w_{1}+w_{2}x^{2}+\ldots+w_{M}x^{M}=\sum_{j=0}^{M}w_{j}x^{j}\label{eq:y(x,w)}
 \end{equation}
 
 \end_inset
@@ -186,13 +256,13 @@ error function
  
 \begin_inset Formula 
 \begin{equation}
-E(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}\label{eq:E(w)}
+E({\bf w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},{\bf w})-t_{n}\}^{2}\label{eq:E(w)}
 \end{equation}
 
 \end_inset
 
 in which unique solution 
-\begin_inset Formula $\mathbf{w^{*}}$
+\begin_inset Formula ${\bf w^{*}}$
 \end_inset
 
  can be found in closed form.
@@ -202,7 +272,7 @@ in which unique solution
 The root-mean-square (RMS) error is defined by 
 \begin_inset Formula 
 \[
-E_{RMS}=\sqrt{2E(\mathbf{w^{*})/N}}
+E_{{\rm RMS}}=\sqrt{2E({\bf w^{*})/N}}
 \]
 
 \end_inset
@@ -239,7 +309,7 @@ reference "eq:E(w)"
  in order to discourage the coefficients from reaching large values:
 \begin_inset Formula 
 \begin{equation}
-\widetilde{E}(\mathbf{w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},\mathbf{w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\Vert \mathbf{w}\right\Vert ^{2}\label{eq:regularized E(w)}
+\widetilde{E}({\bf w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},{\bf w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\Vert {\bf w}\right\Vert ^{2}\label{eq:regularized E(w)}
 \end{equation}
 
 \end_inset
@@ -402,7 +472,7 @@ If the probability that
  is given by 
 \begin_inset Formula 
 \[
-p(x\in(a,b))=\int_{a}^{b}p(x)\mathrm{d}x
+p(x\in(a,b))=\int_{a}^{b}p(x)\d x
 \]
 
 \end_inset
@@ -428,7 +498,7 @@ Apparently
 \end_inset
 
  and 
-\begin_inset Formula $\int_{-\infty}^{\infty}p(x)\mathrm{d}x=1$
+\begin_inset Formula $\int_{-\infty}^{\infty}p(x)\d x=1$
 \end_inset
 
 .
@@ -442,13 +512,13 @@ ly from a simple function, due to the Jacobian factor.
 \end_inset
 
 , since 
-\begin_inset Formula $p_{x}(x)\mathrm{d}x=p_{y}(y)\mathrm{d}y$
+\begin_inset Formula $p_{x}(x)\d x=p_{y}(y)\d y$
 \end_inset
 
 , hence
 \begin_inset Formula 
 \begin{eqnarray}
-p_{y}(y) & = & p_{x}(x)\left|\frac{\mathrm{d}x}{\mathrm{d}y}\right|\nonumber \\
+p_{y}(y) & = & p_{x}(x)\left|\frac{\d x}{\d y}\right|\nonumber \\
  & = & p_{x}(g(y))\left|g'(y)\right|
 \end{eqnarray}
 
@@ -465,7 +535,7 @@ cumulative distribution function
  
 \begin_inset Formula 
 \[
-P(z)=\int_{-\infty}^{z}p(x)\mathrm{d}x
+P(z)=\int_{-\infty}^{z}p(x)\d x
 \]
 
 \end_inset
@@ -479,15 +549,15 @@ For several continuous variables
 \end_inset
 
 , denoted collectively by the vector 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 , then we can define a joint probability density 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  such that 
-\begin_inset Formula $p\left(\mathbf{x}\in(\mathbf{x}_{0},\mathbf{x}_{0}+\delta\mathbf{x})\right)=p(\mathbf{x}_{0})\delta\mathbf{x}$
+\begin_inset Formula $p\left({\bf x}\in({\bf x}_{0},{\bf x}_{0}+\delta{\bf x})\right)=p({\bf x}_{0})\delta{\bf x}$
 \end_inset
 
 .
@@ -515,14 +585,14 @@ expectation
 \end_inset
 
  and denoted by 
-\begin_inset Formula $\mathbb{E}[f]$
+\begin_inset Formula $\EE[f]$
 \end_inset
 
 .
  For a discrete distribution,
 \begin_inset Formula 
 \[
-\mathbb{E}[f]=\sum_{x}p(x)f(x)
+\EE[f]=\sum_{x}p(x)f(x)
 \]
 
 \end_inset
@@ -530,7 +600,7 @@ expectation
 For continuous variables,
 \begin_inset Formula 
 \[
-\mathbb{E}[f]=\int p(x)f(x)\mathrm{d}x
+\EE[f]=\int p(x)f(x)\d x
 \]
 
 \end_inset
@@ -542,7 +612,7 @@ In either case, the expectation can be approximated given
  samples,
 \begin_inset Formula 
 \begin{equation}
-\mathbb{E}[f]\simeq\frac{1}{N}\sum_{n=1}^{N}f(x_{n})\label{eq:E[f] simeq}
+\EE[f]\simeq\frac{1}{N}\sum_{n=1}^{N}f(x_{n})\label{eq:E[f] simeq}
 \end{equation}
 
 \end_inset
@@ -554,7 +624,7 @@ In either case, the expectation can be approximated given
 When considering expectations of functions of several variables, we use
  subscript to indicate which variable is being averaged over, e.g.
  
-\begin_inset Formula $\mathbb{E}_{x}[f(x,y)]$
+\begin_inset Formula $\EE_{x}[f(x,y)]$
 \end_inset
 
  is a function of 
@@ -570,7 +640,7 @@ We can also consider
 conditional expectation
 \begin_inset Formula 
 \[
-\mathbb{E}_{x}[f|y]=\sum_{x}p(x|y)f(x)
+\EE_{x}[f|y]=\sum_{x}p(x|y)f(x)
 \]
 
 \end_inset
@@ -590,8 +660,8 @@ variance
  is defined by
 \begin_inset Formula 
 \begin{eqnarray}
-\mathrm{var}[f] & = & \mathbb{E}\left[(f(x)-\mathbb{E}[f(x)]\right]{}^{2}\\
- & = & \mathbb{E}\left[f(x)^{2}\right]-\mathbb{E}\left[f(x)\right]{}^{2}
+\var[f] & = & \EE\left[(f(x)-\EE[f(x)]\right]{}^{2}\\
+ & = & \EE\left[f(x)^{2}\right]-\EE\left[f(x)\right]{}^{2}
 \end{eqnarray}
 
 \end_inset
@@ -615,8 +685,8 @@ covariance
  is defined by
 \begin_inset Formula 
 \begin{eqnarray}
-\mathrm{cov}[x,y] & = & \mathbb{E}_{x,y}\left[\{x-\mathbb{E}[x]\}\{y-\mathbb{E}[y]\}\right]\nonumber \\
- & = & \mathbb{E}_{x,y}[xy]-\mathbb{E}[x]\mathbb{E}[y]
+\cov[x,y] & = & \EE_{x,y}\left[\{x-\EE[x]\}\{y-\EE[y]\}\right]\nonumber \\
+ & = & \EE_{x,y}[xy]-\EE[x]\EE[y]
 \end{eqnarray}
 
 \end_inset
@@ -635,18 +705,18 @@ which expresses the extent to which
 
 \begin_layout Standard
 In the case of two vectors of random variables 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
 , the covariance is a matrix
 \begin_inset Formula 
 \begin{eqnarray}
-\mathrm{cov}[\mathbf{x},\mathbf{y}] & = & \mathbb{E}_{x,y}\left[\left\{ \mathbf{x}-\mathbb{E}[\mathbf{x]}\right\} \left\{ \mathbf{y}^{\mathrm{T}}-\mathbb{E}[\mathbf{y^{\mathrm{T}}]}\right\} \right]\nonumber \\
- & = & \mathbb{E}_{x,y}[\mathbf{x}\mathbf{y}^{\mathrm{T}}]-\mathbb{E}[\mathbf{x]}\mathbb{E}[\mathbf{y^{\mathrm{T}}]}
+\cov[{\bf x},{\bf y}] & = & \EE_{x,y}\left[\left\{ {\bf x}-\EE[{\bf x]}\right\} \left\{ {\bf y}^{{\rm T}}-\EE[{\bf y^{{\rm T}}]}\right\} \right]\nonumber \\
+ & = & \EE_{x,y}[{\bf x}{\bf y}^{{\rm T}}]-\EE[{\bf x]}\EE[{\bf y^{{\rm T}}]}
 \end{eqnarray}
 
 \end_inset
@@ -681,27 +751,27 @@ Beyesian
 
 \begin_layout Standard
 In the polynomial curve fitting example, we assume the parameters 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  have a prior probability distribution 
-\begin_inset Formula $p(\mathbf{w})$
+\begin_inset Formula $p({\bf w})$
 \end_inset
 
 , then given the observed data 
-\begin_inset Formula $\mathcal{D}$
+\begin_inset Formula ${\cal D}$
 \end_inset
 
 , the posterior probability is
 \begin_inset Formula 
 \[
-p(\mathbf{w}|\mathcal{D})=\frac{p(\mathcal{D}|\mathbf{w})p(\mathbf{w)}}{p(\mathcal{D})}
+p({\bf w}|{\cal D})=\frac{p({\cal D}|{\bf w})p({\bf w)}}{p({\cal D})}
 \]
 
 \end_inset
 
 where the quantity 
-\begin_inset Formula $p(\mathcal{D}|\mathbf{w})$
+\begin_inset Formula $p({\cal D}|{\bf w})$
 \end_inset
 
  is called the 
@@ -710,12 +780,12 @@ likelihood function
 \emph default
 , which expresses how probable the observed data set is for different settings
  of the parameter vector 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 .
  The likelihood is not a probability distribution over 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 , and its integral does not necessarily equal one.
@@ -731,7 +801,7 @@ Given the definition of likelihood, we can state Bayes' theorem in words
 \end_inset
 
 where all of these quantities are viewed as functions of 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 .
@@ -739,27 +809,27 @@ where all of these quantities are viewed as functions of
 
 \begin_layout Standard
 In the likelihood function 
-\begin_inset Formula $p(\mathcal{D}|\mathbf{w})$
+\begin_inset Formula $p({\cal D}|{\bf w})$
 \end_inset
 
 , in the frequentist setting, 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  is considered to be a fixed parameter, whose value is determines by some
  form of `estimator', and error bars on this estimate are obtained by considerin
 g the distribution of possible data sets 
-\begin_inset Formula $\mathcal{D}$
+\begin_inset Formula ${\cal D}$
 \end_inset
 
 .
  By contrast, from Bayesian viewpoint there is only a single data set 
-\begin_inset Formula $\mathcal{D}$
+\begin_inset Formula ${\cal D}$
 \end_inset
 
  (the one actually observed), and the uncertainty in the parameters is expressed
  through a probability distribution over 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 .
@@ -777,7 +847,7 @@ The Gaussian distribution on a single real-valued variable
  is defined by
 \begin_inset Formula 
 \[
-\mathcal{N}(x|\mu,\sigma^{2})=\frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right\} 
+{\cal N}(x|\mu,\sigma^{2})=\frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right\} 
 \]
 
 \end_inset
@@ -821,7 +891,7 @@ precision
 \end_inset
 
  is given by 
-\begin_inset Formula $\mathbb{E}[x]=\mu$
+\begin_inset Formula $\EE[x]=\mu$
 \end_inset
 
  and the variance of 
@@ -829,7 +899,7 @@ precision
 \end_inset
 
  is given by 
-\begin_inset Formula $\mathrm{var}[x]=\mathbb{E}[x^{2}]-\mathbb{E}[x]^{2}=\sigma^{2}$
+\begin_inset Formula $\var[x]=\EE[x^{2}]-\EE[x]^{2}=\sigma^{2}$
 \end_inset
 
 .
@@ -841,13 +911,13 @@ The Gaussian distribution defined over a
 \end_inset
 
 -dimensional vector 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  of continuous variables is given by
 \begin_inset Formula 
 \[
-\mathcal{N}(\mathbf{x}|\mathbf{\mu},\mathbf{\Sigma})=\frac{1}{(2\pi)^{D/2}}\frac{1}{\left|\bm{\Sigma}\right|^{1/2}}\exp\left\{ -\frac{1}{2}(\mathbf{x}-\bm{\mu})^{\mathrm{T}}\bm{\Sigma}^{-1}(\mathbf{x}-\bm{\mu})\right\} 
+{\cal N}({\bf x}|{\bf \mu},{\bf \Sigma})=\frac{1}{(2\pi)^{D/2}}\frac{1}{\left|\bm{\Sigma}\right|^{1/2}}\exp\left\{ -\frac{1}{2}({\bf x}-\bm{\mu})^{{\rm T}}\bm{\Sigma}^{-1}({\bf x}-\bm{\mu})\right\} 
 \]
 
 \end_inset
@@ -857,7 +927,7 @@ The Gaussian distribution defined over a
 
 \begin_layout Standard
 Suppose we have a data set of observation 
-\begin_inset Formula $\textbf{\textsf{x}}=(x_{1},\ldots,x_{N})^{\mathrm{T}}$
+\begin_inset Formula $\textbf{\textsf{x}}=(x_{1},\ldots,x_{N})^{{\rm T}}$
 \end_inset
 
  which is 
@@ -876,7 +946,7 @@ independent and identically distributed
 , is in the form
 \begin_inset Formula 
 \[
-p\left(\textbf{\textsf{x}}|\mu,\sigma^{2}\right)=\prod_{n=1}^{N}\mathcal{N}(x_{n}|\mu,\sigma^{2})
+p\left(\textbf{\textsf{x}}|\mu,\sigma^{2}\right)=\prod_{n=1}^{N}{\cal N}(x_{n}|\mu,\sigma^{2})
 \]
 
 \end_inset
@@ -918,7 +988,7 @@ reference "eq:ln p(x|mu,sigma^2)"
  gives the maximum likelihood solution
 \begin_inset Formula 
 \[
-\mu_{\mathrm{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_{n}
+\mu_{{\rm ML}}=\frac{1}{N}\sum_{n=1}^{N}x_{n}
 \]
 
 \end_inset
@@ -942,7 +1012,7 @@ reference "eq:ln p(x|mu,sigma^2)"
 gives
 \begin_inset Formula 
 \[
-\sigma_{\mathrm{ML}}^{2}=\frac{1}{N}\sum_{n=1}^{N}(x_{n}-\mu_{\mathrm{ML}})^{2}
+\sigma_{{\rm ML}}^{2}=\frac{1}{N}\sum_{n=1}^{N}(x_{n}-\mu_{{\rm ML}})^{2}
 \]
 
 \end_inset
@@ -962,11 +1032,11 @@ bias
  and is related to the problem of over-fitting encountered in the context
  of polynomial curve fitting.
  First, we note that 
-\begin_inset Formula $\mu_{\mathrm{ML}}$
+\begin_inset Formula $\mu_{{\rm ML}}$
 \end_inset
 
  and 
-\begin_inset Formula $\sigma_{\mathrm{ML}}^{2}$
+\begin_inset Formula $\sigma_{{\rm ML}}^{2}$
 \end_inset
 
  are functions of the data set values 
@@ -987,8 +1057,8 @@ bias
 
 \begin_inset Formula 
 \begin{eqnarray}
-\mathbb{E}[\mu_{\mathrm{ML}}] & = & \mu\\
-\mathbb{E}[\sigma_{\mathrm{ML}}^{2}] & = & \left(\frac{N-1}{N}\right)\sigma^{2}\label{eq:E[sigma_ML^2]}
+\EE[\mu_{{\rm ML}}] & = & \mu\\
+\EE[\sigma_{{\rm ML}}^{2}] & = & \left(\frac{N-1}{N}\right)\sigma^{2}\label{eq:E[sigma_ML^2]}
 \end{eqnarray}
 
 \end_inset
@@ -1012,7 +1082,7 @@ reference "eq:E[sigma_ML^2]"
  we see the following estimate for the variance parameter is unbiased
 \begin_inset Formula 
 \[
-\widetilde{\sigma}^{2}=\frac{N}{N-1}\sigma_{\mathrm{ML}}^{2}=\frac{1}{N-1}\sum_{n=1}^{N}(x_{n}-\mu_{\mathrm{ML}})^{2}
+\widetilde{\sigma}^{2}=\frac{N}{N-1}\sigma_{{\rm ML}}^{2}=\frac{1}{N-1}\sum_{n=1}^{N}(x_{n}-\mu_{{\rm ML}})^{2}
 \]
 
 \end_inset
@@ -1036,11 +1106,11 @@ The goal of curve fitting problem is to make predictions for the target
 \end_inset
 
  on the basis of a set of training data 
-\begin_inset Formula $\textbf{\textsf{x}}=(x_{1},\ldots,x_{N})^{\mathrm{T}}$
+\begin_inset Formula $\textbf{\textsf{x}}=(x_{1},\ldots,x_{N})^{{\rm T}}$
 \end_inset
 
  and 
-\begin_inset Formula $\textbf{\textsf{t}}=(t_{1},\ldots,t_{N})^{\mathrm{T}}$
+\begin_inset Formula $\textbf{\textsf{t}}=(t_{1},\ldots,t_{N})^{{\rm T}}$
 \end_inset
 
 .
@@ -1055,7 +1125,7 @@ The goal of curve fitting problem is to make predictions for the target
 \end_inset
 
  has a Gaussian distribution with a mean equal to the value 
-\begin_inset Formula $y(x,\mathbf{w})$
+\begin_inset Formula $y(x,{\bf w})$
 \end_inset
 
  given by 
@@ -1069,7 +1139,7 @@ reference "eq:y(x,w)"
  Thus we have
 \begin_inset Formula 
 \begin{equation}
-p(t|x,\mathbf{w},\beta)=\mathcal{N}\left(t|y(x,\mathbf{w}),\beta^{-1}\right)\label{eq:p(t|x,w,beta)}
+p(t|x,{\bf w},\beta)={\cal N}\left(t|y(x,{\bf w}),\beta^{-1}\right)\label{eq:p(t|x,w,beta)}
 \end{equation}
 
 \end_inset
@@ -1087,7 +1157,7 @@ Use the training data
 \end_inset
 
  to determine the values of the unknown parameters 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  and 
@@ -1097,7 +1167,7 @@ Use the training data
  by maximum likelihood, the likelihood function is
 \begin_inset Formula 
 \[
-p(\textbf{\textsf{t}}|\textbf{\textsf{x}},\mathbf{w},\beta)=\prod_{n=1}^{N}\mathcal{N}\left(t_{n}|y(x_{n},\mathbf{w}),\beta^{-1}\right)
+p(\textbf{\textsf{t}}|\textbf{\textsf{x}},{\bf w},\beta)=\prod_{n=1}^{N}{\cal N}\left(t_{n}|y(x_{n},{\bf w}),\beta^{-1}\right)
 \]
 
 \end_inset
@@ -1105,7 +1175,7 @@ p(\textbf{\textsf{t}}|\textbf{\textsf{x}},\mathbf{w},\beta)=\prod_{n=1}^{N}\math
 and its logarithm is
 \begin_inset Formula 
 \begin{equation}
-\ln p(\textbf{\textsf{t}}|\textbf{\textsf{x}},\mathbf{w},\beta)=-\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},\mathbf{w})-t_{n}\right\} ^{2}+\frac{N}{2}\ln\beta-\frac{N}{2}\ln(2\pi)\label{eq:ln p(t|x,w,beta)}
+\ln p(\textbf{\textsf{t}}|\textbf{\textsf{x}},{\bf w},\beta)=-\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},{\bf w})-t_{n}\right\} ^{2}+\frac{N}{2}\ln\beta-\frac{N}{2}\ln(2\pi)\label{eq:ln p(t|x,w,beta)}
 \end{equation}
 
 \end_inset
@@ -1118,11 +1188,11 @@ reference "eq:ln p(t|x,w,beta)"
 \end_inset
 
  with respect to 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  gives us 
-\begin_inset Formula $\mathbf{w}_{\mathrm{ML}}$
+\begin_inset Formula ${\bf w}_{{\rm ML}}$
 \end_inset
 
 , which is the same as minimize the 
@@ -1154,7 +1224,7 @@ reference "eq:ln p(t|x,w,beta)"
  gives
 \begin_inset Formula 
 \[
-\frac{1}{\beta_{\mathrm{ML}}}=\frac{1}{N}\sum_{n=1}^{N}\left\{ y(x_{n},\mathrm{w}_{\mathrm{ML}})-t_{n}\right\} ^{2}
+\frac{1}{\beta_{{\rm ML}}}=\frac{1}{N}\sum_{n=1}^{N}\left\{ y(x_{n},{\rm w}_{{\rm ML}})-t_{n}\right\} ^{2}
 \]
 
 \end_inset
@@ -1164,7 +1234,7 @@ reference "eq:ln p(t|x,w,beta)"
 
 \begin_layout Standard
 Having determined the parameters 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  and 
@@ -1184,7 +1254,7 @@ predictive distribution
 t
 \begin_inset Formula 
 \[
-p(t|x,\mathrm{w}_{\mathrm{ML}},\beta_{\mathrm{ML}})=\mathcal{N}\left(t|y(x,\mathbf{w}_{ML}),\beta_{\mathrm{ML}}^{-1}\right)
+p(t|x,{\rm w}_{{\rm ML}},\beta_{{\rm ML}})={\cal N}\left(t|y(x,{\bf w}_{ML}),\beta_{{\rm ML}}^{-1}\right)
 \]
 
 \end_inset
@@ -1195,13 +1265,13 @@ p(t|x,\mathrm{w}_{\mathrm{ML}},\beta_{\mathrm{ML}})=\mathcal{N}\left(t|y(x,\math
 \begin_layout Standard
 In a more Bayesian approach, we introduce a Gaussian prior distribution
  over the polynomial coefficients 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 
 \begin_inset Formula 
 \begin{equation}
-p(\mathbf{w}|\alpha)=\mathcal{N}(\mathbf{w}|\mathbf{0},\alpha^{-1}\mathbf{I})=\left(\frac{\alpha}{2\pi}\right)^{(M+1)/2}\exp\left\{ -\frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}\right\} \label{eq:p(w|alpha)}
+p({\bf w}|\alpha)={\cal N}({\bf w}|{\bf 0},\alpha^{-1}{\bf I})=\left(\frac{\alpha}{2\pi}\right)^{(M+1)/2}\exp\left\{ -\frac{\alpha}{2}{\bf w}^{{\rm T}}{\bf w}\right\} \label{eq:p(w|alpha)}
 \end{equation}
 
 \end_inset
@@ -1215,7 +1285,7 @@ where
 \end_inset
 
  is the number of elements in 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 .
@@ -1234,17 +1304,17 @@ hyperparameters
 Using Bayes' theorem
 \begin_inset Formula 
 \begin{equation}
-p(\mathbf{w}|\textbf{\textsf{x}},\textbf{\textsf{t }},\alpha,\beta)\propto p(\textsf{t }|\textsf{x},\mathbf{w},\beta)p(\mathbf{w}|\alpha)\label{eq:p(w|x,t,alpha,beta)}
+p({\bf w}|\textbf{\textsf{x}},\textbf{\textsf{t }},\alpha,\beta)\propto p(\textsf{t }|\textsf{x},{\bf w},\beta)p({\bf w}|\alpha)\label{eq:p(w|x,t,alpha,beta)}
 \end{equation}
 
 \end_inset
 
 We can now determine 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  by finding the most probable value of 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  given the data, in other words by maximizing the posterior distribution.
@@ -1284,7 +1354,7 @@ reference "eq:p(w|alpha)"
 , we find that the maximum of the posterior is given by the minimum of
 \begin_inset Formula 
 \[
-\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},\mathbf{w})-t_{n}\right\} ^{2}+\frac{\alpha}{2}\mathbf{w}^{\mathrm{T}}\mathbf{w}
+\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},{\bf w})-t_{n}\right\} ^{2}+\frac{\alpha}{2}{\bf w}^{{\rm T}}{\bf w}
 \]
 
 \end_inset
@@ -1306,18 +1376,18 @@ Bayesian curve fitting
 
 \begin_layout Standard
 Although we have included a prior distribution 
-\begin_inset Formula $p(\mathbf{w}|\alpha)$
+\begin_inset Formula $p({\bf w}|\alpha)$
 \end_inset
 
 , we are still making a point estimate of 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  and so this does not yet amount to a Bayesian treatment.
  In a fully Bayesian approach, we should consistently apply the sum and
  product rules of probability, which requires, as we shall see shortly,
  that we integrate over all values of 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
 .
@@ -1356,7 +1426,7 @@ In curve fitting, we are given the training data
  Using the product rules of probability
 \begin_inset Formula 
 \begin{equation}
-p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})=\int p(t|x,\mathbf{w})p(\mathbf{w}|\textbf{\textsf{x}},\textbf{\textsf{t}})\mathrm{d}\mathbf{w}\label{eq:p(t|x,x,t)}
+p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})=\int p(t|x,{\bf w})p({\bf w}|\textbf{\textsf{x}},\textbf{\textsf{t}})\d{\bf w}\label{eq:p(t|x,x,t)}
 \end{equation}
 
 \end_inset
@@ -1378,7 +1448,7 @@ Here
 \noun off
 \color none
 
-\begin_inset Formula $p(t|x,\mathbf{w})$
+\begin_inset Formula $p(t|x,{\bf w})$
 \end_inset
 
 
@@ -1394,7 +1464,7 @@ Here
 \noun default
 \color inherit
  and 
-\begin_inset Formula $p(\mathbf{w}|\textbf{\textsf{x}},\textbf{\textsf{t}})$
+\begin_inset Formula $p({\bf w}|\textbf{\textsf{x}},\textbf{\textsf{t}})$
 \end_inset
 
  are given by 
@@ -1425,7 +1495,7 @@ reference "eq:p(t|x,x,t)"
  can be performed analytically with the result in a Gaussian distribution
 \begin_inset Formula 
 \begin{equation}
-p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})=\mathcal{N}\left(t|m(x),s^{2}(x)\right)\label{eq:p(t|x,x,t)=}
+p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})={\cal N}\left(t|m(x),s^{2}(x)\right)\label{eq:p(t|x,x,t)=}
 \end{equation}
 
 \end_inset
@@ -1433,20 +1503,20 @@ p(t|x,\textbf{\textsf{x}},\textbf{\textsf{t}})=\mathcal{N}\left(t|m(x),s^{2}(x)\
 where the mean and variance are given by
 \begin_inset Formula 
 \begin{eqnarray}
-m(x) & = & \beta\bm{\phi}(x)^{\mathrm{T}}\mathbf{S}\sum_{n=1}^{N}\bm{\phi}(x_{n})t_{n}\\
-s^{2}(x) & = & \beta^{-1}+\bm{\phi}(x)^{\mathrm{T}}\mathbf{S}\bm{\phi}(x)\label{eq:s^2(x)}
+m(x) & = & \beta\bm{\phi}(x)^{{\rm T}}{\bf S}\sum_{n=1}^{N}\bm{\phi}(x_{n})t_{n}\\
+s^{2}(x) & = & \beta^{-1}+\bm{\phi}(x)^{{\rm T}}{\bf S}\bm{\phi}(x)\label{eq:s^2(x)}
 \end{eqnarray}
 
 \end_inset
 
 Here the matrix 
-\begin_inset Formula $\mathbf{S}$
+\begin_inset Formula ${\bf S}$
 \end_inset
 
  is given by
 \begin_inset Formula 
 \[
-\mathbf{S}^{-1}=\alpha\mathbf{I}+\beta\sum_{n=1}^{N}\bm{\phi}(x_{n})\bm{\phi}(x)^{\mathrm{T}}
+{\bf S}^{-1}=\alpha{\bf I}+\beta\sum_{n=1}^{N}\bm{\phi}(x_{n})\bm{\phi}(x)^{{\rm T}}
 \]
 
 \end_inset
@@ -1488,7 +1558,7 @@ reference "eq:s^2(x)"
 
  represents the uncertainty due to the noise on the target variables, and
  the second term arises from the uncertainty in the parameters 
-\begin_inset Formula $\mathbf{w}$
+\begin_inset Formula ${\bf w}$
 \end_inset
 
  and is a consequence of the Bayesian treatment.
@@ -1580,7 +1650,7 @@ Akaike information criterion
 , or AIC, chooses the model for which the quantity
 \begin_inset Formula 
 \[
-\ln p(\mathcal{D}|\mathbf{w}_{\mathrm{ML}})-M
+\ln p({\cal D}|{\bf w}_{{\rm ML}})-M
 \]
 
 \end_inset
@@ -1734,35 +1804,35 @@ Decision theory, when combined with probability theory, allows us to make
 
 \begin_layout Standard
 Suppose we have an input vector 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  together with a corresponding vector 
-\begin_inset Formula $\mathbf{t}$
+\begin_inset Formula ${\bf t}$
 \end_inset
 
  of target variables, and our goal is to predict 
-\begin_inset Formula $\mathbf{t}$
+\begin_inset Formula ${\bf t}$
 \end_inset
 
  given a new value for 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 .
  
-\begin_inset Formula $\mathbf{t}$
+\begin_inset Formula ${\bf t}$
 \end_inset
 
  are continuous variables or class labels for regression and classification
  problems.
  The joint probability distribution 
-\begin_inset Formula $p(\mathbf{x},\mathbf{t})$
+\begin_inset Formula $p({\bf x},{\bf t})$
 \end_inset
 
  provides a complete summary of the uncertainty associated with these variables.
  Determination of 
-\begin_inset Formula $p(\mathbf{x},\mathbf{t})$
+\begin_inset Formula $p({\bf x},{\bf t})$
 \end_inset
 
  from a set of training data is an example of 
@@ -1771,12 +1841,12 @@ inference
 \emph default
  and is typically very difficult.
  In practice, what we need is the prediction of 
-\begin_inset Formula $\mathbf{t}$
+\begin_inset Formula ${\bf t}$
 \end_inset
 
 , or more generally take a specific action based on our understudying of
  values 
-\begin_inset Formula $\mathbf{t}$
+\begin_inset Formula ${\bf t}$
 \end_inset
 
  is likely to take, and this aspect is the subject of decision theory.
@@ -1785,7 +1855,7 @@ inference
 \begin_layout Standard
 Consider, for example, a medical diagnosis problem, we have a X-ray image
  input vector 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 , and output value 
@@ -1797,7 +1867,7 @@ Consider, for example, a medical diagnosis problem, we have a X-ray image
 \end_inset
 
  corresponds to class 
-\begin_inset Formula $\mathcal{C}_{1}$
+\begin_inset Formula ${\cal C}_{1}$
 \end_inset
 
 , the presence of cancer, and 
@@ -1805,17 +1875,17 @@ Consider, for example, a medical diagnosis problem, we have a X-ray image
 \end_inset
 
  corresponds to 
-\begin_inset Formula $\mathcal{C}_{2}$
+\begin_inset Formula ${\cal C}_{2}$
 \end_inset
 
 .
  The general inference problem involves determining the joint distribution
  
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})$
 \end_inset
 
 , or equivalently 
-\begin_inset Formula $p(\mathbf{x},t)$
+\begin_inset Formula $p({\bf x},t)$
 \end_inset
 
 .
@@ -1831,24 +1901,24 @@ decision
 
 \begin_layout Standard
 When we obtained 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 , we're interested in the probabilities of the two classes given the image,
  which are given by 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
 , using Bayes' theorem, it can be expressed in the form
 \begin_inset Formula 
 \[
-p(\mathcal{C}_{k}|\mathbf{x})=\frac{p(\mathbf{x}|\mathcal{C}_{k})p(\mathcal{C}_{k})}{p(\mathbf{x})}
+p({\cal C}_{k}|{\bf x})=\frac{p({\bf x}|{\cal C}_{k})p({\cal C}_{k})}{p({\bf x})}
 \]
 
 \end_inset
 
 If our aim is to minimize the chance of assigning 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  to the wrong class, then intuitively we would choose the class having the
@@ -1861,12 +1931,12 @@ Minimizing the misclassification rate
 
 \begin_layout Standard
 We need a rule to assign each value of 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  to one of the available classes.
  Such a rule will divide the input space into regions 
-\begin_inset Formula $\mathcal{R}_{k}$
+\begin_inset Formula ${\cal R}_{k}$
 \end_inset
 
  called 
@@ -1889,8 +1959,8 @@ decision surfaces
 In the case of two classes, the probability of misclassification is
 \begin_inset Formula 
 \begin{eqnarray}
-p(\text{mistake}) & = & p(\mathbf{x}\in\mathcal{R}_{1},\mathcal{C}_{2})+p(\mathbf{x}\in\mathcal{R}_{2},\mathcal{C}_{1})\nonumber \\
- & = & \int_{\mathcal{R}_{1}}p(\mathbf{x},\mathcal{C}_{2})\mathrm{d}\mathbf{x}+\int_{\mathcal{R}_{2}}p(\mathbf{x},\mathcal{C}_{1})\mathrm{d}\mathbf{x}\label{eq:p(mistake)}
+p(\text{mistake}) & = & p({\bf x}\in{\cal R}_{1},{\cal C}_{2})+p({\bf x}\in{\cal R}_{2},{\cal C}_{1})\nonumber \\
+ & = & \int_{{\cal R}_{1}}p({\bf x},{\cal C}_{2})\d{\bf x}+\int_{{\cal R}_{2}}p({\bf x},{\cal C}_{1})\d{\bf x}\label{eq:p(mistake)}
 \end{eqnarray}
 
 \end_inset
@@ -1900,7 +1970,7 @@ Clearly to minimize
 \end_inset
 
  we should arrange that each 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  is assigned to whichever class has the smaller value of the integrand in
@@ -1913,15 +1983,15 @@ reference "eq:p(mistake)"
 
 .
  Since 
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})=p(\mathcal{C}_{k}|\mathbf{x})p(\mathbf{x})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})=p({\cal C}_{k}|{\bf x})p({\bf x})$
 \end_inset
 
 , it's equivalent to assign 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  to the class for which the posterior probability 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
  is largest.
@@ -1936,26 +2006,26 @@ For the more general case of
  which is given by
 \begin_inset Formula 
 \begin{eqnarray}
-p(\text{correct}) & = & \sum_{k=1}^{K}p(\mathbf{x}\in\mathcal{R}_{k},\mathcal{C}_{k})\nonumber \\
- & = & \sum_{k=1}^{K}\int_{\mathcal{R}_{k}}p(\mathbf{x},\mathcal{C}_{k})\mathrm{d}\mathbf{x}
+p(\text{correct}) & = & \sum_{k=1}^{K}p({\bf x}\in{\cal R}_{k},{\cal C}_{k})\nonumber \\
+ & = & \sum_{k=1}^{K}\int_{{\cal R}_{k}}p({\bf x},{\cal C}_{k})\d{\bf x}
 \end{eqnarray}
 
 \end_inset
 
 which is maximized when the regions 
-\begin_inset Formula $\mathcal{R}_{k}$
+\begin_inset Formula ${\cal R}_{k}$
 \end_inset
 
  are chosen such that each 
-\begin_inset Formula $\mathrm{x}$
+\begin_inset Formula ${\rm x}$
 \end_inset
 
  is assigned to the class for which 
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})$
 \end_inset
 
  or 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
  is the largest.
@@ -1983,11 +2053,11 @@ cost function
 \end_inset
 
  represents the loss when the true class is 
-\begin_inset Formula $\mathcal{C}_{k}$
+\begin_inset Formula ${\cal C}_{k}$
 \end_inset
 
  and we assign the input to class 
-\begin_inset Formula $\mathcal{C}_{j}$
+\begin_inset Formula ${\cal C}_{j}$
 \end_inset
 
 , 
@@ -2006,46 +2076,46 @@ The optimal solution is the one which minimizes the loss function.
  However, the loss function depends on the true class, which is unknown.
  So we seek instead of minimize the average loss respect to the distribution
  
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})$
 \end_inset
 
 , which is given by
 \begin_inset Formula 
 \[
-\mathbb{E}[L]=\sum_{k}\sum_{j}\int_{\mathcal{R}_{j}}L_{kj}p(\mathbf{x},\mathcal{C}_{k})\mathrm{d}\mathbf{x}
+\EE[L]=\sum_{k}\sum_{j}\int_{{\cal R}_{j}}L_{kj}p({\bf x},{\cal C}_{k})\d{\bf x}
 \]
 
 \end_inset
 
 Each 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  can be assigned to one of 
-\begin_inset Formula $\mathcal{R}_{j}$
+\begin_inset Formula ${\cal R}_{j}$
 \end_inset
 
 , which implies that for each 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  we should minimize 
-\begin_inset Formula $\sum_{k}L_{kj}p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $\sum_{k}L_{kj}p({\bf x},{\cal C}_{k})$
 \end_inset
 
 .
  As before we can use the product rule 
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})=p(\mathcal{C}_{k}|\mathbf{x})p(\mathbf{x})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})=p({\cal C}_{k}|{\bf x})p({\bf x})$
 \end_inset
 
  to eliminate the common factor of 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
 .
  Thus the decision rule that minimizes the expected loss is the one that
  assigns each new 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  to the class 
@@ -2055,7 +2125,7 @@ Each
  for which the quantity
 \begin_inset Formula 
 \[
-\sum_{k}L_{kj}p(\mathbf{x},\mathcal{C}_{k})
+\sum_{k}L_{kj}p({\bf x},{\cal C}_{k})
 \]
 
 \end_inset
@@ -2070,12 +2140,12 @@ The reject option
 \begin_layout Standard
 The classification errors arise from the regions of input space where the
  largest of the posterior probabilities 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
  is significantly less than unity, or equivalently where the joint distributions
  
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})$
 \end_inset
 
  have comparable values.
@@ -2089,11 +2159,11 @@ The classification errors arise from the regions of input space where the
 \end_inset
 
  and rejecting those inputs 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  for which the largest of the posterior probabilities 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
  is less than or equal to 
@@ -2120,7 +2190,7 @@ We have broken the classification problem down into two separate stages,
 inference stage
 \emph default
  in which we use training data to learn a model for 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
 , and the subsequent 
@@ -2156,22 +2226,22 @@ alph*)
 
 First solve the inference problem of determining the class-conditional densities
  
-\begin_inset Formula $p(\mathbf{x}|\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x}|{\cal C}_{k})$
 \end_inset
 
 .
  Also separately infer the prior class probabilities 
-\begin_inset Formula $p(\mathcal{C}_{k})$
+\begin_inset Formula $p({\cal C}_{k})$
 \end_inset
 
 .
  Then use Bayes' theorem to find the posterior class probabilities 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
 .
  Equivalently, we can model the joint distribution 
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})$
 \end_inset
 
  directly and then normalize to obtain the posterior probabilities.
@@ -2195,11 +2265,11 @@ name "enu:generative models"
 \begin_layout Enumerate
 First solve the inference problem of determining the posterior class probabiliti
 es 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
 , and then use decision theory to assign each new 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  to one of the classes.
@@ -2219,7 +2289,7 @@ name "enu:discriminative models"
 
 \begin_layout Enumerate
 Find a function 
-\begin_inset Formula $f(\mathbf{x})$
+\begin_inset Formula $f({\bf x})$
 \end_inset
 
 , called a 
@@ -2227,7 +2297,7 @@ Find a function
 discriminant function
 \emph default
 , which maps each input 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  directly onto a class label.
@@ -2250,21 +2320,21 @@ reference "enu:generative models"
 \end_inset
 
  is the most demanding, because for many applications 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  will have high dimensionality, and consequently we need a large training
  set in order to determine the class-conditional densities 
-\begin_inset Formula $p(\mathbf{x}|\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x}|{\cal C}_{k})$
 \end_inset
 
  or the joint distribution 
-\begin_inset Formula $p(\mathbf{x},\mathcal{C}_{k})$
+\begin_inset Formula $p({\bf x},{\cal C}_{k})$
 \end_inset
 
  to reasonable accuracy.
  However, one advantage is it can also determine 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
 .
@@ -2291,7 +2361,7 @@ reference "enu:discriminative models"
 \end_inset
 
  we find the posterior probabilities 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
  directly.
@@ -2312,7 +2382,7 @@ reference "enu:discriminant function"
 \begin_layout Standard
 There are many powerful reasons for wanting to compute the posterior probabiliti
 es 
-\begin_inset Formula $p(\mathcal{C}_{k}|\mathbf{x})$
+\begin_inset Formula $p({\cal C}_{k}|{\bf x})$
 \end_inset
 
  before making decisions:
@@ -2354,17 +2424,17 @@ Combining models.
  subproblems each of which can be tackled by a separate model.
  For example in the medical X-ray problem, we may assume that the distribution
  of inputs for X-ray images 
-\begin_inset Formula $\mathbf{x}_{\mathrm{I}}$
+\begin_inset Formula ${\bf x}_{\I}$
 \end_inset
 
  and the blood data 
-\begin_inset Formula $\mathbf{x}_{\mathrm{B}}$
+\begin_inset Formula ${\bf x}_{{\rm B}}$
 \end_inset
 
  are independently, so that
 \begin_inset Formula 
 \[
-p(\mathbf{x}_{\mathrm{I}},\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})=p(\mathbf{x}_{\mathrm{I}}|\mathcal{C}_{k})p(\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})
+p({\bf x}_{\I},{\bf x}_{{\rm B}}|{\cal C}_{k})=p({\bf x}_{\I}|{\cal C}_{k})p({\bf x}_{{\rm B}}|{\cal C}_{k})
 \]
 
 \end_inset
@@ -2377,9 +2447,9 @@ conditional independence
  Then the posterior probability given both the data is given by
 \begin_inset Formula 
 \begin{eqnarray}
-p(\mathcal{C}_{k}|\mathbf{x}_{\mathrm{I}},\mathbf{x}_{\mathrm{B}}) & \propto & p(\mathbf{x}_{\mathrm{I}},\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})p(\mathcal{C}_{k})\nonumber \\
- & \propto & p(\mathbf{x}_{\mathrm{I}}|\mathcal{C}_{k})p(\mathbf{x}_{\mathrm{B}}|\mathcal{C}_{k})p(\mathcal{C}_{k})\nonumber \\
- & \propto & p(\mathcal{C}_{k}|\mathbf{x}_{\mathrm{I}})p(\mathcal{C}_{k}|\mathbf{x}_{\mathrm{B}})
+p({\cal C}_{k}|{\bf x}_{\I},{\bf x}_{{\rm B}}) & \propto & p({\bf x}_{\I},{\bf x}_{{\rm B}}|{\cal C}_{k})p({\cal C}_{k})\nonumber \\
+ & \propto & p({\bf x}_{\I}|{\cal C}_{k})p({\bf x}_{{\rm B}}|{\cal C}_{k})p({\cal C}_{k})\nonumber \\
+ & \propto & p({\cal C}_{k}|{\bf x}_{\I})p({\cal C}_{k}|{\bf x}_{{\rm B}})
 \end{eqnarray}
 
 \end_inset
@@ -2394,7 +2464,7 @@ Loss functions for regression
 \begin_layout Standard
 In regression problems, the decision stage consists of choosing a specific
  estimate 
-\begin_inset Formula $y(\mathbf{x})$
+\begin_inset Formula $y({\bf x})$
 \end_inset
 
  of the value of 
@@ -2402,65 +2472,65 @@ In regression problems, the decision stage consists of choosing a specific
 \end_inset
 
  for each input 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 .
  Suppose that in doing so, we incur a loss 
-\begin_inset Formula $L(t,y(\mathbf{x}))$
+\begin_inset Formula $L(t,y({\bf x}))$
 \end_inset
 
 .
  The expected loss is given by
 \begin_inset Formula 
 \[
-\mathbb{E}[L]=\iint L(t,y(\mathbf{x}))p(\mathbf{x},t)\mathrm{d}\mathbf{x}\mathrm{d}t
+\EE[L]=\iint L(t,y({\bf x}))p({\bf x},t)\d{\bf x}\d t
 \]
 
 \end_inset
 
 A common choice of the loss function is the squared loss 
-\begin_inset Formula $L(t,y(\mathbf{x}))=\left\{ y(\mathbf{x})-t\right\} ^{2}$
+\begin_inset Formula $L(t,y({\bf x}))=\left\{ y({\bf x})-t\right\} ^{2}$
 \end_inset
 
 .
  In this case
 \begin_inset Formula 
 \[
-\mathbb{E}[L]=\iint\left\{ y(\mathbf{x})-t\right\} ^{2}p(\mathbf{x},t)\mathrm{d}\mathbf{x}\mathrm{d}t
+\EE[L]=\iint\left\{ y({\bf x})-t\right\} ^{2}p({\bf x},t)\d{\bf x}\d t
 \]
 
 \end_inset
 
 Our goal is to choose 
-\begin_inset Formula $y(\mathbf{x})$
+\begin_inset Formula $y({\bf x})$
 \end_inset
 
  so as to minimize 
-\begin_inset Formula $\mathbb{E}[L]$
+\begin_inset Formula $\EE[L]$
 \end_inset
 
 .
  If we assume a completely flexible function 
-\begin_inset Formula $y(\mathbf{x})$
+\begin_inset Formula $y({\bf x})$
 \end_inset
 
 , we can do this formally using the calculus of variations to give
 \begin_inset Formula 
 \[
-\frac{\delta\mathbb{E}[L]}{\delta y(\mathbf{x})}=2\int\left\{ y(\mathbf{x})-t\right\} p(\mathbf{x},t)\mathrm{d}t=0
+\frac{\delta\EE[L]}{\delta y({\bf x})}=2\int\left\{ y({\bf x})-t\right\} p({\bf x},t)\d t=0
 \]
 
 \end_inset
 
 Solving for 
-\begin_inset Formula $y(\mathbf{x})$
+\begin_inset Formula $y({\bf x})$
 \end_inset
 
 , and using the sum and product rules of probability, we obtain
 \begin_inset Formula 
 \[
-y(\mathbf{x})=\frac{\int tp(\mathbf{x},t)\mathrm{d}t}{p(\mathbf{x})}=\int tp(t|\mathbf{x})\mathrm{d}t=\mathbb{E}_{t}[t|\mathbf{x}]
+y({\bf x})=\frac{\int t\, p({\bf x},t)\d t}{p({\bf x})}=\int t\, p(t|{\bf x})\d t=\EE_{t}[t|{\bf x}]
 \]
 
 \end_inset
@@ -2470,7 +2540,7 @@ which is the conditional average of
 \end_inset
 
  conditioned on 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and is known as the 
@@ -2480,11 +2550,11 @@ regression function
 .
  It can readily be extended to multiple variables represented by the vector
  
-\begin_inset Formula $\mathbf{t}$
+\begin_inset Formula ${\bf t}$
 \end_inset
 
 , in which case the optimal solution is the conditional average 
-\begin_inset Formula $\mathbf{y}(\mathbf{x})=\mathbb{E}_{\mathbf{t}}[\mathbf{t}|\mathbf{x}]$
+\begin_inset Formula ${\bf y}({\bf x})=\EE_{{\bf t}}[{\bf t}|{\bf x}]$
 \end_inset
 
 .
@@ -2496,7 +2566,7 @@ The squared loss is not the only possible choice of loss function for regression
  results and where we need to develop more sophisticated approaches.
  An important example concerns situations in which the conditional distribution
  
-\begin_inset Formula $p(t|\mathbf{x})$
+\begin_inset Formula $p(t|{\bf x})$
 \end_inset
 
  is multimodal, as often arises in the solution of inverse problems.
@@ -2507,13 +2577,13 @@ The squared loss is not the only possible choice of loss function for regression
  loss, whose expectation is given by
 \begin_inset Formula 
 \[
-\mathbb{E}[L_{q}]=\iint\left|y(\mathbf{x})-t\right|^{q}p(\mathbf{x},t)\mathrm{d}\mathbf{x}\mathrm{d}t
+\EE[L_{q}]=\iint\left|y({\bf x})-t\right|^{q}p({\bf x},t)\d{\bf x}\d t
 \]
 
 \end_inset
 
 The minimum of 
-\begin_inset Formula $\mathbb{E}[L_{q}]$
+\begin_inset Formula $\EE[L_{q}]$
 \end_inset
 
  is given by the conditional mean for 
@@ -2631,7 +2701,7 @@ reference "eq:h(x)"
  and is given by
 \begin_inset Formula 
 \[
-\mathrm{H}[x]=-\sum_{x}p(x)\log_{2}p(x)
+\H[x]=-\sum_{x}p(x)\log_{2}p(x)
 \]
 
 \end_inset
@@ -2707,7 +2777,7 @@ The minimum of entropy is
 .
  Using the Lagrange multiplier method, we can see the maximum of entropy
  
-\begin_inset Formula $\mathrm{H}$
+\begin_inset Formula $\H$
 \end_inset
 
  is 
@@ -2787,7 +2857,7 @@ mean value theorem
  such that
 \begin_inset Formula 
 \[
-\int_{i\Delta}^{(i+1)\Delta}p(x)\mathrm{d}x=p(x_{i})\Delta
+\int_{i\Delta}^{(i+1)\Delta}p(x)\d x=p(x_{i})\Delta
 \]
 
 \end_inset
@@ -2809,14 +2879,14 @@ We can now quantize the continuous variable
 \end_inset
 
  falls in the 
-\begin_inset Formula $i^{\mathrm{th}}$
+\begin_inset Formula $i^{{\rm th}}$
 \end_inset
 
  bin.
  This gives a discrete distribution for which the entropy takes the form
 \begin_inset Formula 
 \begin{equation}
-\mathrm{H}_{\Delta}=-\sum_{i}p(x_{i})\Delta\ln(p(x_{i})\Delta)=-\sum_{i}p(x_{i})\Delta\ln p(x_{i})-\ln\Delta\label{eq:H_Delta}
+\H_{\Delta}=-\sum_{i}p(x_{i})\Delta\ln(p(x_{i})\Delta)=-\sum_{i}p(x_{i})\Delta\ln p(x_{i})-\ln\Delta\label{eq:H_Delta}
 \end{equation}
 
 \end_inset
@@ -2847,7 +2917,7 @@ reference "eq:H_Delta"
  will became
 \begin_inset Formula 
 \[
-\lim_{\Delta\to0}\left\{ \sum_{i}p(x_{i})\Delta\ln p(x_{i})\right\} =-\int p(x)\ln p(x)\mathrm{d}x
+\lim_{\Delta\to0}\left\{ \sum_{i}p(x_{i})\Delta\ln p(x_{i})\right\} =-\int p(x)\ln p(x)\d x
 \]
 
 \end_inset
@@ -2871,13 +2941,13 @@ differential entropy
  requires a large number of bits.
  For a density defined over multiple continuous variables, denoted collectively
  by the vector 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 , the differential entropy is given by
 \begin_inset Formula 
 \[
-\mathrm{H}[\mathbf{x}]=-\int p(\mathbf{x})\ln p(\mathbf{x})\mathrm{d}\mathbf{x}
+\H[{\bf x}]=-\int p({\bf x})\ln p({\bf x})\d{\bf x}
 \]
 
 \end_inset
@@ -2896,9 +2966,9 @@ Let us now consider the maximum entropy configuration for a continuous variable.
  We therefore maximize the differential entropy with the three constraints
 \begin_inset Formula 
 \begin{eqnarray}
-\int_{-\infty}^{\infty}p(x)\mathrm{d}x & = & 1\\
-\int_{-\infty}^{\infty}xp(x)\mathrm{d}x & = & \mu\\
-\int_{-\infty}^{\infty}(x-\mu)^{2}p(x)\mathrm{d}x & = & \sigma^{2}
+\int_{-\infty}^{\infty}p(x)\d x & = & 1\\
+\int_{-\infty}^{\infty}xp(x)\d x & = & \mu\\
+\int_{-\infty}^{\infty}(x-\mu)^{2}p(x)\d x & = & \sigma^{2}
 \end{eqnarray}
 
 \end_inset
@@ -2923,7 +2993,7 @@ and so the distribution that maximizes the differential entropy is the Gaussian.
 The differential entropy of the Gaussian is
 \begin_inset Formula 
 \[
-\mathrm{H}[x]=\frac{1}{2}\left\{ 1+\ln(2\pi\sigma^{2})\right\} 
+\H[x]=\frac{1}{2}\left\{ 1+\ln(2\pi\sigma^{2})\right\} 
 \]
 
 \end_inset
@@ -2940,20 +3010,20 @@ Thus we see again that the entropy increases as the distribution becomes
 
 \begin_layout Standard
 In a joint distribution 
-\begin_inset Formula $p(\mathbf{x},\mathbf{y})$
+\begin_inset Formula $p({\bf x},{\bf y})$
 \end_inset
 
 , if a value of 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  is already known, then the additional information needed to specify the
  corresponding value of 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
  is given by 
-\begin_inset Formula $-\ln p(\mathbf{y}|\mathbf{x})$
+\begin_inset Formula $-\ln p({\bf y}|{\bf x})$
 \end_inset
 
 .
@@ -2961,7 +3031,7 @@ In a joint distribution
  as
 \begin_inset Formula 
 \[
-\mathrm{H}[\mathbf{y}|\mathbf{x}]=-\iint p(\mathbf{y},\mathbf{x})\ln p(\mathbf{y}|\mathbf{x})\mathrm{d}\mathbf{y}\mathrm{d}\mathbf{x}
+\H[{\bf y}|{\bf x}]=-\iint p({\bf y},{\bf x})\ln p({\bf y}|{\bf x})\d{\bf y}\d{\bf x}
 \]
 
 \end_inset
@@ -2971,11 +3041,11 @@ which is called the
 conditional entropy
 \emph default
  of 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
  given 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 .
@@ -2983,37 +3053,37 @@ conditional entropy
  the relation
 \begin_inset Formula 
 \[
-\mathrm{H}[\mathbf{x},\mathbf{y}]=\mathrm{H}[\mathbf{y}|\mathbf{x}]+\mathrm{H}[\mathbf{x}]
+\H[{\bf x},{\bf y}]=\H[{\bf y}|{\bf x}]+\H[{\bf x}]
 \]
 
 \end_inset
 
 Thus the information needed to describe 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and 
 \series bold
 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
 
 \series default
  is given by the sum of the information needed to describe 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  alone plus the additional information required to specify 
 \series bold
 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
 
 \series default
  given 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 .
@@ -3025,22 +3095,22 @@ Relative entropy and mutual information
 
 \begin_layout Standard
 Consider some unknown distribution 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
 , and suppose that we have modeled this using an approximating distribution
  
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
 .
  If we use 
-\begin_inset Formula $q(\mathbf{x})$
+\begin_inset Formula $q({\bf x})$
 \end_inset
 
  to construct a coding scheme for the purpose of transmitting values of
  
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  to a receiver, then the average 
@@ -3048,22 +3118,22 @@ Consider some unknown distribution
 additional
 \emph default
  amount of information (in nats) required to specify the value of 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  as a result of using 
-\begin_inset Formula $q(\mathbf{x})$
+\begin_inset Formula $q({\bf x})$
 \end_inset
 
  instead of the true distribution 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  is given by
 \begin_inset Formula 
 \begin{eqnarray}
-\mathrm{KL}(p\Vert q) & = & -\int p(\mathbf{x})\ln q(\mathbf{x})\mathrm{d}\mathbf{x}-\left(-\int p(\mathbf{x})\ln p(\mathbf{x})\mathrm{d}\mathbf{x}\right)\nonumber \\
- & = & -\int p(\mathbf{x})\ln\left\{ \frac{q(\mathbf{x})}{p(\mathbf{x})}\right\} \mathrm{d}\mathbf{x}\label{eq:KL(p||q)}
+\KL(p\Vert q) & = & -\int p({\bf x})\ln q({\bf x})\d{\bf x}-\left(-\int p({\bf x})\ln p({\bf x})\d{\bf x}\right)\nonumber \\
+ & = & -\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\label{eq:KL(p||q)}
 \end{eqnarray}
 
 \end_inset
@@ -3081,16 +3151,16 @@ Kullback-Leibler divergence
 KL divergence
 \emph default
 , between the distributions 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  and 
-\begin_inset Formula $q(\mathbf{x})$
+\begin_inset Formula $q({\bf x})$
 \end_inset
 
 .
  Note that it is not a symmetrical quantity, that is to say 
-\begin_inset Formula $\mathrm{KL}(p\Vert q)\not\equiv\mathrm{KL}(q\Vert p)$
+\begin_inset Formula $\KL(p\Vert q)\not\equiv\KL(q\Vert p)$
 \end_inset
 
 .
@@ -3098,11 +3168,11 @@ KL divergence
 
 \begin_layout Standard
 The KL divergence satisfies 
-\begin_inset Formula $\mathrm{KL}(p\Vert q)\geq0$
+\begin_inset Formula $\KL(p\Vert q)\geq0$
 \end_inset
 
  with equality if and only if 
-\begin_inset Formula $p(\mathbf{x})=q(\mathbf{x})$
+\begin_inset Formula $p({\bf x})=q({\bf x})$
 \end_inset
 
 .
@@ -3153,20 +3223,20 @@ reference "eq:Jensen's inequality (discrete)"
  can be written
 \begin_inset Formula 
 \[
-f(\mathbb{E}[x])\leq\mathbb{E}[f(x)]
+f(\EE[x])\leq\EE[f(x)]
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $\mathbb{E}[\cdot]$
+\begin_inset Formula $\EE[\cdot]$
 \end_inset
 
  denotes the expectation.
  For continuous variables, Jensen's inequality takes the form
 \begin_inset Formula 
 \begin{equation}
-f\left(\int\mathbf{x}p(\mathbf{x})\mathrm{d}\mathbf{x}\right)\leq\int f(\mathbf{x})p(\mathbf{x})\mathrm{d}\mathbf{x}\label{eq:Jensen’s inequality}
+f\left(\int{\bf x}p({\bf x})\d{\bf x}\right)\leq\int f({\bf x})p({\bf x})\d{\bf x}\label{eq:Jensen’s inequality}
 \end{equation}
 
 \end_inset
@@ -3192,7 +3262,7 @@ reference "eq:KL(p||q)"
  to give
 \begin_inset Formula 
 \[
-\mathrm{KL}(p\Vert q)=-\int p(\mathbf{x})\ln\left\{ \frac{q(\mathbf{x})}{p(\mathbf{x})}\right\} \mathrm{d}\mathbf{x}\geq-\ln\int q(\mathbf{x})\mathrm{d}\mathbf{x}=0
+\KL(p\Vert q)=-\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\geq-\ln\int q({\bf x})\d{\bf x}=0
 \]
 
 \end_inset
@@ -3202,7 +3272,7 @@ where we have used the fact that
 \end_inset
 
  is a convex function, together with the normalization condition 
-\begin_inset Formula $\int q(\mathbf{x})\mathrm{d}\mathbf{x}=1$
+\begin_inset Formula $\int q({\bf x})\d{\bf x}=1$
 \end_inset
 
 .
@@ -3212,21 +3282,21 @@ where we have used the fact that
 
  is a strictly convex function, so the equality will hold if and only if
  
-\begin_inset Formula $q(\mathbf{x})=p(\mathbf{x})$
+\begin_inset Formula $q({\bf x})=p({\bf x})$
 \end_inset
 
  for all 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
 .
  Thus we can interpret the Kullback-Leibler divergence as a measure of the
  dissimilarity of the two distributions 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  and 
-\begin_inset Formula $q(\mathbf{x})$
+\begin_inset Formula $q({\bf x})$
 \end_inset
 
 .
@@ -3234,13 +3304,13 @@ where we have used the fact that
 
 \begin_layout Standard
 Suppose that data is being generated from an unknown distribution 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  that we wish to model.
  We can try to approximate this distribution using some parametric distribution
  
-\begin_inset Formula $q(\mathbf{x}|\bm{\theta})$
+\begin_inset Formula $q({\bf x}|\bm{\theta})$
 \end_inset
 
 , governed by a set of adjustable parameters 
@@ -3253,11 +3323,11 @@ Suppose that data is being generated from an unknown distribution
 \end_inset
 
  is to minimize the KL divergence between 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  and 
-\begin_inset Formula $q(\mathbf{x}|\bm{\theta})$
+\begin_inset Formula $q({\bf x}|\bm{\theta})$
 \end_inset
 
  with respect to 
@@ -3266,13 +3336,13 @@ Suppose that data is being generated from an unknown distribution
 
 .
  We cannot do this directly because we don't know 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
 .
  Suppose, however, that we have observed a finite set of training points
  
-\begin_inset Formula $\mathbf{x}_{n}$
+\begin_inset Formula ${\bf x}_{n}$
 \end_inset
 
 , for 
@@ -3280,12 +3350,12 @@ Suppose that data is being generated from an unknown distribution
 \end_inset
 
 , drawn from 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
 .
  Then the expectation with respect to 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  can be approximated by a finite sum over these points, using 
@@ -3298,7 +3368,7 @@ reference "eq:E[f] simeq"
 , so that
 \begin_inset Formula 
 \[
-\mathrm{KL}(p\Vert q)\simeq\sum_{n=1}^{N}\left\{ -\ln q(\mathbf{x}_{n}|\bm{\theta})+\ln p(\mathbf{x}_{n})\right\} 
+\KL(p\Vert q)\simeq\sum_{n=1}^{N}\left\{ -\ln q({\bf x}_{n}|\bm{\theta})+\ln p({\bf x}_{n})\right\} 
 \]
 
 \end_inset
@@ -3312,7 +3382,7 @@ The second term on the right-hand side is independent of
 \end_inset
 
  under the distribution 
-\begin_inset Formula $q(\mathbf{x}|\bm{\theta})$
+\begin_inset Formula $q({\bf x}|\bm{\theta})$
 \end_inset
 
  evaluated using the training set.
@@ -3322,38 +3392,38 @@ The second term on the right-hand side is independent of
 
 \begin_layout Standard
 If two sets of variables 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
  given by 
-\begin_inset Formula $p(\mathbf{x},\mathbf{y})$
+\begin_inset Formula $p({\bf x},{\bf y})$
 \end_inset
 
  are independent, then 
-\begin_inset Formula $p(\mathbf{x},\mathbf{y})=p(\mathbf{x})p(\mathbf{y})$
+\begin_inset Formula $p({\bf x},{\bf y})=p({\bf x})p({\bf y})$
 \end_inset
 
 .
  If the variables are not independent, we can gain some idea of whether
  they are `close' to being independent by considering the KL divergence
  between 
-\begin_inset Formula $p(\mathbf{x},\mathbf{y})$
+\begin_inset Formula $p({\bf x},{\bf y})$
 \end_inset
 
  and 
-\begin_inset Formula $p(\mathbf{x})p(\mathbf{y})$
+\begin_inset Formula $p({\bf x})p({\bf y})$
 \end_inset
 
 , given by
 \begin_inset Formula 
-\begin{eqnarray*}
-\mathrm{I}[\mathbf{x},\mathbf{y}] & \equiv & \mathrm{KL}(p(\mathbf{x},\mathbf{y})\Vert p(\mathbf{x})p(\mathbf{y}))\\
- & = & -\iint p(\mathbf{x},\mathbf{y})\ln\left(\frac{p(\mathbf{x})p(\mathbf{y})}{p(\mathbf{x},\mathbf{y})}\right)\mathrm{d}\mathbf{x}\mathrm{d}\mathbf{y}
-\end{eqnarray*}
+\begin{eqnarray}
+\I[{\bf x},{\bf y}] & \equiv & \KL(p({\bf x},{\bf y})\Vert p({\bf x})p({\bf y}))\nonumber \\
+ & = & -\iint p({\bf x},{\bf y})\ln\left(\frac{p({\bf x})p({\bf y})}{p({\bf x},{\bf y})}\right)\d{\bf x}\d{\bf y}
+\end{eqnarray}
 
 \end_inset
 
@@ -3362,24 +3432,24 @@ which is called the
 mutual information
 \emph default
  between the variables 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
 .
  
-\begin_inset Formula $\mathrm{I}(\mathbf{x},\mathbf{y})\geq0$
+\begin_inset Formula $\I({\bf x},{\bf y})\geq0$
 \end_inset
 
  with equality if and only if 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
  are independent.
@@ -3387,45 +3457,45 @@ mutual information
 n is related to the conditional entropy through
 \begin_inset Formula 
 \[
-\mathrm{I}[\mathbf{x},\mathbf{y}]=\mathrm{H}[\mathbf{x}]-\mathrm{H}[\mathbf{x}|\mathbf{y}]=\mathrm{H}[\mathbf{y}]-\mathrm{H}[\mathbf{y}|\mathbf{x}]
+\I[{\bf x},{\bf y}]=\H[{\bf x}]-\H[{\bf x}|{\bf y}]=\H[{\bf y}]-\H[{\bf y}|{\bf x}]
 \]
 
 \end_inset
 
 Thus we can view the mutual information as the reduction in the uncertainty
  about 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  by virtue of being told the value of 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
  (or vice versa).
  From a Bayesian perspective, we can view 
-\begin_inset Formula $p(\mathbf{x})$
+\begin_inset Formula $p({\bf x})$
 \end_inset
 
  as the prior distribution for 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  and 
-\begin_inset Formula $p(\mathbf{x}|\mathbf{y})$
+\begin_inset Formula $p({\bf x}|{\bf y})$
 \end_inset
 
  as the posterior distribution after we have observed new data 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
 .
  The mutual information therefore represents the reduction in uncertainty
  about 
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  as a consequence of the new observation 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula ${\bf y}$
 \end_inset
 
 .
