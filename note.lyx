@@ -326,7 +326,7 @@ Equations for probability:
 \end_layout
 
 \begin_layout Itemize
-Sum rule
+Sum rule 
 \begin_inset Formula 
 \[
 p(X)=\sum_{Y}p(X,Y)
@@ -338,7 +338,7 @@ p(X)=\sum_{Y}p(X,Y)
 \end_layout
 
 \begin_layout Itemize
-Product rule
+Product rule 
 \begin_inset Formula 
 \[
 p(X,Y)=p(Y|X)p(X)
@@ -350,11 +350,24 @@ p(X,Y)=p(Y|X)p(X)
 \end_layout
 
 \begin_layout Itemize
-Bayes' theorem
+Bayes' theorem 
 \begin_inset Formula 
 \begin{equation}
 p(Y|X)=\frac{p(X|Y)p(Y)}{p(X)}\label{eq:bayes}
 \end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
@@ -2305,6 +2318,19 @@ discriminant function
 \begin_inset CommandInset label
 LatexCommand label
 name "enu:discriminant function"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
