@@ -122,8 +122,7 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset CommandInset include
-LatexCommand input
-preview true
+LatexCommand include
 filename "ch01.lyx"
 
 \end_inset
@@ -133,7 +132,7 @@ filename "ch01.lyx"
 
 \begin_layout Standard
 \begin_inset CommandInset include
-LatexCommand input
+LatexCommand include
 filename "ch02.lyx"
 
 \end_inset

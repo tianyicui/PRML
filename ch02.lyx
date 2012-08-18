@@ -704,5 +704,331 @@ r observed data set it is possible for the posterior variance to be larger
  than the prior variance.
 \end_layout
 
+\begin_layout Section
+Multinomial Variables
+\end_layout
+
+\begin_layout Standard
+Often, we encounter discrete variables that can take on one of 
+\begin_inset Formula $K$
+\end_inset
+
+ possible mutually exclusive states.
+ One particularly convenient representation to express such variables is
+ the 1-of-
+\begin_inset Formula $K$
+\end_inset
+
+ scheme, in which, the variable is represented by a 
+\begin_inset Formula $K$
+\end_inset
+
+-dimensional vector 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ in which one of the elements 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ equals 
+\begin_inset Formula $1$
+\end_inset
+
+, and all remaining elements equal 
+\begin_inset Formula $0$
+\end_inset
+
+.
+ Note that such vectors satisfy 
+\begin_inset Formula $\sum_{k=1}^{K}x_{k}=1$
+\end_inset
+
+.
+ If we denote the probability of 
+\begin_inset Formula $x_{k}=1$
+\end_inset
+
+ by the parameter 
+\begin_inset Formula $\mu_{k}$
+\end_inset
+
+, then the distribution of 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\begin{equation}
+p({\bf x}|\bm{\mu})=\prod_{k=1}^{K}\mu_{k}^{x_{k}}\label{eq:p(x|mu)}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{\mu}=(\mu_{1},\ldots,\mu_{K})^{{\rm T}}$
+\end_inset
+
+, and the parameters 
+\begin_inset Formula $\mu_{k}$
+\end_inset
+
+ are constrained to satisfy 
+\begin_inset Formula $\mu_{k}\geq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum_{k}\mu_{k}=1$
+\end_inset
+
+.
+ The distribution 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x|mu)"
+
+\end_inset
+
+ can be regarded as a generalization of the Bernoulli distribution to more
+ than two outcomes.
+ Its mean is given by
+\begin_inset Formula 
+\[
+\EE[{\bf x}|\bm{\mu}]=\sum_{x}p({\bf x}|\bm{\mu}){\bf x}=(\mu_{1},\ldots,\mu_{K})^{{\rm T}}=\bm{\mu}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now consider a data set 
+\begin_inset Formula ${\cal D}$
+\end_inset
+
+ of 
+\begin_inset Formula $N$
+\end_inset
+
+ independent observations 
+\begin_inset Formula ${\bf x}_{1},\ldots,{\bf x}_{N}$
+\end_inset
+
+.
+ The corresponding likelihood function takes the form
+\begin_inset Formula 
+\begin{equation}
+p({\cal D}|\bm{\mu})=\prod_{n=1}^{N}\prod_{k=1}^{K}\mu_{k}^{x_{nk}}=\prod_{k=1}^{K}\mu_{k}^{(\sum_{n}x_{nk})}=\prod_{k=1}^{K}\mu_{k}^{m_{k}}\label{eq:p(D|mu)}
+\end{equation}
+
+\end_inset
+
+which depends on the 
+\begin_inset Formula $N$
+\end_inset
+
+ data points only through the 
+\begin_inset Formula $K$
+\end_inset
+
+ quantities
+\begin_inset Formula 
+\[
+m_{k}=\sum_{n}x_{nk}
+\]
+
+\end_inset
+
+which represents the number of observations of 
+\begin_inset Formula $x_{k}=1$
+\end_inset
+
+.
+ These are called the 
+\emph on
+sufficient statistics
+\emph default
+ for this distribution.
+\end_layout
+
+\begin_layout Standard
+The maximum likelihood solution for 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ taking account of its constraint, which can be solved using Lagrange multiplier
+, is in the form
+\begin_inset Formula 
+\[
+\mu_{k}^{{\rm ML}}=\frac{m_{k}}{N}
+\]
+
+\end_inset
+
+which is the fraction of the 
+\begin_inset Formula $N$
+\end_inset
+
+ observations for which 
+\begin_inset Formula $x_{k}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can consider the joint distribution of the quantities 
+\begin_inset Formula $m_{1},\ldots,m_{K}$
+\end_inset
+
+, conditioned on the parameters 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ and on the total number 
+\begin_inset Formula $N$
+\end_inset
+
+ of observations.
+ From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(D|mu)"
+
+\end_inset
+
+ this takes the form
+\begin_inset Formula 
+\begin{equation}
+\Mult(m_{1},m_{2},\ldots,m_{K}|\bm{\mu},N)=\binom{N}{m_{1}\: m_{2}\:\ldots\: m_{K}}\prod_{k=1}^{K}\mu_{k}^{m_{k}}\label{eq:Mult(m_1...m_K|mu,N)}
+\end{equation}
+
+\end_inset
+
+which is known as the 
+\emph on
+multinomial
+\emph default
+ distribution.
+ Note that the variables 
+\begin_inset Formula $m_{k}$
+\end_inset
+
+ are subject to the constraint
+\begin_inset Formula 
+\[
+\sum_{k=1}^{K}m_{k}=N
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The Dirichlet distribution
+\end_layout
+
+\begin_layout Standard
+By inspecting the form of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Mult(m_1...m_K|mu,N)"
+
+\end_inset
+
+, we see that the conjugate prior is given by
+\begin_inset Formula 
+\[
+p(\bm{\mu}|\bm{\alpha})\propto\prod_{k=1}^{K}\mu_{k}^{\alpha_{k}-1}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $0\leq\mu_{k}\leq1$
+\end_inset
+
+ and 
+\begin_inset Formula $\sum_{k}\mu_{k}=1$
+\end_inset
+
+.
+ Here 
+\begin_inset Formula $\bm{\alpha}=(\alpha_{1},\ldots,\alpha_{K})^{{\rm T}}$
+\end_inset
+
+ are the parameters of the distribution.
+ Note that, because of the summation constraint, the distribution over the
+ space of the 
+\begin_inset Formula $\{\mu_{k}\}$
+\end_inset
+
+ is confined to a 
+\emph on
+simplex
+\emph default
+ of dimensionality 
+\begin_inset Formula $K-1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The normalized form for this distribution is by
+\begin_inset Formula 
+\begin{equation}
+\Dir(\bm{\mu}|\bm{\alpha})=\frac{\Gamma(\alpha_{0})}{\Gamma(\alpha_{1})\ldots\Gamma(\alpha_{K})}\prod_{k=1}^{K}\mu_{k}^{\alpha_{k}-1}\label{eq:Dir(mu|alpha)}
+\end{equation}
+
+\end_inset
+
+which is called the 
+\emph on
+Dirichlet
+\emph default
+ distribution, here 
+\begin_inset Formula $\alpha_{0}=\sum_{k=1}^{N}\alpha_{K}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Multiplying the prior 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Dir(mu|alpha)"
+
+\end_inset
+
+ by the likelihood function 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Mult(m_1...m_K|mu,N)"
+
+\end_inset
+
+, we obtain the posterior distribution for the parameters 
+\begin_inset Formula $\{\mu_{k}\}$
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\[
+p(\bm{\mu}|{\cal D},\bm{\alpha})=\Dir(\bm{\mu}|\bm{\alpha}+{\bf m})
+\]
+
+\end_inset
+
+where we have denoted 
+\begin_inset Formula ${\bf m}=(m_{1},\ldots,m_{K})^{{\rm T}}$
+\end_inset
+
+.
+\end_layout
+
 \end_body
 \end_document
