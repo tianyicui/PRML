@@ -2,18 +2,9 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass scrbook
-\begin_preamble
-\usepackage{indentfirst}
-\usepackage{helvet}
-
-\renewcommand\[{\begin{equation}}
-\renewcommand\]{\end{equation}}
-\end_preamble
+\textclass scrartcl
 \use_default_options true
-\begin_modules
-enumitem
-\end_modules
+\master note.lyx
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -30,25 +21,16 @@ enumitem
 \font_tt_scale 100
 
 \graphics default
-\default_output_format pdf4
+\default_output_format default
 \output_sync 0
 \bibtex_command default
 \index_command default
 \paperfontsize default
 \spacing single
-\use_hyperref true
-\pdf_bookmarks true
-\pdf_bookmarksnumbered false
-\pdf_bookmarksopen false
-\pdf_bookmarksopenlevel 1
-\pdf_breaklinks false
-\pdf_pdfborder false
-\pdf_colorlinks false
-\pdf_backref false
-\pdf_pdfusetitle true
+\use_hyperref false
 \papersize default
 \use_geometry false
-\use_amsmath 2
+\use_amsmath 1
 \use_esint 1
 \use_mhchem 1
 \use_mathdots 1
@@ -79,69 +61,10 @@ enumitem
 
 \begin_body
 
-\begin_layout Title
-Reading Notes of
-\begin_inset Newline newline
-\end_inset
-
-Pattern Classification and
-\begin_inset Newline newline
-\end_inset
-
-Machine Learning
-\end_layout
-
-\begin_layout Author
-Tianyi Cui
-\end_layout
-
-\begin_layout Date
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-today
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset toc
-LatexCommand tableofcontents
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Introduction
-\end_layout
-
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
-filename "ch01.lyx"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Chapter
-Probability Distributions
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand input
-filename "ch02.lyx"
+filename "macros.lyx"
 
 \end_inset
 
