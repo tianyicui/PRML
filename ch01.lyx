@@ -2,9 +2,12 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass scrartcl
+\textclass scrbook
 \use_default_options true
 \master note.lyx
+\begin_modules
+enumitem
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -69,6 +72,10 @@ filename "macros.lyx"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Introduction
 \end_layout
 
 \begin_layout Standard
@@ -193,7 +200,7 @@ reference "eq:E(w)"
  in order to discourage the coefficients from reaching large values:
 \begin_inset Formula 
 \begin{equation}
-\widetilde{E}({\bf w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},{\bf w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\Vert {\bf w}\right\Vert ^{2}\label{eq:regularized E(w)}
+\widetilde{E}({\bf w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},{\bf w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\| {\bf w}\right\| ^{2}\label{eq:regularized E(w)}
 \end{equation}
 
 \end_inset
@@ -557,7 +564,7 @@ variance
  is defined by
 \begin_inset Formula 
 \begin{eqnarray}
-\var[f] & = & \EE\left[(f(x)-\EE[f(x)]\right]{}^{2}\\
+\var[f] & = & \EE\left[(f(x)-\EE[f(x)]\right]{}^{2}\nonumber \\
  & = & \EE\left[f(x)^{2}\right]-\EE\left[f(x)\right]{}^{2}
 \end{eqnarray}
 
@@ -3042,7 +3049,7 @@ additional
  is given by
 \begin_inset Formula 
 \begin{eqnarray}
-\KL(p\Vert q) & = & -\int p({\bf x})\ln q({\bf x})\d{\bf x}-\left(-\int p({\bf x})\ln p({\bf x})\d{\bf x}\right)\nonumber \\
+\KL(p\| q) & = & -\int p({\bf x})\ln q({\bf x})\d{\bf x}-\left(-\int p({\bf x})\ln p({\bf x})\d{\bf x}\right)\nonumber \\
  & = & -\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\label{eq:KL(p||q)}
 \end{eqnarray}
 
@@ -3070,7 +3077,7 @@ KL divergence
 
 .
  Note that it is not a symmetrical quantity, that is to say 
-\begin_inset Formula $\KL(p\Vert q)\not\equiv\KL(q\Vert p)$
+\begin_inset Formula $\KL(p\| q)\not\equiv\KL(q\| p)$
 \end_inset
 
 .
@@ -3078,7 +3085,7 @@ KL divergence
 
 \begin_layout Standard
 The KL divergence satisfies 
-\begin_inset Formula $\KL(p\Vert q)\geq0$
+\begin_inset Formula $\KL(p\| q)\geq0$
 \end_inset
 
  with equality if and only if 
@@ -3172,7 +3179,7 @@ reference "eq:KL(p||q)"
  to give
 \begin_inset Formula 
 \[
-\KL(p\Vert q)=-\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\geq-\ln\int q({\bf x})\d{\bf x}=0
+\KL(p\| q)=-\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\geq-\ln\int q({\bf x})\d{\bf x}=0
 \]
 
 \end_inset
@@ -3278,7 +3285,7 @@ reference "eq:E[f] simeq"
 , so that
 \begin_inset Formula 
 \[
-\KL(p\Vert q)\simeq\sum_{n=1}^{N}\left\{ -\ln q({\bf x}_{n}|\bm{\theta})+\ln p({\bf x}_{n})\right\} 
+\KL(p\| q)\simeq\sum_{n=1}^{N}\left\{ -\ln q({\bf x}_{n}|\bm{\theta})+\ln p({\bf x}_{n})\right\} 
 \]
 
 \end_inset
@@ -3331,7 +3338,7 @@ If two sets of variables
 , given by
 \begin_inset Formula 
 \begin{eqnarray}
-\I[{\bf x},{\bf y}] & \equiv & \KL(p({\bf x},{\bf y})\Vert p({\bf x})p({\bf y}))\nonumber \\
+\I[{\bf x},{\bf y}] & \equiv & \KL(p({\bf x},{\bf y})\| p({\bf x})p({\bf y}))\nonumber \\
  & = & -\iint p({\bf x},{\bf y})\ln\left(\frac{p({\bf x})p({\bf y})}{p({\bf x},{\bf y})}\right)\d{\bf x}\d{\bf y}
 \end{eqnarray}
 

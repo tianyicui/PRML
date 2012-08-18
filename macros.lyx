@@ -62,7 +62,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\geq}{\geqslant}
+\renewcommand{\hv}[1]{\textbf{\textsf{#1}}}
 \end_inset
 
 
@@ -70,7 +70,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\leq}{\leqslant}
+\renewcommand{\geq}{\geqslant}
 \end_inset
 
 
@@ -78,7 +78,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\d}{{\rm d}}
+\renewcommand{\leq}{\leqslant}
 \end_inset
 
 
@@ -86,7 +86,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\EE}{\mathbb{E}}
+\renewcommand{\d}{{\rm d}}
 \end_inset
 
 
@@ -94,7 +94,15 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\cov}{{\rm cov}}
+\renewcommand{\EE}{\mathbb{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\cov}{{\rm cov}}
 \end_inset
 
 
@@ -134,7 +142,23 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\hv}[1]{\textbf{\textsf{#1}}}
+\renewcommand{\Bern}{{\rm Bern}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\Bin}{{\rm Bin}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\Beta}{{\rm Beta}}
 \end_inset
 
 

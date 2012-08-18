@@ -2,7 +2,7 @@
 \lyxformat 413
 \begin_document
 \begin_header
-\textclass scrartcl
+\textclass scrbook
 \use_default_options true
 \master note.lyx
 \maintain_unincluded_children false
@@ -69,6 +69,639 @@ filename "macros.lyx"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Chapter
+Probability Distributions
+\end_layout
+
+\begin_layout Standard
+In this chapter, we'll discuss different probability distributions.
+ They're used as building blocks for more complex models, and to provide
+ the opportunity to discuss some key statistical concepts.
+\end_layout
+
+\begin_layout Standard
+The problem known as 
+\emph on
+density estimation
+\emph default
+ is to model the probability distribution 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+ of a random variable 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, given a finite set 
+\begin_inset Formula ${\bf x}_{1},\ldots,{\bf x}_{N}$
+\end_inset
+
+ of observations.
+ For the purpose of this chapter, we shall assume that the data points are
+ i.i.d.
+ It should be emphasized that the problem of density estimation is fundamentally
+ ill-posed, because any distribution 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+ that is nonzero at each of the data points is a potential candidate.
+ The issue of choosing an appropriate distribution relates to the problem
+ of model selection and is a central issue in pattern recognition.
+\end_layout
+
+\begin_layout Standard
+To apply 
+\emph on
+parametric
+\emph default
+ distributions to density estimation, we need a procedure for determining
+ suitable values for the parameters, given an observed data set.
+ In a frequentist treatment, we choose specific values for the parameters
+ by optimizing some criterion, such as the likelihood function.
+ In a Bayesian treatment we introduce prior distributions over the parameters
+ and then use Bayes’ theorem to compute the corresponding posterior distribution
+ given the observed data.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Conjugate
+\emph default
+ priors lead to posterior distributions having the same functional form
+ as the priors, and therefore lead to a greatly simplified Bayesian analysis.
+\end_layout
+
+\begin_layout Standard
+One limitation of the parametric approach is that it assumes a specific
+ functional form for the distribution, which may turn out to be inappropriate
+ for a particular application.
+ An alternative approach is given by 
+\emph on
+nonparametric
+\emph default
+ density estimation methods in which the form of the distribution typically
+ depends on the size of the data set.
+ Such models still contain parameters, but these control the model complexity
+ rather than the form of the distribution.
+\end_layout
+
+\begin_layout Section
+Binary Variables
+\end_layout
+
+\begin_layout Standard
+The distribution of single binary variable 
+\begin_inset Formula $x\in\{0,1\}$
+\end_inset
+
+, with a single parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ given by 
+\begin_inset Formula $p(x=1)=\mu$
+\end_inset
+
+, can be written in the form
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Bern(x|\mu)=\mu^{x}(1-\mu)^{1-x}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $0\leq\mu\leq1$
+\end_inset
+
+, It is known as the 
+\emph on
+Bernoulli
+\emph default
+ distribution.
+ Its mean and variance are given by
+\begin_inset Formula 
+\begin{eqnarray}
+\EE[x] & = & \mu\\
+\var[x] & = & \mu(1-\mu)
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suppose we have a data set 
+\begin_inset Formula ${\cal D}=\{x_{1},\ldots,x_{N}\}$
+\end_inset
+
+ of observed values of 
+\begin_inset Formula $x$
+\end_inset
+
+.
+ By maximizing the likelihood function over 
+\begin_inset Formula $\mu$
+\end_inset
+
+, we obtain the maximum likelihood estimator
+\begin_inset Formula 
+\begin{equation}
+\mu_{{\rm ML}}=\frac{1}{N}\sum_{n=1}^{N}x_{n}\label{eq:mu_ML for Bern}
+\end{equation}
+
+\end_inset
+
+ which is also known as the 
+\emph on
+sample mean
+\emph default
+.
+ If we denote the number of observations of 
+\begin_inset Formula $x=1$
+\end_inset
+
+ within the data set by 
+\begin_inset Formula $m$
+\end_inset
+
+, then we can write 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:mu_ML for Bern"
+
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\[
+\mu_{{\rm ML}}=\frac{m}{N}
+\]
+
+\end_inset
+
+so that the probability of landing heads is given, in this maximum likelihood
+ framework, by the fraction of observations of heads in the data set.
+\end_layout
+
+\begin_layout Standard
+If we flip a coin 
+\begin_inset Formula $3$
+\end_inset
+
+ times and happen to observe 
+\begin_inset Formula $3$
+\end_inset
+
+ heads.
+ Then 
+\begin_inset Formula $N=m=3$
+\end_inset
+
+ and 
+\begin_inset Formula $\mu_{{\rm ML}}=1$
+\end_inset
+
+.
+ In this case, the maximum likelihood result would predict that all future
+ observations should give heads.
+ This is an extreme example of the over-fitting associated with maximum
+ likelihood.
+ We shall see shortly how to arrive at more sensible conclusions through
+ the introduction of a prior distribution over 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can also work out the distribution of the number 
+\begin_inset Formula $m$
+\end_inset
+
+ of observations of 
+\begin_inset Formula $x=1$
+\end_inset
+
+, in a data set which has size 
+\begin_inset Formula $N$
+\end_inset
+
+.
+ This is called the 
+\emph on
+binomial
+\emph default
+ distribution
+\begin_inset Formula 
+\begin{equation}
+\Bin(m|N,\mu)=\binom{N}{m}\mu^{m}(1-\mu)^{N-m}\label{eq:Bin(m|N,mu)}
+\end{equation}
+
+\end_inset
+
+which has mean and variance
+\begin_inset Formula 
+\begin{eqnarray}
+\EE[m] & = & N_{\mu}\\
+\var[m] & = & N\mu(1-\mu)
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The beta distribution
+\end_layout
+
+\begin_layout Standard
+Here we consider a form of prior distribution of the parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ in the Bernoulli distribution, which has a simple interpretation as well
+ as some useful analytical properties.
+ To motivate this prior, we note that the likelihood function takes the
+ form of the product of factors of the form 
+\begin_inset Formula $\mu^{x}(1-\mu)^{1-x}$
+\end_inset
+
+.
+ If we choose a prior to be proportional to powers of 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $(1-\mu)$
+\end_inset
+
+, then the posterior distribution will have the same functional form as
+ the prior.
+ This property is called 
+\emph on
+conjugacy
+\emph default
+.
+ We therefore choose a prior, called the 
+\emph on
+beta
+\emph default
+ distribution, given by
+\begin_inset Formula 
+\begin{equation}
+\Beta[\mu|a,b]=\frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)}\mu^{a-1}(1-\mu)^{b-1}\label{eq:Beta[mu|a,b]}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\Gamma(x)$
+\end_inset
+
+ is the gamma function defined by
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\Gamma(x)\equiv\int_{0}^{\infty}u^{x-1}e^{-u}\d u
+\]
+
+\end_inset
+
+and the coefficients in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Beta[mu|a,b]"
+
+\end_inset
+
+ ensures that the beta distribution is normalized.
+\end_layout
+
+\begin_layout Standard
+The mean and variance of the beta distribution are given by
+\begin_inset Formula 
+\begin{eqnarray}
+\EE[\mu] & = & \frac{a}{a+b}\label{eq:E[mu] for beta}\\
+\var[\mu] & = & \frac{ab}{(a+b)^{2}(a+b+1)}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The parameters 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ are often called 
+\emph on
+hyperparameters
+\emph default
+ because they control the distribution of the parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The posterior distribution of 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is now obtained by multiplying the beta prior 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Beta[mu|a,b]"
+
+\end_inset
+
+ by the binomial likelihood function 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Bin(m|N,mu)"
+
+\end_inset
+
+ and normalizing.
+ Keep only the factors that depend on 
+\begin_inset Formula $\mu$
+\end_inset
+
+, we see that this posterior distribution has the form
+\begin_inset Formula 
+\begin{equation}
+p(\mu|m,l,a,b)\propto\mu^{m+a-1}(1-\mu)^{l+b-1}\label{eq:p(mu|m,l,a,b)}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $l=N-m$
+\end_inset
+
+.
+ We see thats 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(mu|m,l,a,b)"
+
+\end_inset
+
+ has the same functional dependence on 
+\begin_inset Formula $\mu$
+\end_inset
+
+ as the prior distribution, reflecting the conjugacy properties of the prior
+ with respect to the likelihood function.
+ Indeed, it is simply another beta distribution
+\begin_inset Formula 
+\begin{equation}
+p(\mu|m,l,a,b)=\frac{\Gamma(m+a+l+b)}{\Gamma(m+a)\Gamma(l+b)}\mu^{m+a-1}(1-\mu)^{l+b-1}\label{eq:p(mu|m,l,a,b)=}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This allows us to provide a simple interpretation of the hyperparameters
+ 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ in the prior as an 
+\emph on
+effective number of observations
+\emph default
+ of 
+\begin_inset Formula $x=1$
+\end_inset
+
+ and 
+\begin_inset Formula $x=0$
+\end_inset
+
+, respectively.
+ Note that 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $b$
+\end_inset
+
+ need not be integers.
+ Furthermore, the posterior distribution can act as the prior if we subsequently
+ observe additional data.
+ An additional observation of 
+\begin_inset Formula $x=1$
+\end_inset
+
+ simply corresponds to incrementing the value of a by 
+\begin_inset Formula $1$
+\end_inset
+
+, whereas for an observation of 
+\begin_inset Formula $x=0$
+\end_inset
+
+ we increment 
+\begin_inset Formula $b$
+\end_inset
+
+ by 
+\begin_inset Formula $1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We see that this 
+\emph on
+sequential
+\emph default
+ approach to learning arises naturally when we adopt a Bayesian viewpoint.
+ It is independent of the choice of prior and of the likelihood function
+ and depends only on the assumption of i.i.d.
+ data.
+ Sequential methods make use of observations one at a time, or in small
+ batches, and then discard them before the next observations are used.
+ They can be used, for example, in real-time learning scenarios where a
+ steady stream of data is arriving, and predictions must be made before
+ all of the data is seen.
+ Because they do not require the whole data set to be stored or loaded into
+ memory, sequential methods are also useful for large data sets.
+ Maximum likelihood methods can also be cast into a sequential framework.
+\end_layout
+
+\begin_layout Standard
+Given the observed data set 
+\begin_inset Formula ${\cal D}$
+\end_inset
+
+, we can predict the next 
+\begin_inset Formula $x$
+\end_inset
+
+ by the form
+\begin_inset Formula 
+\[
+p(x=1|{\cal D})=\int_{0}^{1}p(x=1|\mu)p(\mu|{\cal D})\d\mu=\int_{0}^{1}\mu\, p(\mu|{\cal D})\d\mu=\EE[\mu|{\cal D}]
+\]
+
+\end_inset
+
+Using result 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(mu|m,l,a,b)="
+
+\end_inset
+
+ together with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:E[mu] for beta"
+
+\end_inset
+
+, we obtain
+\begin_inset Formula 
+\[
+p(x=1|{\cal D})=\frac{m+a}{m+a+l+b}
+\]
+
+\end_inset
+
+which has a simple interpretation as the total fraction of observations
+ (both real observations and fictitious prior observations).
+\end_layout
+
+\begin_layout Standard
+As the number of observations increases, the posterior distribution becomes
+ more sharply peaked, in which the variance goes to zero for 
+\begin_inset Formula $a\to\infty$
+\end_inset
+
+ or 
+\begin_inset Formula $b\to\infty$
+\end_inset
+
+.
+ In fact, we might wonder whether it is a general property of Bayesian learning
+ that, as we observe more and more data, the uncertainty represented by
+ the posterior distribution will steadily decrease.
+\end_layout
+
+\begin_layout Standard
+To address this, we can take a frequentist view of Bayesian learning and
+ show that, on average, such a property does indeed hold.
+ Consider a general Bayesian inference problem for a parameter 
+\begin_inset Formula $\theta$
+\end_inset
+
+ for which we have observed a data set 
+\begin_inset Formula ${\cal D}$
+\end_inset
+
+, described by the joint distribution 
+\begin_inset Formula $p(\theta,{\cal D})$
+\end_inset
+
+.
+ The following result
+\begin_inset Formula 
+\[
+\EE_{\bm{\theta}}[\bm{\theta}]=\EE_{{\cal D}}[\EE_{\bm{\theta}}[\bm{\theta}|{\cal D}]]
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\begin{eqnarray}
+\EE_{\bm{\theta}}[\bm{\theta}] & \equiv & \int p(\bm{\theta})\bm{\theta}\d\bm{\theta}\\
+\EE_{{\cal D}}[\EE_{\bm{\theta}}[\bm{\theta}|{\cal D}]] & \equiv & \int\left\{ \int\bm{\theta}\, p({\bf \bm{\theta}|{\cal D})\d\bm{\theta}}\right\} p({\cal D})\d{\cal D}
+\end{eqnarray}
+
+\end_inset
+
+says that the posterior mean of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+, averaged over the distribution generating the data, is equal to the prior
+ mean of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+.
+ Similarly, we can show that
+\begin_inset Formula 
+\begin{equation}
+\var_{\bm{\theta}}[\bm{\theta}]=\EE_{{\cal D}}[\var_{\bm{\theta}}[\bm{\theta}|{\cal D}]]+\var_{{\cal D}}[\EE_{\bm{\theta}}[\bm{\theta}|{\cal D}]]\label{eq:E_theta[theta]==}
+\end{equation}
+
+\end_inset
+
+The term on the left-hand side of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:E_theta[theta]=="
+
+\end_inset
+
+ is the prior variance of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+.
+ On the right-hand side, the first term is the average posterior variance
+ of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+, and the second term measures the variance in the posterior mean of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+.
+ Because this variance is a positive quantity, this result shows that, on
+ average, the posterior variance of 
+\begin_inset Formula $\bm{\theta}$
+\end_inset
+
+ is smaller than the prior variance.
+ The reduction in variance is greater if the variance in the posterior mean
+ is greater.
+ Note, however, that this result only holds on average, and that for a particula
+r observed data set it is possible for the posterior variance to be larger
+ than the prior variance.
 \end_layout
 
 \end_body

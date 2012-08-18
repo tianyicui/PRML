@@ -120,22 +120,15 @@ LatexCommand tableofcontents
 
 \end_layout
 
-\begin_layout Chapter
-Introduction
-\end_layout
-
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand input
+preview true
 filename "ch01.lyx"
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Chapter
-Probability Distributions
 \end_layout
 
 \begin_layout Standard
