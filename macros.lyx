@@ -196,5 +196,13 @@
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\diag}{{\rm diag}}
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

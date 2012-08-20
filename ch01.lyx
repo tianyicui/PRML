@@ -200,7 +200,7 @@ reference "eq:E(w)"
  in order to discourage the coefficients from reaching large values:
 \begin_inset Formula 
 \begin{equation}
-\widetilde{E}({\bf w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},{\bf w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\| {\bf w}\right\| ^{2}\label{eq:regularized E(w)}
+\widetilde{E}({\bf w})=\frac{1}{2}\sum_{n=1}^{N}\{y(x_{n},{\bf w})-t_{n}\}^{2}+\frac{\lambda}{2}\left\Vert {\bf w}\right\Vert ^{2}\label{eq:regularized E(w)}
 \end{equation}
 
 \end_inset
@@ -1128,7 +1128,7 @@ reference "eq:ln p(t|x,w,beta)"
  gives
 \begin_inset Formula 
 \[
-\frac{1}{\beta_{{\rm ML}}}=\frac{1}{N}\sum_{n=1}^{N}\left\{ y(x_{n},{\rm w}_{{\rm ML}})-t_{n}\right\} ^{2}
+\frac{1}{\beta_{{\rm ML}}}=\frac{1}{N}\sum_{n=1}^{N}\left\{ y(x_{n},{\bf w}_{{\rm ML}})-t_{n}\right\} ^{2}
 \]
 
 \end_inset
@@ -1158,7 +1158,7 @@ predictive distribution
 t
 \begin_inset Formula 
 \[
-p(t|x,{\rm w}_{{\rm ML}},\beta_{{\rm ML}})={\cal N}\left(t|y(x,{\bf w}_{ML}),\beta_{{\rm ML}}^{-1}\right)
+p(t|x,{\bf w}_{{\rm ML}},\beta_{{\rm ML}})={\cal N}\left(t|y(x,{\bf w}_{ML}),\beta_{{\rm ML}}^{-1}\right)
 \]
 
 \end_inset
@@ -1921,7 +1921,7 @@ which is maximized when the regions
 \end_inset
 
  are chosen such that each 
-\begin_inset Formula ${\rm x}$
+\begin_inset Formula ${\bf x}$
 \end_inset
 
  is assigned to the class for which 
@@ -2351,7 +2351,7 @@ Combining models.
  are independently, so that
 \begin_inset Formula 
 \[
-p({\bf x}_{\I},{\bf x}_{{\rm B}}|{\cal C}_{k})=p({\bf x}_{\I}|{\cal C}_{k})p({\bf x}_{{\rm B}}|{\cal C}_{k})
+p({\bf x}_{{\rm I}},{\bf x}_{{\rm B}}|{\cal C}_{k})=p({\bf x}_{{\rm I}}|{\cal C}_{k})p({\bf x}_{{\rm B}}|{\cal C}_{k})
 \]
 
 \end_inset
@@ -2364,9 +2364,9 @@ conditional independence
  Then the posterior probability given both the data is given by
 \begin_inset Formula 
 \begin{eqnarray}
-p({\cal C}_{k}|{\bf x}_{\I},{\bf x}_{{\rm B}}) & \propto & p({\bf x}_{\I},{\bf x}_{{\rm B}}|{\cal C}_{k})p({\cal C}_{k})\nonumber \\
- & \propto & p({\bf x}_{\I}|{\cal C}_{k})p({\bf x}_{{\rm B}}|{\cal C}_{k})p({\cal C}_{k})\nonumber \\
- & \propto & p({\cal C}_{k}|{\bf x}_{\I})p({\cal C}_{k}|{\bf x}_{{\rm B}})
+p({\cal C}_{k}|{\bf x}_{{\rm I}},{\bf x}_{{\rm B}}) & \propto & p({\bf x}_{{\rm I}},{\bf x}_{{\rm B}}|{\cal C}_{k})p({\cal C}_{k})\nonumber \\
+ & \propto & p({\bf x}_{{\rm I}}|{\cal C}_{k})p({\bf x}_{{\rm B}}|{\cal C}_{k})p({\cal C}_{k})\nonumber \\
+ & \propto & p({\cal C}_{k}|{\bf x}_{{\rm I}})p({\cal C}_{k}|{\bf x}_{{\rm B}})
 \end{eqnarray}
 
 \end_inset
@@ -3049,7 +3049,7 @@ additional
  is given by
 \begin_inset Formula 
 \begin{eqnarray}
-\KL(p\| q) & = & -\int p({\bf x})\ln q({\bf x})\d{\bf x}-\left(-\int p({\bf x})\ln p({\bf x})\d{\bf x}\right)\nonumber \\
+\KL(p\|q) & = & -\int p({\bf x})\ln q({\bf x})\d{\bf x}-\left(-\int p({\bf x})\ln p({\bf x})\d{\bf x}\right)\nonumber \\
  & = & -\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\label{eq:KL(p||q)}
 \end{eqnarray}
 
@@ -3077,7 +3077,7 @@ KL divergence
 
 .
  Note that it is not a symmetrical quantity, that is to say 
-\begin_inset Formula $\KL(p\| q)\not\equiv\KL(q\| p)$
+\begin_inset Formula $\KL(p\|q)\not\equiv\KL(q\|p)$
 \end_inset
 
 .
@@ -3085,7 +3085,7 @@ KL divergence
 
 \begin_layout Standard
 The KL divergence satisfies 
-\begin_inset Formula $\KL(p\| q)\geq0$
+\begin_inset Formula $\KL(p\|q)\geq0$
 \end_inset
 
  with equality if and only if 
@@ -3179,7 +3179,7 @@ reference "eq:KL(p||q)"
  to give
 \begin_inset Formula 
 \[
-\KL(p\| q)=-\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\geq-\ln\int q({\bf x})\d{\bf x}=0
+\KL(p\|q)=-\int p({\bf x})\ln\left\{ \frac{q({\bf x})}{p({\bf x})}\right\} \d{\bf x}\geq-\ln\int q({\bf x})\d{\bf x}=0
 \]
 
 \end_inset
@@ -3285,7 +3285,7 @@ reference "eq:E[f] simeq"
 , so that
 \begin_inset Formula 
 \[
-\KL(p\| q)\simeq\sum_{n=1}^{N}\left\{ -\ln q({\bf x}_{n}|\bm{\theta})+\ln p({\bf x}_{n})\right\} 
+\KL(p\|q)\simeq\sum_{n=1}^{N}\left\{ -\ln q({\bf x}_{n}|\bm{\theta})+\ln p({\bf x}_{n})\right\} 
 \]
 
 \end_inset
@@ -3338,7 +3338,7 @@ If two sets of variables
 , given by
 \begin_inset Formula 
 \begin{eqnarray}
-\I[{\bf x},{\bf y}] & \equiv & \KL(p({\bf x},{\bf y})\| p({\bf x})p({\bf y}))\nonumber \\
+\I[{\bf x},{\bf y}] & \equiv & \KL(p({\bf x},{\bf y})\|p({\bf x})p({\bf y}))\nonumber \\
  & = & -\iint p({\bf x},{\bf y})\ln\left(\frac{p({\bf x})p({\bf y})}{p({\bf x},{\bf y})}\right)\d{\bf x}\d{\bf y}
 \end{eqnarray}
 

@@ -1119,5 +1119,528 @@ on that becomes increasingly Gaussian as the number of terms in the sum
  increases.
 \end_layout
 
+\begin_layout Standard
+The Gaussian distribution has many important analytical properties, and
+ we shall consider several of these in detail.
+ We begin by considering the geometrical form of the Gaussian distribution.
+ The functional dependence of the Gaussian on 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ is through the quadratic form
+\begin_inset Formula 
+\begin{equation}
+\Delta^{2}=({\bf x}-\bm{\mu})\trans\bm{\Sigma}^{-1}({\bf x}-\bm{\mu})\label{eq:Delta^2 in Gaussian}
+\end{equation}
+
+\end_inset
+
+which appears in the exponent.
+ The quantity 
+\begin_inset Formula $\Delta$
+\end_inset
+
+ is called the 
+\emph on
+Mahalanobis distance
+\emph default
+ from 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ to 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ and reduces to the Euclidian distance when 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ is the identity matrix.
+ The Gaussian distribution will be constant on surfaces in 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+-space for which this quadratic form is constant.
+\end_layout
+
+\begin_layout Standard
+First of all, we note that the matrix 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ can be taken to be symmetric, without loss of generality, because any antisymme
+tric component would disappear from the exponent.
+ Now consider the eigenvector equation for the covariance matrix
+\begin_inset Formula 
+\[
+\bm{\Sigma}{\bf u}_{i}=\lambda_{i}{\bf u}_{i}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $i=1,\ldots,D$
+\end_inset
+
+.
+ Because 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ is a real, symmetric matrix its eigenvalues will be real, and its eigenvectors
+ can be chosen to form an orthonormal set, so that
+\begin_inset Formula 
+\begin{equation}
+{\bf u}_{i}\trans{\bf u}_{j}=I_{ij}\label{eq:u_i^T u_j = I_ij}
+\end{equation}
+
+\end_inset
+
+The covariance matrix 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ can be expressed as an expansion in terms of its eigenvectors in the form
+\begin_inset Formula 
+\[
+\bm{\Sigma}=\sum_{i=1}^{D}\lambda_{i}{\bf u}_{i}{\bf u}_{i}\trans
+\]
+
+\end_inset
+
+ and similarly the inverse covariance matrix 
+\begin_inset Formula $\bm{\Sigma}^{-1}$
+\end_inset
+
+ can be expressed as
+\begin_inset Formula 
+\begin{equation}
+\bm{\Sigma}^{-1}=\sum_{i=1}^{D}\frac{1}{\lambda_{i}}{\bf u}_{i}{\bf u_{i}}\trans\label{eq:Sigma^-1 expressed using eigenvectors}
+\end{equation}
+
+\end_inset
+
+Substituting 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Sigma^-1 expressed using eigenvectors"
+
+\end_inset
+
+ into 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:Delta^2 in Gaussian"
+
+\end_inset
+
+, the quadratic form becomes
+\begin_inset Formula 
+\[
+\Delta^{2}=\sum_{i=1}^{D}\frac{y_{i}^{2}}{\lambda_{i}}
+\]
+
+\end_inset
+
+ where we have defined
+\begin_inset Formula 
+\begin{equation}
+y_{i}={\bf u}_{i}\trans({\bf x}-\bm{\mu})\label{eq:y_i for Gaussian}
+\end{equation}
+
+\end_inset
+
+ We can interpret 
+\begin_inset Formula $\{y_{i}\}$
+\end_inset
+
+ as a new coordinate system defined by the orthonormal vectors 
+\begin_inset Formula ${\bf u}_{i}$
+\end_inset
+
+ that are shifted and rotate with respect to the original 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ coordinates.
+ Forming the factor 
+\begin_inset Formula ${\bf y}=(y_{1},\ldots,y_{D})\trans$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+{\bf y}={\bf U}({\bf x}-\bm{\mu})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+ is a matrix whose rows are given by 
+\begin_inset Formula ${\bf u}_{i}\trans$
+\end_inset
+
+.
+ From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:u_i^T u_j = I_ij"
+
+\end_inset
+
+ 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+ is an 
+\emph on
+orthogonal matrix
+\emph default
+, i.e.
+ 
+\begin_inset Formula ${\bf UU}\trans={\bf U}\trans{\bf U}={\bf I}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The quadratic form, and hence the Gaussian density, will be constant on
+ surfaces for which 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:y_i for Gaussian"
+
+\end_inset
+
+ is constant.
+ If all of the eigenvalues 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ are positive, then these surfaces represent ellipsoids, with there centers
+ at 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ and their axes oriented along 
+\begin_inset Formula ${\bf u}_{i}$
+\end_inset
+
+, and with scaling factors in the directions of the axes given by 
+\begin_inset Formula $\lambda_{i}^{1/2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+For the Gaussian distribution to be well defined, it is necessary for all
+ of the eigenvalues 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ of the covariance matrix to be strictly positive, i.e.
+ 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ to be positive definite, otherwise the distribution cannot be properly
+ normalized.
+ In Chapter 12, we will encounter Gaussian distributions for which one or
+ more of the eigenvalues are zero, in which case the distribution is singular
+ and is confined to a subspace of lower dimensionality.
+\end_layout
+
+\begin_layout Standard
+Now consider the form of the Gaussian distribution in the new coordinate
+ system defined by the 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+.
+ In going from the 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ to the 
+\begin_inset Formula ${\bf y}$
+\end_inset
+
+ coordinate system, we have a Jacobian matrix 
+\begin_inset Formula ${\bf J}$
+\end_inset
+
+ with elements given by
+\begin_inset Formula 
+\[
+J_{ij}=\frac{\partial x_{i}}{\partial y_{j}}=U_{ji}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $U_{ji}$
+\end_inset
+
+ are the elements of the matrix 
+\begin_inset Formula ${\bf U}\trans$
+\end_inset
+
+.
+ Using the orthonormality property of the matrix 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+, we see that the square of the determinant of the Jacobian matrix is
+\begin_inset Formula 
+\[
+|{\bf J}|^{2}=|{\bf U}\trans|^{2}=|{\bf U}\trans||{\bf U}|=|{\bf U}\trans{\bf U}|=|{\bf I}|=1
+\]
+
+\end_inset
+
+and hence 
+\begin_inset Formula $|{\bf J}|=1$
+\end_inset
+
+.
+ Also, the determinant 
+\begin_inset Formula $|\bm{\Sigma}|$
+\end_inset
+
+ of the covariance matrix can be written as the product of its eigenvalues,
+ and hence
+\begin_inset Formula 
+\[
+|\bm{\Sigma}|^{1/2}=\prod_{j=1}^{D}\lambda_{j}^{1/2}
+\]
+
+\end_inset
+
+Thus in the 
+\begin_inset Formula $y_{j}$
+\end_inset
+
+ coordinate system, the Gaussian distribution takes the form
+\begin_inset Formula 
+\[
+p({\bf y})=p({\bf x})|{\bf J}|=\prod_{j=1}^{D}\frac{1}{(2\pi\lambda_{j})^{1/2}}\exp\left\{ -\frac{y_{j}^{2}}{2\lambda_{j}}\right\} 
+\]
+
+\end_inset
+
+which is the product of 
+\begin_inset Formula $D$
+\end_inset
+
+ independent univariate Gaussian distributions.
+ The eigenvectors therefore define a new set of shifted and rotated coordinates
+ with respect to which the joint probability distribution factorizes into
+ a product of independent distributions.
+\end_layout
+
+\begin_layout Standard
+It can be proved
+\begin_inset Formula 
+\[
+\EE[{\bf x}]=\bm{\mu}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+\EE[{\bf xx}\trans]=\bm{\mu\mu}\trans+\bm{\Sigma}
+\]
+
+\end_inset
+
+Therefore
+\begin_inset Formula 
+\begin{eqnarray}
+\cov[{\bf x}] & = & \EE\left[({\bf x}-\EE[{\bf x}])({\bf x}-\EE[{\bf x}])\trans\right]\nonumber \\
+ & = & \bm{\Sigma}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although the Gaussian distribution is widely used as a density model, it
+ suffers from some significant limitations.
+ Its number of parameters, 
+\begin_inset Formula $D(D+3)/2$
+\end_inset
+
+, grows quadratically with 
+\begin_inset Formula $D$
+\end_inset
+
+.
+ With large 
+\begin_inset Formula $D$
+\end_inset
+
+, the computational task of manipulating and inverting large matrices can
+ become prohibitive.
+ One way to address this problem is to use restricted forms of the covariance
+ matrix.
+ If we restrict 
+\begin_inset Formula $\bm{\Sigma}=\diag(\sigma_{i}^{2})$
+\end_inset
+
+, then the total of independent parameters is 
+\begin_inset Formula $2D$
+\end_inset
+
+ and the corresponding contours of constant density are given by axis-aligned
+ ellipsoids.
+ We could further restrict 
+\begin_inset Formula $\bm{\Sigma}=\sigma^{2}{\bf I}$
+\end_inset
+
+, known as an 
+\emph on
+isotropic
+\emph default
+ covariance, giving 
+\begin_inset Formula $D+1$
+\end_inset
+
+ independent parameters and spherical surfaces of constant density.
+ Unfortunately,whereas such approaches limit the number of degrees of freedom
+ in the distribution and make inversion of the covariance matrix a much
+ faster operation, they also greatly restrict the form of the probability
+ density and limit its ability to capture interesting correlations in the
+ data.
+\end_layout
+
+\begin_layout Standard
+A further limitation of the Gaussian distribution is that it is intrinsically
+ unimodal (i.e., has a single maximum) and so is unable to provide a good
+ approximation to multimodal distributions.
+ Thus the Gaussian distribution can be both too flexible, in the sense of
+ having too many parameters, while also being too limited in the range of
+ distributions that it can adequately represent.
+ We will see later that the introduction of 
+\emph on
+latent
+\emph default
+ variables, also called 
+\emph on
+hidden
+\emph default
+ variables or 
+\emph on
+unobserved
+\emph default
+ variables, allows both of these problems to be addressed.
+\end_layout
+
+\begin_layout Subsection
+Conditional Gaussian distributions
+\end_layout
+
+\begin_layout Standard
+Given a joint Gaussian distribution 
+\begin_inset Formula ${\cal N}({\bf x}|\bm{\mu},\bm{\Sigma})$
+\end_inset
+
+ with 
+\begin_inset Formula $\bm{\Lambda}\equiv\bm{\Sigma}^{-1}$
+\end_inset
+
+ and
+\begin_inset Formula 
+\[
+{\bf x}=\begin{pmatrix}{\bf x}_{a}\\
+{\bf x}_{b}
+\end{pmatrix},\quad\bm{\mu}=\begin{pmatrix}\bm{\mu}_{a}\\
+\bm{\mu}_{b}
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\bm{\Sigma}=\begin{pmatrix}\bm{\Sigma}_{aa} & \bm{\Sigma}_{ab}\\
+\bm{\Sigma}_{ba} & \bm{\Sigma}_{bb}
+\end{pmatrix},\quad\bm{\Lambda}=\begin{pmatrix}\bm{\Lambda}_{aa} & \bm{\Lambda}_{ab}\\
+\bm{\Lambda}_{ba} & \bm{\Lambda}_{bb}
+\end{pmatrix}
+\]
+
+\end_inset
+
+The conditional distribution 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $p({\bf x}_{a}|{\bf x}_{b})$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ is given by
+\begin_inset Formula 
+\begin{eqnarray}
+p({\bf x}_{a}|{\bf x}_{b}) & = & {\cal N}({\bf x}|\bm{\mu}_{a|b},\bm{\Lambda}_{aa}^{-1})\\
+\bm{\mu}_{a|b} & = & \bm{\mu}_{a}-\bm{\Lambda}_{aa}^{-1}\bm{\Lambda}_{ab}({\bf x}_{a}-{\bf x}_{b})
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Marginal Gaussian distributions
+\end_layout
+
+\begin_layout Standard
+Same conditions as above, the marginal distribution 
+\begin_inset Formula $p({\bf x}_{a})$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\[
+p({\bf x}_{a})={\cal N}({\bf x}_{a}|\bm{\mu}_{a},\bm{\Sigma}_{aa})
+\]
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
