@@ -619,8 +619,8 @@ In the case of two vectors of random variables
 , the covariance is a matrix
 \begin_inset Formula 
 \begin{eqnarray}
-\cov[{\bf x},{\bf y}] & = & \EE_{x,y}\left[\left\{ {\bf x}-\EE[{\bf x]}\right\} \left\{ {\bf y}^{{\rm T}}-\EE[{\bf y^{{\rm T}}]}\right\} \right]\nonumber \\
- & = & \EE_{x,y}[{\bf x}{\bf y}^{{\rm T}}]-\EE[{\bf x]}\EE[{\bf y^{{\rm T}}]}
+\cov[{\bf x},{\bf y}] & = & \EE_{x,y}\left[\left\{ {\bf x}-\EE[{\bf x]}\right\} \left\{ {\bf y}\trans-\EE[{\bf y\trans]}\right\} \right]\nonumber \\
+ & = & \EE_{x,y}[{\bf x}{\bf y}\trans]-\EE[{\bf x]}\EE[{\bf y\trans]}
 \end{eqnarray}
 
 \end_inset
@@ -821,7 +821,7 @@ The Gaussian distribution defined over a
  of continuous variables is given by
 \begin_inset Formula 
 \[
-{\cal N}({\bf x}|{\bf \mu},{\bf \Sigma})=\frac{1}{(2\pi)^{D/2}}\frac{1}{\left|\bm{\Sigma}\right|^{1/2}}\exp\left\{ -\frac{1}{2}({\bf x}-\bm{\mu})^{{\rm T}}\bm{\Sigma}^{-1}({\bf x}-\bm{\mu})\right\} 
+{\cal N}({\bf x}|{\bf \mu},{\bf \Sigma})=\frac{1}{(2\pi)^{D/2}}\frac{1}{\left|\bm{\Sigma}\right|^{1/2}}\exp\left\{ -\frac{1}{2}({\bf x}-\bm{\mu})\trans\bm{\Sigma}^{-1}({\bf x}-\bm{\mu})\right\} 
 \]
 
 \end_inset
@@ -831,7 +831,7 @@ The Gaussian distribution defined over a
 
 \begin_layout Standard
 Suppose we have a data set of observation 
-\begin_inset Formula $\hv x=(x_{1},\ldots,x_{N})^{{\rm T}}$
+\begin_inset Formula $\hv x=(x_{1},\ldots,x_{N})\trans$
 \end_inset
 
  which is 
@@ -1010,11 +1010,11 @@ The goal of curve fitting problem is to make predictions for the target
 \end_inset
 
  on the basis of a set of training data 
-\begin_inset Formula $\hv x=(x_{1},\ldots,x_{N})^{{\rm T}}$
+\begin_inset Formula $\hv x=(x_{1},\ldots,x_{N})\trans$
 \end_inset
 
  and 
-\begin_inset Formula $\hv t=(t_{1},\ldots,t_{N})^{{\rm T}}$
+\begin_inset Formula $\hv t=(t_{1},\ldots,t_{N})\trans$
 \end_inset
 
 .
@@ -1175,7 +1175,7 @@ In a more Bayesian approach, we introduce a Gaussian prior distribution
 
 \begin_inset Formula 
 \begin{equation}
-p({\bf w}|\alpha)={\cal N}({\bf w}|{\bf 0},\alpha^{-1}{\bf I})=\left(\frac{\alpha}{2\pi}\right)^{(M+1)/2}\exp\left\{ -\frac{\alpha}{2}{\bf w}^{{\rm T}}{\bf w}\right\} \label{eq:p(w|alpha)}
+p({\bf w}|\alpha)={\cal N}({\bf w}|{\bf 0},\alpha^{-1}{\bf I})=\left(\frac{\alpha}{2\pi}\right)^{(M+1)/2}\exp\left\{ -\frac{\alpha}{2}{\bf w}\trans{\bf w}\right\} \label{eq:p(w|alpha)}
 \end{equation}
 
 \end_inset
@@ -1258,7 +1258,7 @@ reference "eq:p(w|alpha)"
 , we find that the maximum of the posterior is given by the minimum of
 \begin_inset Formula 
 \[
-\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},{\bf w})-t_{n}\right\} ^{2}+\frac{\alpha}{2}{\bf w}^{{\rm T}}{\bf w}
+\frac{\beta}{2}\sum_{n=1}^{N}\left\{ y(x_{n},{\bf w})-t_{n}\right\} ^{2}+\frac{\alpha}{2}{\bf w}\trans{\bf w}
 \]
 
 \end_inset
@@ -1407,8 +1407,8 @@ p(t|x,\hv x,\hv t)={\cal N}\left(t|m(x),s^{2}(x)\right)\label{eq:p(t|x,x,t)=}
 where the mean and variance are given by
 \begin_inset Formula 
 \begin{eqnarray}
-m(x) & = & \beta\bm{\phi}(x)^{{\rm T}}{\bf S}\sum_{n=1}^{N}\bm{\phi}(x_{n})t_{n}\\
-s^{2}(x) & = & \beta^{-1}+\bm{\phi}(x)^{{\rm T}}{\bf S}\bm{\phi}(x)\label{eq:s^2(x)}
+m(x) & = & \beta\bm{\phi}(x)\trans{\bf S}\sum_{n=1}^{N}\bm{\phi}(x_{n})t_{n}\\
+s^{2}(x) & = & \beta^{-1}+\bm{\phi}(x)\trans{\bf S}\bm{\phi}(x)\label{eq:s^2(x)}
 \end{eqnarray}
 
 \end_inset
@@ -1420,7 +1420,7 @@ Here the matrix
  is given by
 \begin_inset Formula 
 \[
-{\bf S}^{-1}=\alpha{\bf I}+\beta\sum_{n=1}^{N}\bm{\phi}(x_{n})\bm{\phi}(x)^{{\rm T}}
+{\bf S}^{-1}=\alpha{\bf I}+\beta\sum_{n=1}^{N}\bm{\phi}(x_{n})\bm{\phi}(x)\trans
 \]
 
 \end_inset

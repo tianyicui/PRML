@@ -86,6 +86,14 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
+\renewcommand{\trans}{^{{\rm T}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
 \renewcommand{\d}{{\rm d}}
 \end_inset
 
@@ -175,6 +183,14 @@
 \begin_layout Standard
 \begin_inset FormulaMacro
 \renewcommand{\Dir}{{\rm Dir}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\Tr}{{\rm Tr}}
 \end_inset
 
 

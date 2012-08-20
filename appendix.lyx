@@ -1,0 +1,938 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass scrbook
+\use_default_options true
+\master note.lyx
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset CommandInset include
+LatexCommand input
+filename "macros.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Data Sets
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Chapter
+Probability Distributions
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Chapter
+Properties of Matrices
+\end_layout
+
+\begin_layout Section*
+Basic Matrix Identities
+\end_layout
+
+\begin_layout Standard
+A matrix 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ has elements 
+\begin_inset Formula $A_{ij}$
+\end_inset
+
+ where 
+\begin_inset Formula $i$
+\end_inset
+
+ indexes the rows, and 
+\begin_inset Formula $j$
+\end_inset
+
+ indexes the columns.
+ We use 
+\begin_inset Formula ${\bf I}_{N}$
+\end_inset
+
+ to denote the 
+\begin_inset Formula $N\times N$
+\end_inset
+
+ identity matrix (also called the unit matrix), and where there is no ambiguity
+ over dimensionality we simply use 
+\begin_inset Formula ${\bf I}$
+\end_inset
+
+.
+ The transposes matrix 
+\begin_inset Formula ${\bf A}\trans$
+\end_inset
+
+ has elements 
+\begin_inset Formula $({\bf A}\trans)_{ij}=A_{ji}$
+\end_inset
+
+.
+ From the definition of transpose, we have
+\begin_inset Formula 
+\[
+({\bf AB})\trans={\bf B}\trans{\bf A}\trans
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The inverse of 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+, denoted 
+\begin_inset Formula ${\bf A}^{-1}$
+\end_inset
+
+, satisfies 
+\begin_inset Formula ${\bf AA}{}^{-1}={\bf A}^{-1}{\bf A}={\bf I}$
+\end_inset
+
+.
+ Because 
+\begin_inset Formula ${\bf ABB}^{-1}{\bf A}^{-1}={\bf I}$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+({\bf AB})^{-1}={\bf B}^{-1}{\bf A}^{-1}
+\]
+
+\end_inset
+
+Also we have
+\begin_inset Formula 
+\[
+({\bf A}\trans)^{-1}=({\bf A}^{-1})\trans
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A useful identity involving matrix inverse is the following
+\begin_inset Formula 
+\begin{equation}
+({\bf P}^{-1}+{\bf B}\trans{\bf R}^{-1}{\bf B})^{-1}{\bf B}\trans{\bf R}^{-1}={\bf PB}\trans({\bf BPB}\trans+{\bf R})^{-1}\label{eq:(P^-1 + B^T R^-1 B)^-1 B^T R^-1}
+\end{equation}
+
+\end_inset
+
+which is easily verified by right multiplying both sides by 
+\begin_inset Formula $({\bf BPB}\trans+{\bf R})$
+\end_inset
+
+.
+ Suppose that 
+\begin_inset Formula ${\bf P}$
+\end_inset
+
+ has dimensionality 
+\begin_inset Formula $N\times N$
+\end_inset
+
+ while 
+\begin_inset Formula ${\bf R}$
+\end_inset
+
+ has dimensionality 
+\begin_inset Formula $M\times M$
+\end_inset
+
+, so that 
+\begin_inset Formula ${\bf B}$
+\end_inset
+
+ is 
+\begin_inset Formula $M\times N$
+\end_inset
+
+.
+ Then if 
+\begin_inset Formula $M\ll N$
+\end_inset
+
+, it will be much cheaper to evaluate the right-hand side of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:(P^-1 + B^T R^-1 B)^-1 B^T R^-1"
+
+\end_inset
+
+ than the left-hand side.
+\end_layout
+
+\begin_layout Standard
+A set of vectors 
+\begin_inset Formula $\{{\bf a}_{1},\ldots,{\bf a}_{N}\}$
+\end_inset
+
+ is said to be 
+\emph on
+linearly independent
+\emph default
+ if the relation 
+\begin_inset Formula $\sum_{n}\alpha_{n}{\bf a}_{n}={\bf 0}$
+\end_inset
+
+ holds only if all 
+\begin_inset Formula $\alpha_{n}=0$
+\end_inset
+
+.
+ This implies that none of the vectors can be expressed as a linear combination
+ of the remainder.
+ The rank of a matrix is the maximum number of linearly independent rows
+ (or equivalently the maximum number of linearly independent columns).
+\end_layout
+
+\begin_layout Section*
+Traces and Determinants
+\end_layout
+
+\begin_layout Standard
+Trace and determinant apply to square matrixes.
+ The trace 
+\begin_inset Formula $\Tr({\bf A})$
+\end_inset
+
+ of a matrix 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+is defined as the sum of the elements on the leading diagonal.
+ By writing out the indices, we see that
+\begin_inset Formula 
+\[
+\Tr({\bf AB})=\Tr({\bf BA})
+\]
+
+\end_inset
+
+By applying this formula multiple times to the product of three matrices,
+ we see that
+\begin_inset Formula 
+\[
+\Tr({\bf ABC})=\Tr({\bf CAB})=\Tr({\bf BCA})
+\]
+
+\end_inset
+
+which is known as the 
+\emph on
+cyclic
+\emph default
+ property of the trace operator and which clearly extends to the product
+ of any number of matrices.
+\end_layout
+
+\begin_layout Standard
+The determinant 
+\begin_inset Formula $|{\bf A}|$
+\end_inset
+
+ of an 
+\begin_inset Formula $N\times N$
+\end_inset
+
+ matrix 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ is defined by
+\begin_inset Formula 
+\[
+|{\bf A}|=\sum(\pm1)A_{1i_{1}}A_{2i_{2}}\cdots A_{Ni_{N}}
+\]
+
+\end_inset
+
+ in which the sum is taken over all products consisting of precisely one
+ element from each row and one element from each column, with a coefficient
+ 
+\begin_inset Formula $+1$
+\end_inset
+
+ or 
+\begin_inset Formula $-1$
+\end_inset
+
+ according to whether the permutation 
+\begin_inset Formula $i_{1}i_{2}\ldots i_{N}$
+\end_inset
+
+ is even or odd, respectively.
+ Note that 
+\begin_inset Formula $|{\bf I}|=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The determinant of a product of two matrices is given by
+\begin_inset Formula 
+\[
+|{\bf AB}|=|{\bf A}||{\bf B}|
+\]
+
+\end_inset
+
+ Also, the determinant of an inverse matrix is given by
+\begin_inset Formula 
+\[
+|{\bf A}|^{-1}=\frac{1}{|{\bf A}|}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ and 
+\begin_inset Formula ${\bf B}$
+\end_inset
+
+ are matrices of size 
+\begin_inset Formula $N\times M$
+\end_inset
+
+, then
+\begin_inset Formula 
+\[
+\left|{\bf I}_{N}+{\bf AB}\trans\right|=\left|{\bf I}_{M}+{\bf A}\trans{\bf B}\right|
+\]
+
+\end_inset
+
+A useful special case is
+\begin_inset Formula 
+\[
+\left|{\bf I}_{N}+{\bf ab}\trans\right|=1+{\bf a}\trans{\bf b}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\bf a}$
+\end_inset
+
+ and 
+\begin_inset Formula ${\bf b}$
+\end_inset
+
+ are 
+\begin_inset Formula $N$
+\end_inset
+
+-dimensional column vectors.
+\end_layout
+
+\begin_layout Section*
+Matrix Derivatives
+\end_layout
+
+\begin_layout Standard
+The derivative of a vector 
+\begin_inset Formula ${\bf a}$
+\end_inset
+
+ with respect to a scalar 
+\begin_inset Formula $x$
+\end_inset
+
+ is itself a vector whose components are given by
+\begin_inset Formula 
+\[
+\left(\frac{\partial{\bf a}}{\partial x}\right)_{i}=\frac{\partial a_{i}}{\partial x}
+\]
+
+\end_inset
+
+with an analogous definition for the derivative of a matrix.
+ Derivatives with respect to vectors and matrices can also be defined, for
+ instance
+\begin_inset Formula 
+\[
+\left(\frac{\partial x}{\partial{\bf a}}\right)_{i}=\frac{\partial x}{\partial a_{i}}
+\]
+
+\end_inset
+
+and similarly
+\begin_inset Formula 
+\[
+\left(\frac{\partial{\bf a}}{\partial{\bf b}}\right)_{ij}=\frac{\partial a_{i}}{\partial a_{j}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The following is easily proven by writing out the components
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial{\bf x}}\left({\bf x}\trans{\bf a}\right)=\frac{\partial}{\partial{\bf x}}\left({\bf a}\trans{\bf x}\right)={\bf a}
+\]
+
+\end_inset
+
+Similarly
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial{\bf x}}({\bf AB})=\frac{\partial{\bf A}}{\partial{\bf x}}{\bf B}+{\bf A}\frac{\partial{\bf B}}{\partial{\bf x}}
+\]
+
+\end_inset
+
+The derivative of the inverse of a matrix can be expressed as
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial x}\left({\bf A}^{-1}\right)=-{\bf A}^{-1}\frac{\partial{\bf A}}{\partial x}{\bf A}^{-1}
+\]
+
+\end_inset
+
+ Also
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial x}\ln|{\bf A}|=\Tr\left({\bf A}^{-1}\frac{\partial{\bf A}}{\partial x}\right)
+\]
+
+\end_inset
+
+If we choose 
+\begin_inset Formula $x$
+\end_inset
+
+ to be one of the elements of 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial A_{ij}}\Tr({\bf AB})=B_{ji}
+\]
+
+\end_inset
+
+We can write this result more compactly in the form
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial{\bf A}}\Tr({\bf AB})={\bf B}\trans
+\]
+
+\end_inset
+
+With this notation, we have the following properties
+\begin_inset Formula 
+\begin{eqnarray}
+\frac{\partial}{\partial{\bf A}}\Tr\left({\bf A}\trans{\bf B}\right) & = & {\bf B}\\
+\frac{\partial}{\partial{\bf A}}\Tr({\bf A}) & = & {\bf I}\\
+\frac{\partial}{\partial{\bf A}}\Tr({\bf ABA}\trans) & = & {\bf A}({\bf B}+{\bf B}\trans)
+\end{eqnarray}
+
+\end_inset
+
+We also have
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial{\bf A}}\ln|{\bf A}|=\left({\bf A}^{-1}\right)\trans
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Eigenvector Equation
+\end_layout
+
+\begin_layout Standard
+For a square matrix 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ with size 
+\begin_inset Formula $M\times M$
+\end_inset
+
+, the eigenvector equation is defined by
+\begin_inset Formula 
+\begin{equation}
+{\bf A}{\bf u}_{i}=\lambda_{i}{\bf u}_{i}\label{eq:eigenvector equation}
+\end{equation}
+
+\end_inset
+
+for 
+\begin_inset Formula $i=1,\ldots,M$
+\end_inset
+
+, where 
+\begin_inset Formula ${\bf u}_{i}$
+\end_inset
+
+ is an 
+\emph on
+eigenvector
+\emph default
+ and 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ is the corresponding 
+\emph on
+eigenvalue
+\emph default
+.
+ This can be viewed as a set of 
+\begin_inset Formula $M$
+\end_inset
+
+ simultaneous homogeneous linear equations, and the condition for a solution
+ is that
+\begin_inset Formula 
+\[
+|{\bf A}-\lambda_{i}{\bf I}|=0
+\]
+
+\end_inset
+
+which is known as the 
+\emph on
+characteristic equation
+\emph default
+.
+ Because this is a polynomial of order 
+\begin_inset Formula $M$
+\end_inset
+
+ in 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+, it must have 
+\begin_inset Formula $M$
+\end_inset
+
+ solutions (through these need not all be distinct).
+ the rank of 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ is equal to the number of nonzero eigenvalues.
+\end_layout
+
+\begin_layout Standard
+Of particular interest are symmetric matrices, which arise as covariance
+ matrices, kernel matrices, and Hessians.
+ In general, the eigenvalues of a matrix are complex numbers, but for symmetric
+ matrices the eigenvalues 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+ are real.
+ The eigenvectors 
+\begin_inset Formula ${\bf u}_{i}$
+\end_inset
+
+ of a real symmetric matrix can be chosen to be orthonormal (i.e., orthogonal
+ and of unit length) so that
+\begin_inset Formula 
+\[
+{\bf u}_{i}\trans{\bf u}_{j}=I_{ij}
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $I_{ij}$
+\end_inset
+
+ are the elements of the identity matrix 
+\begin_inset Formula ${\bf I}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We can take the eigenvectors 
+\begin_inset Formula ${\bf u}_{i}$
+\end_inset
+
+ to be the columns of an 
+\begin_inset Formula $M\times M$
+\end_inset
+
+ matrix 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+, which from orthonormality satisfies
+\begin_inset Formula 
+\[
+{\bf U}\trans{\bf U}={\bf I}
+\]
+
+\end_inset
+
+Such a matrix is said to be 
+\emph on
+orthogonal
+\emph default
+.
+ Interestingly, the rows of this matrix are also orthogonal, so that 
+\begin_inset Formula ${\bf UU}\trans={\bf I}$
+\end_inset
+
+, it also follows that 
+\begin_inset Formula ${\bf U}^{-1}={\bf U}\trans$
+\end_inset
+
+ and 
+\begin_inset Formula $|{\bf U}|=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The eigenvector equation 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:eigenvector equation"
+
+\end_inset
+
+ can be expressed in terms of 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\begin{equation}
+{\bf AU}={\bf U}\bm{\Lambda}\label{eq:A U = U Lambda}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $\bm{\Lambda}$
+\end_inset
+
+ is an 
+\begin_inset Formula $M\times M$
+\end_inset
+
+ diagonal matrix whose diagonal elements are given by the eigenvalues 
+\begin_inset Formula $\lambda_{i}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+If we consider a column vector 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ that is transformed by an orthogonal matrix 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+ to give a new vector
+\begin_inset Formula 
+\[
+\widetilde{{\bf x}}={\bf Ux}
+\]
+
+\end_inset
+
+then the length of the vector is preserved because
+\begin_inset Formula 
+\[
+\widetilde{{\bf x}}\trans\widetilde{{\bf x}}={\bf x}\trans{\bf U}\trans{\bf Ux}={\bf x}\trans{\bf x}
+\]
+
+\end_inset
+
+and similarly the angle between any two such vectors is preserved because
+\begin_inset Formula 
+\[
+\widetilde{{\bf x}}\trans\widetilde{{\bf y}}={\bf x}\trans{\bf U}\trans{\bf Uy}={\bf x}\trans{\bf y}
+\]
+
+\end_inset
+
+Thus, multiplication by 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+ can be interpreted as a rigid rotation of the coordinate system.
+\end_layout
+
+\begin_layout Standard
+From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:A U = U Lambda"
+
+\end_inset
+
+, it follows that
+\begin_inset Formula 
+\[
+{\bf U}\trans{\bf A}{\bf U}=\bm{\Lambda}
+\]
+
+\end_inset
+
+and because 
+\begin_inset Formula $\bm{\Lambda}$
+\end_inset
+
+ is a diagonal matrix, we say that the matrix 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ is 
+\emph on
+diagonalized
+\emph default
+ by the matrix 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+.
+ If we left multiply by 
+\begin_inset Formula ${\bf U}$
+\end_inset
+
+ and right multiply by 
+\begin_inset Formula ${\bf U}\trans$
+\end_inset
+
+, we obtain
+\begin_inset Formula 
+\begin{equation}
+{\bf A}={\bf U}\bm{\Lambda}{\bf U}\trans\label{eq:A=U Lambda U^T}
+\end{equation}
+
+\end_inset
+
+Taking the inverse of this equation, and use 
+\begin_inset Formula ${\bf U}^{-1}={\bf U}\trans$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+{\bf A}^{-1}={\bf U}\bm{\Lambda}^{-1}{\bf U}\trans
+\]
+
+\end_inset
+
+These last two equations can be written in the form
+\begin_inset Formula 
+\begin{eqnarray}
+{\bf A} & = & \sum_{i=1}^{M}\lambda_{i}{\bf u}_{i}{\bf u}_{i}\trans\\
+{\bf A}^{-1} & = & \sum_{i=1}^{M}\frac{1}{\lambda_{i}}{\bf u}_{i}{\bf u}_{i}\trans
+\end{eqnarray}
+
+\end_inset
+
+ If take the determinant of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:A=U Lambda U^T"
+
+\end_inset
+
+, we obtain
+\begin_inset Formula 
+\[
+|{\bf A}|=\prod_{i=1}^{M}\lambda_{i}
+\]
+
+\end_inset
+
+ Similarly, taking the trace of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:A=U Lambda U^T"
+
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+\Tr({\bf A})=\sum_{i=1}^{M}\lambda_{i}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A matrix 
+\begin_inset Formula ${\bf A}$
+\end_inset
+
+ is said to be 
+\emph on
+positive definite
+\emph default
+, denoted by 
+\begin_inset Formula ${\bf A}\succ0$
+\end_inset
+
+, is 
+\begin_inset Formula ${\bf w}\trans{\bf A}{\bf w}>0$
+\end_inset
+
+ for all values of the vector 
+\begin_inset Formula ${\bf w}$
+\end_inset
+
+.
+ Equivalently, a positive definite matrix has 
+\begin_inset Formula $\lambda_{i}>0$
+\end_inset
+
+ for all of its eigenvalues (as can be seen by setting 
+\begin_inset Formula ${\bf w}$
+\end_inset
+
+ to each of the eigenvectors in turn, and by noting that an arbitrary vector
+ can be expanded as a linear combination of the eigenvectors).
+ Note that positive definite is note the same as all the elements being
+ positive.
+ A matrix is said to be 
+\emph on
+positive semidefinite
+\emph default
+ if 
+\begin_inset Formula ${\bf w}\trans{\bf A}{\bf w}\geq0$
+\end_inset
+
+ holds for all values of 
+\begin_inset Formula ${\bf w}$
+\end_inset
+
+, which is denoted 
+\begin_inset Formula ${\bf A}\succeq0$
+\end_inset
+
+, and is equivalent to 
+\begin_inset Formula $\lambda_{i}\geq0$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Chapter
+Calculus of Variations
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\begin_layout Chapter
+Lagrange Multipliers
+\end_layout
+
+\begin_layout Standard
+TODO
+\end_layout
+
+\end_body
+\end_document

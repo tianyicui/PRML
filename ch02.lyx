@@ -766,7 +766,7 @@ p({\bf x}|\bm{\mu})=\prod_{k=1}^{K}\mu_{k}^{x_{k}}\label{eq:p(x|mu)}
 \end_inset
 
 where 
-\begin_inset Formula $\bm{\mu}=(\mu_{1},\ldots,\mu_{K})^{{\rm T}}$
+\begin_inset Formula $\bm{\mu}=(\mu_{1},\ldots,\mu_{K})\trans$
 \end_inset
 
 , and the parameters 
@@ -794,7 +794,7 @@ reference "eq:p(x|mu)"
  Its mean is given by
 \begin_inset Formula 
 \[
-\EE[{\bf x}|\bm{\mu}]=\sum_{x}p({\bf x}|\bm{\mu}){\bf x}=(\mu_{1},\ldots,\mu_{K})^{{\rm T}}=\bm{\mu}
+\EE[{\bf x}|\bm{\mu}]=\sum_{x}p({\bf x}|\bm{\mu}){\bf x}=(\mu_{1},\ldots,\mu_{K})\trans=\bm{\mu}
 \]
 
 \end_inset
@@ -956,7 +956,7 @@ where
 
 .
  Here 
-\begin_inset Formula $\bm{\alpha}=(\alpha_{1},\ldots,\alpha_{K})^{{\rm T}}$
+\begin_inset Formula $\bm{\alpha}=(\alpha_{1},\ldots,\alpha_{K})\trans$
 \end_inset
 
  are the parameters of the distribution.
@@ -1024,10 +1024,99 @@ p(\bm{\mu}|{\cal D},\bm{\alpha})=\Dir(\bm{\mu}|\bm{\alpha}+{\bf m})
 \end_inset
 
 where we have denoted 
-\begin_inset Formula ${\bf m}=(m_{1},\ldots,m_{K})^{{\rm T}}$
+\begin_inset Formula ${\bf m}=(m_{1},\ldots,m_{K})\trans$
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Section
+The Gaussian Distribution
+\end_layout
+
+\begin_layout Standard
+The Gaussian, also known as the normal distribution, is a widely used model
+ for the distribution of continuous variables.
+ In the case of a single variable x, the Gaussian distribution can be written
+ in the form
+\begin_inset Formula 
+\[
+{\cal N}(x|\mu,\sigma^{2})=\frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is the mean and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is the variance.
+ For a 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional vector 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, the multivariate Gaussian distribution takes the form
+\begin_inset Formula 
+\[
+{\cal N}({\bf x}|\bm{\mu},\bm{\Sigma})=\frac{1}{(2\pi)^{D/2}}\frac{1}{\left|\bm{\Sigma}\right|^{1/2}}\exp\left\{ -\frac{1}{2}({\bf x}-\bm{\mu})\trans\bm{\Sigma}^{-1}({\bf x}-\bm{\mu})\right\} 
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ is a 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional mean vector, 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+ is a 
+\begin_inset Formula $D\times D$
+\end_inset
+
+ covariance matrix, and 
+\begin_inset Formula $\left|\bm{\Sigma}\right|$
+\end_inset
+
+ denotes the determinant of 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The Gaussian distribution arises in many different contexts and can be motivated
+ from a variety of different perspectives.
+ For example, we have already seen that for a single real variable, the
+ distribution that maximizes the entropy is the Gaussian.
+ This property applies also to the multivariate Gaussian.
+\end_layout
+
+\begin_layout Standard
+Another situation in which the Gaussian distribution arises is when we consider
+ the sum of multiple random variables.
+ The 
+\emph on
+central limit theorem
+\emph default
+ tells us that, subject to certain mild conditions, the sum of a set of
+ random variables, which is of course itself a random variable, has a distributi
+on that becomes increasingly Gaussian as the number of terms in the sum
+ increases.
 \end_layout
 
 \end_body
