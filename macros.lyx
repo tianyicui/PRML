@@ -62,7 +62,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\hv}[1]{\textbf{\textsf{#1}}}
+\newcommand{\hv}[1]{\textbf{\textsf{#1}}}
 \end_inset
 
 
@@ -70,7 +70,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\geq}{\geqslant}
+\newcommand{\geq}{\geqslant}
 \end_inset
 
 
@@ -78,7 +78,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\leq}{\leqslant}
+\newcommand{\leq}{\leqslant}
 \end_inset
 
 
@@ -94,7 +94,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\d}{{\rm d}}
+\newcommand{\d}{{\rm d}}
 \end_inset
 
 
@@ -102,7 +102,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\EE}{\mathbb{E}}
+\newcommand{\EE}{\mathbb{E}}
 \end_inset
 
 
@@ -110,7 +110,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\cov}{{\rm cov}}
+\newcommand{\cov}{{\rm cov}}
 \end_inset
 
 
@@ -118,7 +118,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\var}{{\rm var}}
+\newcommand{\var}{{\rm var}}
 \end_inset
 
 
@@ -126,7 +126,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\H}{{\rm H}}
+\newcommand{\H}{{\rm H}}
 \end_inset
 
 
@@ -134,7 +134,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\KL}{{\rm KL}}
+\newcommand{\KL}{{\rm KL}}
 \end_inset
 
 
@@ -142,7 +142,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\I}{{\rm I}}
+\newcommand{\I}{{\rm I}}
 \end_inset
 
 
@@ -150,7 +150,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Bern}{{\rm Bern}}
+\newcommand{\Bern}{{\rm Bern}}
 \end_inset
 
 
@@ -158,7 +158,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Bin}{{\rm Bin}}
+\newcommand{\Bin}{{\rm Bin}}
 \end_inset
 
 
@@ -166,7 +166,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Beta}{{\rm Beta}}
+\newcommand{\Beta}{{\rm Beta}}
 \end_inset
 
 
@@ -174,7 +174,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Mult}{{\rm Mult}}
+\newcommand{\Mult}{{\rm Mult}}
 \end_inset
 
 
@@ -182,7 +182,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Dir}{{\rm Dir}}
+\newcommand{\Dir}{{\rm Dir}}
 \end_inset
 
 
@@ -190,7 +190,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\Tr}{{\rm Tr}}
+\newcommand{\Tr}{{\rm Tr}}
 \end_inset
 
 
@@ -198,7 +198,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\diag}{{\rm diag}}
+\newcommand{\diag}{{\rm diag}}
 \end_inset
 
 

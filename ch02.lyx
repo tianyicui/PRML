@@ -1642,5 +1642,163 @@ p({\bf x}_{a})={\cal N}({\bf x}_{a}|\bm{\mu}_{a},\bm{\Sigma}_{aa})
 
 \end_layout
 
+\begin_layout Subsection
+Bayes’ theorem for Gaussian variables
+\end_layout
+
+\begin_layout Standard
+Given a marginal Gaussian distribution for 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ and a conditional Gaussian distribution for 
+\begin_inset Formula ${\bf y}$
+\end_inset
+
+ given 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\begin{eqnarray}
+p({\bf x}) & = & {\cal N}({\bf x}|\bm{\mu},\bm{\Lambda}^{-1})\\
+p({\bf y}|{\bf x}) & = & {\cal N}({\bf y}|{\bf Ax}+{\bf b},{\bf L}^{-1})
+\end{eqnarray}
+
+\end_inset
+
+the marginal distribution of 
+\begin_inset Formula ${\bf y}$
+\end_inset
+
+ and the conditional distribution of 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ given 
+\begin_inset Formula ${\bf y}$
+\end_inset
+
+ are given by
+\begin_inset Formula 
+\begin{eqnarray}
+p({\bf y}) & = & {\cal N}({\bf y}|{\bf A}\bm{\mu}+{\bf b},{\bf L}^{-1}+{\bf A}\bm{\Lambda}^{-1}{\bf A}\trans\\
+p({\bf x}|{\bf y}) & = & {\cal N}({\bf x}|\bm{\Sigma}\{{\bf A}\trans{\bf L}({\bf y}-{\bf b})+\bm{\Lambda\mu}\},\bm{\Sigma})
+\end{eqnarray}
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+\bm{\Sigma}=(\bm{\Lambda}+{\bf A}\trans{\bf LA})^{-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Maximum likelihood for the Gaussian
+\end_layout
+
+\begin_layout Standard
+Given a data set 
+\begin_inset Formula ${\bf X}=({\bf x}_{1},\ldots,{\bf x}_{N})\trans$
+\end_inset
+
+ in which the observations 
+\begin_inset Formula $\{{\bf x}_{n}\}$
+\end_inset
+
+ are assumed to be drawn independently from a multivariate Gaussian distribution.
+ The log likelihood function is given by
+\begin_inset Formula 
+\begin{equation}
+\ln p({\bf X}|\bm{\mu},\bm{\Sigma})=-\frac{ND}{2}\ln(2\pi)-\frac{N}{2}\ln|\bm{\Sigma}|-\frac{1}{2}\sum_{n=1}^{N}({\bf x}_{n}-\bm{\mu})\trans\bm{\Sigma}^{-1}({\bf x}_{n}-\bm{\mu})\label{eq:ln p(X | mu, Sigma)}
+\end{equation}
+
+\end_inset
+
+ It depends on the data set only through the two quantities
+\begin_inset Formula 
+\[
+\sum_{n=1}^{N}{\bf x}_{n},\qquad\sum_{n=1}^{N}{\bf x}_{n}{\bf x}_{n}\trans
+\]
+
+\end_inset
+
+These are known as the 
+\emph on
+sufficient statistics
+\emph default
+ for the Gaussian distributions.
+ The derivative of the log likelihood with respect to 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\[
+\frac{\partial}{\partial\bm{\mu}}\ln p({\bf X}|\bm{\mu},\bm{\Sigma})=\sum_{n=1}^{N}\bm{\Sigma}^{-1}({\bf x}_{n}-\bm{\mu})
+\]
+
+\end_inset
+
+and setting this derivative to zero, we obtain the solution
+\begin_inset Formula 
+\[
+\bm{\mu}_{{\rm ML}}=\frac{1}{N}\sum_{n=1}^{N}{\bf x}_{n}
+\]
+
+\end_inset
+
+The maximization of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(X | mu, Sigma)"
+
+\end_inset
+
+ is more involved and the result is given by
+\begin_inset Formula 
+\[
+\bm{\Sigma}_{{\rm ML}}=\frac{1}{N}\sum_{n=1}^{N}({\bf x}_{n}-\bm{\mu}_{{\rm ML}})({\bf x}_{n}-\bm{\mu}_{{\rm ML}})\trans
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we evaluate the expectations of the maximum likelihood solutions under
+ the true distribution, we obtain the following results
+\begin_inset Formula 
+\begin{eqnarray*}
+\EE[\bm{\mu}_{{\rm ML}}] & = & \bm{\mu}\\
+\EE[\bm{\Sigma}_{{\rm ML}}] & = & \frac{N-1}{N}\bm{\Sigma}
+\end{eqnarray*}
+
+\end_inset
+
+Hence the maximum likelihood estimate for the covariance is biased.
+ We can correct this bias by defining a different estimator 
+\begin_inset Formula $\widetilde{\bm{\Sigma}}$
+\end_inset
+
+ given by
+\begin_inset Formula 
+\[
+\widetilde{\bm{\Sigma}}=\frac{1}{N-1}\sum_{n=1}^{N}({\bf x}_{n}-\bm{\mu}_{{\rm ML}})({\bf x}_{n}-\bm{\mu}_{{\rm ML}})\trans
+\]
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document

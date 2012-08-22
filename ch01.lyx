@@ -2435,7 +2435,7 @@ Our goal is to choose
 , we can do this formally using the calculus of variations to give
 \begin_inset Formula 
 \[
-\frac{\delta\EE[L]}{\delta y({\bf x})}=2\int\left\{ y({\bf x})-t\right\} p({\bf x},t)\d t=0
+\frac{\partial\EE[L]}{\partial y({\bf x})}=2\int\left\{ y({\bf x})-t\right\} p({\bf x},t)\d t=0
 \]
 
 \end_inset
