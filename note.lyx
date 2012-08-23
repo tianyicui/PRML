@@ -122,6 +122,16 @@ LatexCommand tableofcontents
 
 \begin_layout Standard
 \begin_inset CommandInset include
+LatexCommand input
+filename "macros.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
 LatexCommand include
 filename "ch01.lyx"
 

@@ -70,7 +70,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\geq}{\geqslant}
+\renewcommand{\geq}{\geqslant}
 \end_inset
 
 
@@ -78,7 +78,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\leq}{\leqslant}
+\renewcommand{\leq}{\leqslant}
 \end_inset
 
 
@@ -86,7 +86,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\renewcommand{\trans}{^{{\rm T}}}
+\newcommand{\trans}{^{{\rm T}}}
 \end_inset
 
 
@@ -175,6 +175,14 @@
 \begin_layout Standard
 \begin_inset FormulaMacro
 \newcommand{\Mult}{{\rm Mult}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\Gam}{{\rm Gam}}
 \end_inset
 
 

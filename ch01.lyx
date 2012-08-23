@@ -2447,7 +2447,7 @@ Solving for
 , and using the sum and product rules of probability, we obtain
 \begin_inset Formula 
 \[
-y({\bf x})=\frac{\int t\, p({\bf x},t)\d t}{p({\bf x})}=\int t\, p(t|{\bf x})\d t=\EE_{t}[t|{\bf x}]
+y({\bf x})=\frac{\int t\, p({\bf x},t)\d t}{p({\bf x})}=\int tp(t|{\bf x})\d t=\EE_{t}[t|{\bf x}]
 \]
 
 \end_inset

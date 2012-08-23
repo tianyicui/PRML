@@ -571,7 +571,7 @@ Given the observed data set
  by the form
 \begin_inset Formula 
 \[
-p(x=1|{\cal D})=\int_{0}^{1}p(x=1|\mu)p(\mu|{\cal D})\d\mu=\int_{0}^{1}\mu\, p(\mu|{\cal D})\d\mu=\EE[\mu|{\cal D}]
+p(x=1|{\cal D})=\int_{0}^{1}p(x=1|\mu)p(\mu|{\cal D})\d\mu=\int_{0}^{1}\mu p(\mu|{\cal D})\d\mu=\EE[\mu|{\cal D}]
 \]
 
 \end_inset
@@ -646,7 +646,7 @@ where
 \begin_inset Formula 
 \begin{eqnarray}
 \EE_{\bm{\theta}}[\bm{\theta}] & \equiv & \int p(\bm{\theta})\bm{\theta}\d\bm{\theta}\\
-\EE_{{\cal D}}[\EE_{\bm{\theta}}[\bm{\theta}|{\cal D}]] & \equiv & \int\left\{ \int\bm{\theta}\, p({\bf \bm{\theta}|{\cal D})\d\bm{\theta}}\right\} p({\cal D})\d{\cal D}
+\EE_{{\cal D}}[\EE_{\bm{\theta}}[\bm{\theta}|{\cal D}]] & \equiv & \int\left\{ \int\bm{\theta}p({\bf \bm{\theta}|{\cal D})\d\bm{\theta}}\right\} p({\cal D})\d{\cal D}
 \end{eqnarray}
 
 \end_inset
@@ -1798,6 +1798,604 @@ Hence the maximum likelihood estimate for the covariance is biased.
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+Sequential estimation
+\end_layout
+
+\begin_layout Standard
+Our discussion of the maximum likelihood solution for the parameters of
+ a Gaussian distribution provides a convenient opportunity to give a more
+ general discussion of the topic of sequential estimation for maximum likelihood.
+ Sequential methods allow data points to be processed one at a time and
+ then discarded and are important for on-line applications, and also where
+ large data sets are involved so that batch processing of all data points
+ at once is infeasible.
+\end_layout
+
+\begin_layout Standard
+If we denote the maximum likelihood estimator of the mean 
+\begin_inset Formula $\bm{\mu}_{{\rm ML}}^{(N)}$
+\end_inset
+
+ when it is based on 
+\begin_inset Formula $N$
+\end_inset
+
+ observations, it can be simply shown
+\begin_inset Formula 
+\[
+\bm{\mu}_{{\rm ML}}^{(N)}=\bm{\mu}_{{\rm ML}}^{(N-1)}+\frac{1}{N}({\bf x}_{N}-\bm{\mu}_{{\rm ML}}^{(N-1)})
+\]
+
+\end_inset
+
+ This result has a nice interpretation.
+ After observing 
+\begin_inset Formula $N-1$
+\end_inset
+
+ data points we have estimate 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ by 
+\begin_inset Formula $\bm{\mu}_{{\rm ML}}^{(N-1)}$
+\end_inset
+
+.
+ We now observe data point 
+\begin_inset Formula ${\bf x}_{N}$
+\end_inset
+
+, and we obtain our revised estimate 
+\begin_inset Formula $\bm{\mu}_{{\rm ML}}^{(N)}$
+\end_inset
+
+ by moving the old estimate a small amount, proportional to 
+\begin_inset Formula $1/N$
+\end_inset
+
+, in the direction of the `error signal' 
+\begin_inset Formula $({\bf x}_{N}-\bm{\mu}_{{\rm ML}}^{(N-1)})$
+\end_inset
+
+.
+ Note that, as 
+\begin_inset Formula $N$
+\end_inset
+
+ increases, so the contribution from successive data points gets smaller.
+\end_layout
+
+\begin_layout Standard
+The 
+\emph on
+Robbins-Monro
+\emph default
+ algorithm is a more general formulation of sequential leading.
+ Consider a pair of random variable 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and 
+\begin_inset Formula $z$
+\end_inset
+
+ governed by a joint distribution 
+\begin_inset Formula $p(z,\theta)$
+\end_inset
+
+.
+ The conditional expectation of 
+\begin_inset Formula $z$
+\end_inset
+
+ given 
+\begin_inset Formula $\theta$
+\end_inset
+
+ defines a deterministic function 
+\begin_inset Formula $f(\theta)$
+\end_inset
+
+ that is given by
+\begin_inset Formula 
+\[
+f(\theta)\equiv\EE[z|\theta]=\int zp(z|\theta)\d z
+\]
+
+\end_inset
+
+The Robbins-Monro can find the root 
+\begin_inset Formula $\theta^{\star}$
+\end_inset
+
+ at which 
+\begin_inset Formula $f(\theta^{\star})=0$
+\end_inset
+
+ sequentially.
+\end_layout
+
+\begin_layout Subsection
+Beyesian inference for the Gaussian
+\end_layout
+
+\begin_layout Standard
+Now we develop a Bayesian treatment by introducing prior distributions over
+ 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Suppose the covariance is known and mean is unknown, the conjugate prior
+ of the mean is simply another Gaussian.
+ In fact, the Bayesian paradigm leads very naturally to a sequential view
+ of the inference problem.
+\begin_inset Formula 
+\[
+p(\bm{\mu}|D)=\left[p(\bm{\mu})\prod_{n=1}^{N-1}(p({\bf x}_{n}|\bm{\mu})\right]p({\bf x}_{N}|\bm{\mu})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The term in square brackets is (up to a normalization coefficient) just
+ the posterior distribution after observing 
+\begin_inset Formula $N-1$
+\end_inset
+
+ data points.
+ We see that this can be viewed as a prior distribution, which is combined
+ using Bayes’ theorem with the likelihood function associated with data
+ point 
+\begin_inset Formula ${\bf x}_{N}$
+\end_inset
+
+ to arrive at the posterior distribution after observing 
+\begin_inset Formula $N$
+\end_inset
+
+ data points.
+ This sequential view of Bayesian inference is very general and applies
+ to any problem in which the observed data are assumed to be independent
+ and identically distributed.
+\end_layout
+
+\begin_layout Standard
+Assume the mean is known and we wish to infer the variance.
+ It's more convenient to work with the precision 
+\begin_inset Formula $\lambda\equiv1/\sigma^{2}$
+\end_inset
+
+.
+ The likelihood function for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ takes the form
+\begin_inset Formula 
+\begin{equation}
+p({\bf X}|\lambda)=\prod_{n=1}^{N}{\cal N}(x_{n}|\mu,\lambda^{-1})\propto\lambda^{N/2}\exp\left\{ -\frac{\lambda}{2}\sum_{n=1}^{N}(x_{n}-\mu)^{2}\right\} \label{eq:p(X | lambda)}
+\end{equation}
+
+\end_inset
+
+The corresponding conjugate prior should therefore be proportional to the
+ product of a power of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and the exponential of a linear function of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ This corresponds to the 
+\emph on
+gamma
+\emph default
+ distribution which is defined by
+\begin_inset Formula 
+\[
+\Gam(\lambda|a,b)=\frac{1}{\Gamma(a)}b^{a}\lambda^{a-1}\exp(-b\lambda)
+\]
+
+\end_inset
+
+The gamma distribution has a finite integral if 
+\begin_inset Formula $a>0$
+\end_inset
+
+, and the distribution itself is finite if 
+\begin_inset Formula $a\geq1$
+\end_inset
+
+.
+ The mean and variance are given by
+\begin_inset Formula 
+\begin{eqnarray}
+\EE[\lambda] & = & \frac{a}{b}\\
+\var[\lambda] & = & \frac{a}{b^{2}}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider a prior distribution 
+\begin_inset Formula $\Gam(\lambda|a_{0},b_{0})$
+\end_inset
+
+.
+ If we multiply by the likelihood function 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(X | lambda)"
+
+\end_inset
+
+, then we obtain a posterior distribution
+\begin_inset Formula 
+\[
+p(\lambda|{\bf X})\propto\lambda^{a_{0}-1}\lambda^{N/2}\exp\left\{ -b_{0}\lambda-\frac{\lambda}{2}\sum_{n=1}^{N}(x_{n}-\mu)^{2}\right\} 
+\]
+
+\end_inset
+
+we can find 
+\begin_inset Formula $p(\mu|\lambda)$
+\end_inset
+
+ and 
+\begin_inset Formula $p(\lambda)$
+\end_inset
+
+ by inspection.
+ In particular, we see that 
+\begin_inset Formula $p($
+\end_inset
+
+which we recognize as a gamma distribution of the form 
+\begin_inset Formula $\Gam(\lambda|a_{N},b_{N})$
+\end_inset
+
+ where
+\begin_inset Formula 
+\begin{eqnarray}
+a_{N} & = & a_{0}+\frac{N}{2}\label{eq:a_N for Gam(lambda | a_N, b_N)}\\
+b_{N} & = & b_{0}+\frac{1}{2}\sum_{n=1}^{N}(x_{n}-\mu)^{2}=b_{0}+\frac{N}{2}\sigma_{{\rm ML}}^{2}\label{eq:b_N for Gam(lambda | a_N, b_N)}
+\end{eqnarray}
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma_{{\rm ML}}^{2}$
+\end_inset
+
+ is the maximum likelihood estimator of the variance.
+\end_layout
+
+\begin_layout Standard
+From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:a_N for Gam(lambda | a_N, b_N)"
+
+\end_inset
+
+, we see that the effect of observing 
+\begin_inset Formula $N$
+\end_inset
+
+ data points is to increase the value of the coefficient 
+\begin_inset Formula $a$
+\end_inset
+
+ by 
+\begin_inset Formula $N/2$
+\end_inset
+
+.
+ Thus we can interpret the parameter 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ in the prior in terms of 
+\begin_inset Formula $2a_{0}$
+\end_inset
+
+ `effective' prior observations.
+ Similarly, from 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:b_N for Gam(lambda | a_N, b_N)"
+
+\end_inset
+
+ we can interpret the parameter 
+\begin_inset Formula $b_{0}$
+\end_inset
+
+ in the prior as arising from the 
+\begin_inset Formula $2a_{0}$
+\end_inset
+
+ `effective' prior observations having variance 
+\begin_inset Formula $b_{0}/a_{0}$
+\end_inset
+
+.
+ Recall that we made an analogous interpretation for the Dirichlet prior.
+ These distributions are examples of the exponential family, and we shall
+ see that the interpretation of a conjugate prior in terms of effective
+ fictitious data points is a general one for the exponential family of distribut
+ions.
+\end_layout
+
+\begin_layout Standard
+Instead of working with the precision, we can consider the variance itself.
+ The conjugate prior in this case is called the 
+\emph on
+inverse gamma
+\emph default
+ distribution.
+\end_layout
+
+\begin_layout Standard
+Now suppose that both the mean and the precision are unknown.
+ To find a conjugate prior, we consider the dependence of the likelihood
+ function on 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+p({\bf X}|\mu,\lambda) & = & \prod_{n=1}^{N}\left(\frac{\lambda}{2\pi}\right)^{1/2}\exp\left\{ -\frac{\lambda}{2}(x_{n}-\mu)^{2}\right\} \\
+ & \propto & \left[\lambda^{1/2}\exp\left(-\frac{\lambda\mu^{2}}{2}\right)\right]^{N}\exp\left\{ \lambda\mu\sum_{n=1}^{N}x_{n}-\frac{\lambda}{2}\sum_{n=1}^{N}x_{n}^{2}\right\} 
+\end{eqnarray*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\]
+
+\end_inset
+
+We now wish to identify a prior distribution 
+\begin_inset Formula $p(\mu,\lambda)$
+\end_inset
+
+ that has the same functional dependence on 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ as the likelihood function and that should therefore take the form
+\begin_inset Formula 
+\begin{eqnarray*}
+p(\mu,\lambda) & \propto & \left[\lambda^{1/2}\exp\left(-\frac{\lambda\mu^{2}}{2}\right)\right]^{\beta}\exp\left\{ c\lambda\mu-d\lambda\right\} \\
+ & = & \exp\left\{ -\frac{\beta\lambda}{2}(\mu-c/\beta)^{2}\right\} \lambda^{\beta/2}\exp\left\{ -\left(d-\frac{c^{2}}{2\beta}\right)\lambda\right\} 
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $c$
+\end_inset
+
+, 
+\begin_inset Formula $d$
+\end_inset
+
+, and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ are constants.
+ Since we can always write 
+\begin_inset Formula $p(\mu,\lambda)=p(\mu|\lambda)p(\lambda)$
+\end_inset
+
+, we can find 
+\begin_inset Formula $p(\mu|\lambda)$
+\end_inset
+
+ and 
+\begin_inset Formula $p(\lambda)$
+\end_inset
+
+ by inspection, and we already know 
+\begin_inset Formula $p(\mu|\lambda)$
+\end_inset
+
+ is a Gaussian whose precision is a linear function of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and that 
+\begin_inset Formula $p(\lambda)$
+\end_inset
+
+ is a gamma distribution, so that the normalized prior takes the form
+\begin_inset Formula 
+\begin{equation}
+p(\mu,\lambda)={\cal N}(\mu|\mu_{0},(\beta\lambda)^{-1})\Gam(\lambda|a,b)\label{eq:p(mu, lambda)}
+\end{equation}
+
+\end_inset
+
+where we have defined new constants given by 
+\begin_inset Formula $\mu_{0}=c/\beta$
+\end_inset
+
+, 
+\begin_inset Formula $a=1+\beta/2$
+\end_inset
+
+, 
+\begin_inset Formula $b=d-c^{2}/2\beta$
+\end_inset
+
+.
+ The distribution 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(mu, lambda)"
+
+\end_inset
+
+ is called the 
+\emph on
+normal-gamma
+\emph default
+ or 
+\emph on
+Gaussian-gamma
+\emph default
+ distribution.
+ Note that this is not simply the product of an independent Gaussian prior
+ over 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and a gamma prior over 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, because the precision of 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is a linear function of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ Even if we chose a prior in which 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ were independent, the posterior distribution would exhibit a coupling between
+ them.
+\end_layout
+
+\begin_layout Standard
+In the case of the multivariate Gaussian distribution 
+\begin_inset Formula ${\cal N}({\bf x}|\bm{\mu},\bm{\Lambda}^{-1})$
+\end_inset
+
+ for a 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional variable 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, the conjugate prior distribution for the mean 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+, assuming the precision is known, is again a Gaussian.
+ For known mean and unknown precision matrix 
+\begin_inset Formula $\bm{\Lambda}$
+\end_inset
+
+, the conjugate prior is the 
+\emph on
+Wishart
+\emph default
+ distribution given by
+\begin_inset Formula 
+\[
+{\cal W}(\bm{\Lambda}|{\bf W},\nu)=B\left|\bm{\Lambda}\right|^{(\nu-D-1)/2}\exp\left(-\frac{1}{2}\Tr({\bf W}^{-1}\bm{\Lambda})\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is called the number of 
+\emph on
+degree of freedom
+\emph default
+ of the distribution, 
+\begin_inset Formula ${\bf W}$
+\end_inset
+
+ is a 
+\begin_inset Formula $D\times D$
+\end_inset
+
+ scale matrix, and the normalization constant 
+\begin_inset Formula $B$
+\end_inset
+
+ is given by
+\begin_inset Formula 
+\[
+B({\bf W},\nu)=\left|{\bf W}\right|^{\nu/2}\left(2^{\nu D/2}\pi^{D(D-1)/4}\prod_{i=1}^{D}\Gamma\left(\frac{\nu+1-i}{2}\right)\right)^{-1}
+\]
+
+\end_inset
+
+Again, it is also possible to define a conjugate prior over the covariance
+ matrix itself, rather than over the precision matrix, which leads to the
+ 
+\emph on
+inverse Wishart
+\emph default
+ distribution, although we shall not discuss this further.
+ If both the mean and the precision are unknown, then, following a similar
+ line of reasoning to the univariate case, the conjugate prior is given
+ by
+\begin_inset Formula 
+\[
+p(\bm{\mu},\bm{\Lambda}|\bm{\mu}_{0},\beta,{\bf W},\nu)={\cal N}(\bm{\mu}|\bm{\mu}_{0},(\beta\bm{\Lambda})^{-1}){\cal W}(\bm{\Lambda}|{\bf W},\nu)
+\]
+
+\end_inset
+
+ which is known as the 
+\emph on
+normal-Wishart
+\emph default
+ or 
+\emph on
+Gaussian-Wishart
+\emph default
+ distribution.
 \end_layout
 
 \end_body
