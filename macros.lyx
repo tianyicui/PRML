@@ -61,8 +61,13 @@
 \begin_body
 
 \begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\hv}[1]{\textbf{\textsf{#1}}}
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Redefined existing math macros:
+\end_layout
+
 \end_inset
 
 
@@ -85,8 +90,13 @@
 \end_layout
 
 \begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\trans}{^{{\rm T}}}
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Math font macro:
+\end_layout
+
 \end_inset
 
 
@@ -94,7 +104,20 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\d}{{\rm d}}
+\renewcommand{\hv}[1]{\textbf{\textsf{#1}}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Misc math macros for convenience:
+\end_layout
+
 \end_inset
 
 
@@ -102,7 +125,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\EE}{\mathbb{E}}
+\renewcommand{\trans}{^{{\rm T}}}
 \end_inset
 
 
@@ -110,7 +133,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\cov}{{\rm cov}}
+\renewcommand{\d}{{\rm d}}
 \end_inset
 
 
@@ -118,7 +141,20 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\var}{{\rm var}}
+\renewcommand{\EE}{\mathbb{E}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Math macros for function names
+\end_layout
+
 \end_inset
 
 
@@ -126,7 +162,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\H}{{\rm H}}
+\renewcommand{\cov}{{\rm cov}}
 \end_inset
 
 
@@ -134,7 +170,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\KL}{{\rm KL}}
+\renewcommand{\var}{{\rm var}}
 \end_inset
 
 
@@ -142,7 +178,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\I}{{\rm I}}
+\renewcommand{\mode}{{\rm mode}}
 \end_inset
 
 
@@ -150,7 +186,60 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\Bern}{{\rm Bern}}
+\renewcommand{\H}{{\rm H}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\KL}{{\rm KL}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\I}{{\rm I}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\Tr}{{\rm Tr}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\diag}{{\rm diag}}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Math macros for distribution names
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\renewcommand{\Bern}{{\rm Bern}}
 \end_inset
 
 
@@ -198,15 +287,7 @@
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\Tr}{{\rm Tr}}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FormulaMacro
-\newcommand{\diag}{{\rm diag}}
+\newcommand{\St}{{\rm St}}
 \end_inset
 
 

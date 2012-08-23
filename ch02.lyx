@@ -2398,5 +2398,239 @@ Gaussian-Wishart
  distribution.
 \end_layout
 
+\begin_layout Subsection
+Student's t-distribution
+\end_layout
+
+\begin_layout Standard
+We have seen that the conjugate prior for the precision of a Gaussian is
+ given by a gamma distribution.
+ If we have a univariate Gaussian 
+\begin_inset Formula ${\cal N}(x|\mu,\tau^{-1})$
+\end_inset
+
+ together with a Gamma prior 
+\begin_inset Formula $\Gam(\tau|a,b)$
+\end_inset
+
+ and we integrate out the precision, we obtain the marginal distribution
+ of 
+\begin_inset Formula $x$
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\begin{eqnarray}
+p(x|\mu,a,b) & = & \int_{0}^{\infty}{\cal N}(x|\mu,\tau^{-1})\Gam(\tau|a,b)\d\tau\label{eq:p(x|mu, a, b)=}\\
+ & = & \frac{b^{a}}{\Gamma(a)}\left(\frac{1}{2\pi}\right)^{1/2}\left[b+\frac{(x-\mu)^{2}}{2}\right]^{-a-1/2}\Gamma(a+1/2)\nonumber 
+\end{eqnarray}
+
+\end_inset
+
+By convention we define new parameters given by 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\nu=2a$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda=a/b$
+\end_inset
+
+, in terms of which the distribution 
+\begin_inset Formula $p(x|\mu,a,b)$
+\end_inset
+
+ takes the form
+\begin_inset Formula 
+\[
+\St(x|\mu,\lambda,\nu)=\frac{\Gamma(\nu/2+1/2)}{\Gamma(\nu/2)}\left(\frac{\lambda}{\pi\nu}\right)^{1/2}\left[1+\frac{\lambda(x-\mu)^{2}}{\nu}\right]^{-\nu/2-1/2}
+\]
+
+\end_inset
+
+which is known as 
+\emph on
+Student's t-distribution
+\emph default
+.
+ The parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is sometimes called the 
+\emph on
+precision
+\emph default
+ of the t-distribution, even though it is not in general equal to the inverse
+ of the variance.
+ The parameter 
+\begin_inset Formula $\nu$
+\end_inset
+
+ is called the 
+\emph on
+degrees of freedom
+\emph default
+.
+ For the particular case of 
+\begin_inset Formula $\nu=1$
+\end_inset
+
+, the t-distribution reduces to the 
+\emph on
+Cauchy
+\emph default
+ distribution, while in the limit 
+\begin_inset Formula $\nu\to\infty$
+\end_inset
+
+ the t-distribution 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\St(x|\mu,\lambda,\nu)$
+\end_inset
+
+ becomes a Gaussian 
+\begin_inset Formula ${\cal N}(x|\mu,\lambda^{-1})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x|mu, a, b)="
+
+\end_inset
+
+, we see that Student's t-distribution is obtained by adding up an infinite
+ number of Gaussian distributions having the same mean but different precisions.
+ This can be interpreted as an infinite mixture of Gaussians.
+ he result is a distribution that in general has longer `tails' than a Gaussian.
+ This gives the t-distribution an important property called 
+\emph on
+robustness
+\emph default
+, which means that it is much less sensitive than the Gaussian to the presence
+ of a few data points which are 
+\emph on
+outliers
+\emph default
+.
+ Note that the maximum likelihood solution for the t-distribution can be
+ found using the expectation-maximization (EM) algorithm.
+ Outliers can arise in practical applications either because the process
+ that generates the data corresponds to a distribution having a heavy tail
+ or simply through mislabeled data.
+ Robustness is also an important property for regression problems.
+ Unsurprisingly, the least squares approach to regression does not exhibit
+ robustness, because it corresponds to maximum likelihood under a (conditional)
+ Gaussian distribution.
+ By basing a regression model on a heavy-tailed distribution such as a t-distrib
+ution, we obtain a more robust model.
+\end_layout
+
+\begin_layout Standard
+If we go back to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x|mu, a, b)="
+
+\end_inset
+
+ and substitute the alternative parameters 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset Formula $\nu=2a$
+\end_inset
+
+, 
+\begin_inset Formula $\lambda=a/b$
+\end_inset
+
+, and 
+\begin_inset Formula $\eta=\tau b/a$
+\end_inset
+
+, we see that the t-distribution can be written in the form
+\begin_inset Formula 
+\[
+\St(x|\mu,\lambda,\nu)=\int_{0}^{\infty}{\cal N}(x|\mu,(\eta\lambda)^{-1})\Gam(\eta|\nu/2,\nu/2)\d\eta
+\]
+
+\end_inset
+
+We can generalize this to a multivariate Gaussian 
+\begin_inset Formula ${\cal N}({\bf x}|\bm{\mu},\bm{\Lambda})$
+\end_inset
+
+ to obtain the corresponding multivariate Student's t-distribution in the
+ form
+\begin_inset Formula 
+\[
+\St({\bf x}|\bm{\mu},\bm{\Lambda},\nu)=\int_{0}^{\infty}{\cal N}({\bf x}|\bm{\mu},(\eta\bm{\Lambda})^{-1})\Gam(\eta|\nu/2,\nu/2)\d\eta
+\]
+
+\end_inset
+
+We can evaluate this integral to give
+\begin_inset Formula 
+\[
+\St({\bf x}|\bm{\mu},\bm{\Lambda},\nu)=\frac{\Gamma(D/2+\nu/2)}{\Gamma(\nu/2)}\frac{|\bm{\Lambda}|^{1/2}}{(\pi\nu)^{D/2}}\left[1+\frac{\Delta^{2}}{\nu}\right]^{-D/2-\nu/2}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $D$
+\end_inset
+
+ is the dimensionality of 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, and 
+\begin_inset Formula $\Delta^{2}$
+\end_inset
+
+ is the squared Mahalanobis distance defined by
+\begin_inset Formula 
+\[
+\Delta^{2}=({\bf x}-\bm{\mu})\trans\bm{\Lambda}({\bf x}-\bm{\mu})
+\]
+
+\end_inset
+
+The multivariate form of Student's t-distribution satisfies the following
+ properties
+\begin_inset Formula 
+\begin{align*}
+\EE[{\bf x}] & =\bm{\mu} & \text{if}\quad\nu>1\\
+\cov[{\bf x}] & =\frac{\nu}{(\nu-2)}\bm{\Lambda^{-1}} & \text{if}\quad\nu>2\\
+\mode[{\bf x}] & =\bm{\mu}
+\end{align*}
+
+\end_inset
+
+with corresponding results for the univariate case.
+\end_layout
+
 \end_body
 \end_document
