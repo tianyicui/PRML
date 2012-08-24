@@ -2621,15 +2621,385 @@ where
 The multivariate form of Student's t-distribution satisfies the following
  properties
 \begin_inset Formula 
-\begin{align*}
+\begin{align}
 \EE[{\bf x}] & =\bm{\mu} & \text{if}\quad\nu>1\\
 \cov[{\bf x}] & =\frac{\nu}{(\nu-2)}\bm{\Lambda^{-1}} & \text{if}\quad\nu>2\\
 \mode[{\bf x}] & =\bm{\mu}
-\end{align*}
+\end{align}
 
 \end_inset
 
 with corresponding results for the univariate case.
+\end_layout
+
+\begin_layout Subsection
+Periodic variables
+\end_layout
+
+\begin_layout Standard
+Gaussian distributions are not always applicable for continuous variables,
+ e.g., for periodic variables, which can conveniently be represented using
+ an angular (polar) coordinate 
+\begin_inset Formula $0\leq\theta<2\pi$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+We might be tempted to treat periodic variables by choosing some direction
+ as the origin and then applying a conventional distribution such as the
+ Gaussian.
+ Such an approach, however, would give results that were strongly dependent
+ on the arbitrary choice of origin.
+ For example, for two observations at 
+\begin_inset Formula $\theta_{1}=1^{\circ}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta_{2}=359^{\circ}$
+\end_inset
+
+, if we choose the origin at 
+\begin_inset Formula $0^{\circ}$
+\end_inset
+
+ then the sample mean will be 
+\begin_inset Formula $180^{\circ}$
+\end_inset
+
+ with the standard deviation 
+\begin_inset Formula $179^{\circ}$
+\end_inset
+
+, whereas if we choose the origin at 
+\begin_inset Formula $180^{\circ}$
+\end_inset
+
+, then the mean will be 
+\begin_inset Formula $0^{\circ}$
+\end_inset
+
+ and the standard deviation will be 
+\begin_inset Formula $1^{\circ}$
+\end_inset
+
+.
+ We clearly need to develop a special approach for the treatment of periodic
+ variables.
+\end_layout
+
+\begin_layout Standard
+For a set of observations 
+\begin_inset Formula ${\cal D}=\{\theta_{1},\ldots,\theta_{N}\}$
+\end_inset
+
+, to find an invariant measure of the mean, we note that the observations
+ can be viewed as points on the unit circle and can therefore be described
+ instead by two-dimensional unit vectors 
+\begin_inset Formula ${\bf x}_{1},\ldots,{\bf x}_{N}$
+\end_inset
+
+ where 
+\begin_inset Formula $\left\Vert {\bf x}_{n}\right\Vert =1$
+\end_inset
+
+ for 
+\begin_inset Formula $n=1,\ldots,N$
+\end_inset
+
+.
+ We can average the vectors 
+\begin_inset Formula $\{{\bf x}_{n}\}$
+\end_inset
+
+ to give
+\begin_inset Formula 
+\[
+\overline{{\bf x}}=\frac{1}{N}\sum_{n=1}^{N}{\bf x}_{n}
+\]
+
+\end_inset
+
+and then find the corresponding angle 
+\begin_inset Formula $\overline{\theta}$
+\end_inset
+
+ of this average.
+ We can solve for 
+\begin_inset Formula $\overline{\theta}$
+\end_inset
+
+ to give
+\begin_inset Formula 
+\begin{equation}
+\overline{\theta}=\tan^{-1}\left\{ \frac{\sum_{n}\sin\theta_{n}}{\sum_{n}\cos\theta_{n}}\right\} \label{eq:overline theta}
+\end{equation}
+
+\end_inset
+
+Shortly, we shall see how this result arises naturally as the maximum likelihood
+ estimator for an appropriately defined distribution over a periodic variable.
+\end_layout
+
+\begin_layout Standard
+We now consider a periodic generalization of the Gaussian called the 
+\emph on
+von Mises
+\emph default
+ distribution.
+ Here we shall limit our attention to univariate distributions, although
+ periodic distributions can also be found over hyperspheres of arbitrary
+ dimension.
+\end_layout
+
+\begin_layout Standard
+By convention, we will consider 
+\begin_inset Formula $p(\theta)$
+\end_inset
+
+ that have period 
+\begin_inset Formula $2\pi$
+\end_inset
+
+ which must satisfy the three conditions
+\begin_inset Formula 
+\begin{eqnarray}
+p(\theta) & \geq & 0\\
+\int_{0}^{2\pi}p(\theta)\d\theta & = & 1\\
+p(\theta+2\pi) & = & p(\theta)
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can easily obtain a Gaussian-like distribution that satisfies these three
+ properties as follows.
+ Consider a Gaussian distribution over two variables 
+\begin_inset Formula ${\bf x}=(x_{1},x_{2})$
+\end_inset
+
+ having mean 
+\begin_inset Formula $\bm{\mu}=(\mu_{1},\mu_{2})$
+\end_inset
+
+ and a covariance matrix 
+\begin_inset Formula $\bm{\Sigma}=\sigma{\bf I}_{2}$
+\end_inset
+
+, so that
+\begin_inset Formula 
+\[
+p(x_{1},x_{2})=\frac{1}{2\pi\sigma^{2}}\exp\left\{ -\frac{(x_{1}-\mu_{1})^{2}+(x_{2}-\mu_{2})^{2}}{2\sigma^{2}}\right\} 
+\]
+
+\end_inset
+
+By transforming from Cartesian coordinates 
+\begin_inset Formula $(x_{1},x_{2})$
+\end_inset
+
+ to polar coordinates 
+\begin_inset Formula $(r,\theta)$
+\end_inset
+
+ and 
+\begin_inset Formula $(\mu_{1},\mu_{2})$
+\end_inset
+
+ to 
+\begin_inset Formula $(r_{0},\theta_{0})$
+\end_inset
+
+, then condition on the unit circle 
+\begin_inset Formula $r=1$
+\end_inset
+
+, we obtain our final expression for the distribution of 
+\begin_inset Formula $p(\theta)$
+\end_inset
+
+ along the unit circle 
+\begin_inset Formula $r=1$
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\begin{equation}
+p(\theta|\theta_{0},m)=\frac{1}{2\pi I_{0}(m)}\exp\left\{ m\cos(\theta-\theta_{0})\right\} \label{eq:p(theta | theta_0, m)}
+\end{equation}
+
+\end_inset
+
+which is called the 
+\emph on
+von Mises
+\emph default
+ distribution, or the 
+\emph on
+circular normal
+\emph default
+.
+ Here 
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+ corresponds to the mean of the distribution, while 
+\begin_inset Formula $m$
+\end_inset
+
+, which is known as the 
+\emph on
+concentration
+\emph default
+ parameter, is analogous to the precision for the Gaussian.
+ The normalization coefficient for 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(theta | theta_0, m)"
+
+\end_inset
+
+ is expressed in terms of 
+\begin_inset Formula $I_{0}(m)$
+\end_inset
+
+, which is the zeroth-order Bessel function of the first kind and is defined
+ by
+\begin_inset Formula 
+\[
+I_{0}(m)=\frac{1}{2\pi}\int_{0}^{2\pi}\exp\{m\cos\theta\}\d\theta
+\]
+
+\end_inset
+
+For large 
+\begin_inset Formula $m$
+\end_inset
+
+, the distribution becomes approximately Gaussian.
+\end_layout
+
+\begin_layout Standard
+Now consider the maximum likelihood estimators for the parameters 
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $m$
+\end_inset
+
+.
+ The log likelihood functions is given by
+\begin_inset Formula 
+\begin{equation}
+\ln p({\cal D}|\theta_{0},m)=-N\ln(2\pi)-N\ln I_{0}(m)+m\sum_{n=1}^{N}\cos(\theta_{n}-\theta_{0})\label{eq:ln p(D | theta_0, m)}
+\end{equation}
+
+\end_inset
+
+ Setting the derivative with respect to 
+\begin_inset Formula $\theta_{0}$
+\end_inset
+
+ equal to zero gives
+\begin_inset Formula 
+\[
+\sum_{n=1}^{N}\sin(\theta_{n}-\theta_{0})=0
+\]
+
+\end_inset
+
+from which we obtain
+\begin_inset Formula 
+\[
+\theta_{0}^{{\rm ML}}=\tan^{-1}\left\{ \frac{\sum_{n}\sin\theta_{n}}{\sum_{n}\cos\theta_{n}}\right\} 
+\]
+
+\end_inset
+
+which we recognized as the result 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:overline theta"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Similarly, maximizing 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:ln p(D | theta_0, m)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $m$
+\end_inset
+
+, and make use of 
+\begin_inset Formula $I_{0}^{\prime}(m)=I_{1}(m)$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{equation}
+A(m)=\frac{1}{N}\sum_{n=1}^{N}\cos(\theta_{n}-\theta_{0}^{{\rm ML}})\label{eq:A(m)}
+\end{equation}
+
+\end_inset
+
+where we have defined
+\begin_inset Formula 
+\[
+A(m)=\frac{I_{1}(m)}{I_{0}(m)}
+\]
+
+\end_inset
+
+We can write 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:A(m)"
+
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\begin{equation}
+A(m_{{\rm ML}})=\left(\frac{1}{N}\sum_{n=1}^{N}\cos\theta_{n}\right)\cos\theta_{0}^{{\rm ML}}-\left(\frac{1}{N}\sum_{n=1}^{N}\sin\theta_{n}\right)\sin\theta_{0}^{{\rm ML}}\label{eq:A(m_ML)}
+\end{equation}
+
+\end_inset
+
+The right hand side of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:A(m_ML)"
+
+\end_inset
+
+ is easily evaluated, and the function 
+\begin_inset Formula $A(m)$
+\end_inset
+
+ can be inverted numerically.
+\end_layout
+
+\begin_layout Standard
+One limitation of the von Mises distribution is that it is unimodal.
+ By forming 
+\emph on
+mixtures
+\emph default
+ of von Mises distributions, we obtain a flexible framework for modeling
+ periodic variables that can handle multimodality.
 \end_layout
 
 \end_body
