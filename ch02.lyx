@@ -311,8 +311,8 @@ binomial
 which has mean and variance
 \begin_inset Formula 
 \begin{eqnarray}
-\EE[m] & = & N_{\mu}\\
-\var[m] & = & N\mu(1-\mu)
+\EE[m] & = & N_{\mu}\label{eq:E[m] for binomial}\\
+\var[m] & = & N\mu(1-\mu)\label{eq:var[m] for binomial}
 \end{eqnarray}
 
 \end_inset
@@ -4040,6 +4040,746 @@ where we have defined
 \end_inset
 
  of a Gaussian distribution.
+\end_layout
+
+\begin_layout Section
+Nonparametric Methods
+\end_layout
+
+\begin_layout Standard
+Throughout this chapter, we have focussed on the use of probability distribution
+s having specific functional forms governed by a small number of parameters
+ whose values are to be determined from a data set.
+ This is called the 
+\emph on
+parametric
+\emph default
+ approach to density modeling.
+ An important limitation of this approach is that the chosen density might
+ be a poor model of the distribution that generates the data, which can
+ result in poor predictive performance.
+ For instance, if the process that generates the data is multimodal, then
+ this aspect of the distribution can never be captured by a Gaussian, which
+ is necessarily unimodal.
+\end_layout
+
+\begin_layout Standard
+In this section, we consider some 
+\emph on
+nonparametric
+\emph default
+ approaches to density estimation that make few assumptions about the form
+ of the distribution.
+ Here we shall focus mainly on simple frequentist methods.
+ The reader should be aware, however, that nonparametric Bayesian methods
+ are attracting increasing interest.
+\end_layout
+
+\begin_layout Standard
+The histogram method simply partition random variable 
+\begin_inset Formula $x$
+\end_inset
+
+ into distinct bins of width 
+\begin_inset Formula $\Delta_{i}$
+\end_inset
+
+ and then count the number 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ of observations of 
+\begin_inset Formula $x$
+\end_inset
+
+ falling in bin 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ The probability values for each bin is simply given by
+\begin_inset Formula 
+\[
+p_{i}=\frac{n_{i}}{N\Delta_{i}}
+\]
+
+\end_inset
+
+This gives a model for the density 
+\begin_inset Formula $p(x)$
+\end_inset
+
+ that is constant over the width of each bin, and often the bins are chosen
+ to have the same width 
+\begin_inset Formula $\Delta_{i}=\Delta$
+\end_inset
+
+.
+ The result of histogram density model is highly dependent on choosing the
+ best value of 
+\begin_inset Formula $\Delta$
+\end_inset
+
+, not too large or too small.
+\end_layout
+
+\begin_layout Standard
+In practice, the histogram technique can be useful for obtaining a quick
+ visualization of data in one or two dimensions but is unsuited to most
+ density estimation applications.
+\end_layout
+
+\begin_layout Standard
+The histogram approach to density estimation does, however, teach us two
+ important lessons.
+ First, to estimate the probability density at a particular location, we
+ should consider the data points that lie within some local neighborhood
+ of that point.
+ For histograms, this neighborhood property was defined by the bins, and
+ there is a natural `smoothing' parameter describing the spatial extent
+ of the local region, in this case the bin width.
+ Second, the value of the smoothing parameter should be neither too large
+ nor too small in order to obtain good results.
+\end_layout
+
+\begin_layout Subsection
+Kernel density estimators
+\end_layout
+
+\begin_layout Standard
+Let us suppose observations are being drawn from some unknown probability
+ density 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+ in Euclidean 
+\begin_inset Formula $D$
+\end_inset
+
+-dimensional space, and we wish to estimate the value of 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+.
+ From our earlier discussion of locality, let us consider some small region
+ 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+ containing 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+.
+ The probability mass associated with this region is given by
+\begin_inset Formula 
+\[
+P=\int_{{\cal R}}p({\bf x})\d{\bf x}
+\]
+
+\end_inset
+
+ Now suppose that we have collected a data set comprising 
+\begin_inset Formula $N$
+\end_inset
+
+ observations drawn from 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+.
+ Because each data point has a probability 
+\begin_inset Formula $P$
+\end_inset
+
+ of falling within 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+, the total number 
+\begin_inset Formula $K$
+\end_inset
+
+ of points that lie inside 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+ will be distributed according to the binomial distribution
+\begin_inset Formula 
+\[
+\Bin(K|N,P)=\frac{N!}{K!(N-K)!}P^{K}(1-P)^{1-K}
+\]
+
+\end_inset
+
+Using 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:E[m] for binomial"
+
+\end_inset
+
+, we see that the mean fraction of points falling inside the region is 
+\begin_inset Formula $\EE[K/N]=P$
+\end_inset
+
+, and similarly using 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:var[m] for binomial"
+
+\end_inset
+
+ the variance around this mean is 
+\begin_inset Formula $\var[K/N]=P(1-P)/N$
+\end_inset
+
+.
+ For large 
+\begin_inset Formula $N$
+\end_inset
+
+, this distribution will be sharply peaked around the mean and so
+\begin_inset Formula 
+\begin{equation}
+K\simeq NP\label{eq:K simeq NP}
+\end{equation}
+
+\end_inset
+
+If, however, we also assume that the region 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+ is sufficiently small that the probability density 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+ is roughly constant over the region, then we have
+\begin_inset Formula 
+\begin{equation}
+P\simeq p({\bf x})V\label{eq:P simeq p(x)V}
+\end{equation}
+
+\end_inset
+
+when 
+\begin_inset Formula $V$
+\end_inset
+
+ is the volume of 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+.
+ Combining 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:K simeq NP"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:P simeq p(x)V"
+
+\end_inset
+
+, we obtain density estimate in the form
+\begin_inset Formula 
+\begin{equation}
+p({\bf x})=\frac{K}{NV}\label{eq:p(x)=K/NV}
+\end{equation}
+
+\end_inset
+
+Note that the validity of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+ depends on two contradictory assumptions, namely that the region 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+ be sufficiently small that the density is approximately constantly over
+ the region and yet sufficiently large (in relation to the value of that
+ density) that the number 
+\begin_inset Formula $K$
+\end_inset
+
+ of points falling inside the region is sufficient for the binomial distribution
+ to be sharply peaked.
+\end_layout
+
+\begin_layout Standard
+We can exploit the result 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+ in two different ways.
+ Either we can fix 
+\begin_inset Formula $K$
+\end_inset
+
+ and determine the value of 
+\begin_inset Formula $V$
+\end_inset
+
+ from the data, which gives rise to the 
+\begin_inset Formula $K$
+\end_inset
+
+nearest-neighbor technique discussed shortly, or we can fix 
+\begin_inset Formula $V$
+\end_inset
+
+ and determine 
+\begin_inset Formula $K$
+\end_inset
+
+ from the data, giving rise to the kernel approach.
+\end_layout
+
+\begin_layout Standard
+We begin by discussing the kernel method in detail, and to start with we
+ take the region 
+\begin_inset Formula ${\cal R}$
+\end_inset
+
+ to be a small hypercube centered on the point 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ at which we wish to determine the probability density.
+ In order to count the number 
+\begin_inset Formula $K$
+\end_inset
+
+ of points falling within the region, it is convenient to define the following
+ function
+\begin_inset Formula 
+\begin{equation}
+k({\bf u})=\begin{cases}
+1, & |u_{i}|\leq1/2,\quad i=1,\ldots,D\\
+0, & \text{otherwise}
+\end{cases}\label{eq:k(u)=1 or 0}
+\end{equation}
+
+\end_inset
+
+which represents a unit cube centered on the origin.
+ The function 
+\begin_inset Formula $k({\bf u})$
+\end_inset
+
+ is an example of a 
+\emph on
+kernel function
+\emph default
+, and in this context is also called a 
+\emph on
+Parzen window
+\emph default
+.
+ From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:k(u)=1 or 0"
+
+\end_inset
+
+, the total number of data points lying inside this cube of side 
+\begin_inset Formula $h$
+\end_inset
+
+ will be
+\begin_inset Formula 
+\[
+K=\sum_{n=1}^{N}k\left(\frac{{\bf x}-{\bf x}_{n}}{h}\right)
+\]
+
+\end_inset
+
+Substituting this expression into 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+ then gives the following result for the estimated density at 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+p({\bf x})=\frac{1}{N}\sum_{n=1}^{N}\frac{1}{h^{D}}k\left(\frac{{\bf x}-{\bf x}_{n}}{h}\right)\label{eq:p(x) using a kernel function}
+\end{equation}
+
+\end_inset
+
+where we have used 
+\begin_inset Formula $V=h^{D}$
+\end_inset
+
+.
+ Using the symmetry of the function 
+\begin_inset Formula $k({\bf u})$
+\end_inset
+
+, we can now re-interpret this equation, not as a single cube centered on
+ 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ but as the sum over 
+\begin_inset Formula $N$
+\end_inset
+
+ cubes centered on the 
+\begin_inset Formula $N$
+\end_inset
+
+ data points 
+\begin_inset Formula ${\bf x}_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The kernel density estimator 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x) using a kernel function"
+
+\end_inset
+
+ will suffer from one of the same problems that the histogram method suffered
+ from, namely the presence of artificial discontinuities, in this case at
+ the boundaries of the cubes.
+ We can obtain a smoother density model if we choose a smoother kernel function,
+ and a common choice is the Gaussian, which gives rise to the following
+ kernel density model
+\begin_inset Formula 
+\[
+p({\bf x})=\frac{1}{N}\sum_{n=1}^{N}\frac{1}{(2\pi h^{2})^{1/2}}\exp\left\{ -\frac{\left\Vert {\bf x}-{\bf x}_{n}\right\Vert ^{2}}{2h^{2}}\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $h$
+\end_inset
+
+ represents the standard deviation of the Gaussian components.
+ Thus our density model is obtained by placing a Gaussian over each data
+ point and then adding up the contributions over the whole data set, and
+ then dividing by 
+\begin_inset Formula $N$
+\end_inset
+
+ so that the density is correctly normalized.
+\end_layout
+
+\begin_layout Standard
+We can choose any other other kernel function 
+\begin_inset Formula $k({\bf u})$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x) using a kernel function"
+
+\end_inset
+
+ subject to the conditions
+\begin_inset Formula 
+\begin{eqnarray}
+k({\bf u}) & \geq & 0\\
+\int k({\bf u})\d{\bf u} & = & 1
+\end{eqnarray}
+
+\end_inset
+
+which ensure that the resulting probability distribution is nonnegative
+ everywhere and integrates to one.
+ The class of density model given by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x) using a kernel function"
+
+\end_inset
+
+ is called a kernel density estimator, or 
+\emph on
+Parzen
+\emph default
+ estimator.
+ It has a great merit that there is no computation involved in the `training'
+ phase because this simply requires storage of the training set.
+ However, this is also one of its great weaknesses because the computational
+ cost of evaluating the density grows linearly with the size of the data
+ set.
+\end_layout
+
+\begin_layout Subsection
+Nearest-neighbor methods
+\end_layout
+
+\begin_layout Standard
+One of the difficulties with the kernel approach to density estimation is
+ that the parameter 
+\begin_inset Formula $h$
+\end_inset
+
+ governing the kernel width is fixed for all kernels.
+ In regions of high data density, a large value of 
+\begin_inset Formula $h$
+\end_inset
+
+ may lead to over-smoothing and a washing out of structure that might otherwise
+ be extracted from the data.
+ However, reducing 
+\begin_inset Formula $h$
+\end_inset
+
+ may lead to noisy estimates elsewhere in data space where the density is
+ smaller.
+ Thus the optimal choice for 
+\begin_inset Formula $h$
+\end_inset
+
+ may be dependent on location within the data space.
+ This issue is addressed by nearest-neighbor methods for density estimation.
+\end_layout
+
+\begin_layout Standard
+We therefore return to our general result 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+ for local density estimation, and instead of fixing 
+\begin_inset Formula $V$
+\end_inset
+
+ and determining the value of 
+\begin_inset Formula $K$
+\end_inset
+
+ from the data, we consider a fixed value of 
+\begin_inset Formula $K$
+\end_inset
+
+ and use the data to find an appropriate value of 
+\begin_inset Formula $V$
+\end_inset
+
+.
+ To do this, we consider a small sphere centered on the point 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ at which we wish to estimate the density 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+, and we allow the radius of the sphere to grow until it contains precisely
+ 
+\begin_inset Formula $K$
+\end_inset
+
+ data points.
+ The estimate of the density 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+ is then given by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+ with 
+\begin_inset Formula $V$
+\end_inset
+
+ set to the volume of the resulting sphere.
+ This technique is known as 
+\emph on
+
+\begin_inset Formula $K$
+\end_inset
+
+ nearest neighbors
+\emph default
+.
+ We see that the value of 
+\begin_inset Formula $K$
+\end_inset
+
+ now governs the degree of smoothing and that again there is an optimum
+ choice for 
+\begin_inset Formula $K$
+\end_inset
+
+ that is neither too large nor too small.
+ Note that the model produced by 
+\begin_inset Formula $K$
+\end_inset
+
+ nearest neighbors is not a true density model because the integral over
+ all space diverges.
+\end_layout
+
+\begin_layout Standard
+The 
+\begin_inset Formula $K$
+\end_inset
+
+-nearest-neighbor technique for density estimation can be extended to the
+ problem of classification.
+ To do this, we apply the 
+\begin_inset Formula $K$
+\end_inset
+
+-nearest-neighbor density estimation technique to each class separately
+ and then make use of Bayes’ theorem.
+ Suppose that we have a data set comprising 
+\begin_inset Formula $N_{k}$
+\end_inset
+
+ point in class 
+\begin_inset Formula ${\cal C}_{k}$
+\end_inset
+
+ with 
+\begin_inset Formula $N$
+\end_inset
+
+ points in total.
+ If we wish to classify a new point 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, we draw a sphere centered on 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ containing precisely 
+\begin_inset Formula $K$
+\end_inset
+
+ points irrespective of their class.
+ Suppose this sphere has volume 
+\begin_inset Formula $V$
+\end_inset
+
+ and contains 
+\begin_inset Formula $K_{k}$
+\end_inset
+
+ points from class 
+\begin_inset Formula ${\cal C}_{k}$
+\end_inset
+
+.
+ Then 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+ provides an estimate of the density associated with each class
+\begin_inset Formula 
+\[
+p({\bf x}|{\cal C}_{k})=\frac{K_{k}}{N_{k}V}
+\]
+
+\end_inset
+
+Combining with the unconditional density 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x)=K/NV"
+
+\end_inset
+
+, and the class priors are given by
+\begin_inset Formula 
+\[
+p({\cal C}_{k})=\frac{N_{k}}{N}
+\]
+
+\end_inset
+
+we can use Bayes' theorem to obtain the posterior probability of class membershi
+p
+\begin_inset Formula 
+\[
+p({\cal C}_{k}|{\bf x})=\frac{p({\bf x}|{\cal C}_{k})p({\cal C}_{k})}{p({\bf x})}=\frac{K_{k}}{K}
+\]
+
+\end_inset
+
+
+\begin_inset Formula $K$
+\end_inset
+
+ controls the degree of smoothing, so that small 
+\begin_inset Formula $K$
+\end_inset
+
+ produces many small regions of each class, whereas large 
+\begin_inset Formula $K$
+\end_inset
+
+ leads to fewer larger regions.
+ The particular case of 
+\begin_inset Formula $K=1$
+\end_inset
+
+ is called the nearest-neighbor rule, because a test point is simply assigned
+ to the same class as the nearest point from the training set.
+\end_layout
+
+\begin_layout Standard
+As discussed so far, both the 
+\begin_inset Formula $K$
+\end_inset
+
+-nearest-neighbor method, and the kernel density estimator, require the
+ entire training data set to be stored, leading to expensive computation
+ if the data set is large.
+ This effect can be offset, at the expense of some additional one-off computatio
+n, by constructing tree-based search structures to allow (approximate) near
+ neighbors to be found efficiently without doing an exhaustive search of
+ the data set.
+ Nevertheless, these nonparametric methods are still severely limited.
+ On the other hand, we have seen that simple parametric models are very
+ restricted in terms of the forms of distribution that they can represent.
+ We therefore need to find density models that are very flexible and yet
+ for which the complexity of the models can be controlled independently
+ of the size of the training set, and we shall see in subsequent chapters
+ how to achieve this.
 \end_layout
 
 \end_body
