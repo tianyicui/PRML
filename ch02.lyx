@@ -3612,9 +3612,9 @@ Now consider a set of i.i.d.
 
 , for which the likelihood function is given by
 \begin_inset Formula 
-\[
-p({\bf X}|\bm{\eta})=\left(\prod_{n=1}^{N}h({\bf x}_{n})\right)g(\bm{\eta})^{N}\exp\left\{ \bm{\eta}\trans\sum_{n=1}^{N}{\bf u}({\bf x}_{n})\right\} 
-\]
+\begin{equation}
+p({\bf X}|\bm{\eta})=\left(\prod_{n=1}^{N}h({\bf x}_{n})\right)g(\bm{\eta})^{N}\exp\left\{ \bm{\eta}\trans\sum_{n=1}^{N}{\bf u}({\bf x}_{n})\right\} \label{eq:p(X | eta)}
+\end{equation}
 
 \end_inset
 
@@ -3677,6 +3677,369 @@ reference "eq:p(x | eta)"
 
 \begin_layout Subsection
 Conjugate priors
+\end_layout
+
+\begin_layout Standard
+In general, for a given probability distribution 
+\begin_inset Formula $p({\bf x}|\bm{\eta})$
+\end_inset
+
+, we can seek a prior 
+\begin_inset Formula $p(\bm{\eta})$
+\end_inset
+
+ that is conjugate to the likelihood function, so that the posterior distributio
+n has the same functional form as the prior.
+ For any member of the exponential family 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+, there exists a conjugate prior that can be written in the form
+\begin_inset Formula 
+\begin{equation}
+p(\bm{\eta}|\bm{\chi},\nu)=f(\bm{\chi},\nu)g(\bm{\eta})^{\nu}\exp\left\{ \nu\bm{\eta}\trans\bm{\chi}\right\} \label{eq:p(eta | chi, nu)}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $f(\bm{\chi},\nu)$
+\end_inset
+
+ is a normalization coefficient, and 
+\begin_inset Formula $g(\bm{\eta})$
+\end_inset
+
+ is the same function as appears in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+.
+ To multiply the prior 
+\begin_inset Formula $ $
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(eta | chi, nu)"
+
+\end_inset
+
+ by the likelihood function 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(X | eta)"
+
+\end_inset
+
+ will obtain the posterior distribution, up to a normalization coefficient,
+ in the form
+\begin_inset Formula 
+\[
+p(\bm{\eta}|{\bf X},\bm{\chi},\nu)\propto g(\bm{\eta})^{\nu+N}\exp\left\{ \bm{\eta}\trans\left(\sum_{n=1}^{N}{\bf u}({\bf x}_{n})+\nu\bm{\chi}\right)\right\} 
+\]
+
+\end_inset
+
+This again takes the same functional form as the prior 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(eta | chi, nu)"
+
+\end_inset
+
+, confirming conjugacy.
+ Furthermore, we see that the parameter 
+\begin_inset Formula $\nu$
+\end_inset
+
+ can be interpreted as an effective number of pseudo-observations in the
+ prior, each of which has a value for the sufficient statistic 
+\begin_inset Formula ${\bf u}({\bf x})$
+\end_inset
+
+ given by 
+\begin_inset Formula $\bm{\chi}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Noninformative priors
+\end_layout
+
+\begin_layout Standard
+In many cases, we may have little idea of what form the distribution should
+ like.
+ We may then seek a form of prior distribution, called a 
+\emph on
+noninformative prior
+\emph default
+, which is intended to have as little influence on the posterior distribution
+ as possible.
+ This is sometimes referred to as `letting the data speak for themselves'.
+\end_layout
+
+\begin_layout Standard
+If we have a distribution 
+\begin_inset Formula $p(x|\lambda)$
+\end_inset
+
+ governed by a parameter 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, we might be tempted to propose a prior distribution 
+\begin_inset Formula $p(\lambda)=\text{const}$
+\end_inset
+
+.
+ If 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is a discrete variable with 
+\begin_inset Formula $K$
+\end_inset
+
+ states, simply set 
+\begin_inset Formula $p(\lambda)=1/K$
+\end_inset
+
+.
+ In the case of continuous parameters, there are two difficulties.
+ First, if the domain of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is unbounded, the prior distribution cannot be correctly normalized.
+ Such priors are called 
+\emph on
+improper
+\emph default
+.
+ In practice, improper priors can often be used provided the corresponding
+ posterior distribution is 
+\emph on
+proper
+\emph default
+, i.e., that it can be correctly normalized.
+\end_layout
+
+\begin_layout Standard
+A second difficulty arises from the transformation behavior of a probability
+ density under a nonlinear change of variables, given by 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p_y(y)=p_x(..."
+
+\end_inset
+
+.
+ If a function 
+\begin_inset Formula $h(\lambda)$
+\end_inset
+
+ is constant and 
+\begin_inset Formula $\lambda=g(\eta)$
+\end_inset
+
+, 
+\begin_inset Formula $ $
+\end_inset
+
+then 
+\begin_inset Formula $\widehat{h}(\eta)=h(g(\eta))$
+\end_inset
+
+ will also be constant.
+ However, if we choose the density 
+\begin_inset Formula $p_{\lambda}(\lambda)$
+\end_inset
+
+ to be constant, then the density of 
+\begin_inset Formula $\eta$
+\end_inset
+
+ will be given, from 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p_y(y)=p_x(..."
+
+\end_inset
+
+, by
+\begin_inset Formula 
+\[
+p_{\eta}(\eta)=p_{\lambda}(\lambda)\left|\frac{\d\lambda}{\d\eta}\right|=p_{\lambda}(g(\eta))\left|g'(\eta)\right|\propto\left|g'(\eta)\right|
+\]
+
+\end_inset
+
+and so the density over 
+\begin_inset Formula $\eta$
+\end_inset
+
+ will not be constant.
+ This issue does not arise when we use maximum likelihood, because the likelihoo
+d function 
+\begin_inset Formula $p(x|\lambda)$
+\end_inset
+
+ is a simple function of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ and so we are free to use any convenient parameterization.
+ If, however, we are to choose a prior distribution that is constant, we
+ must take care to use an appropriate representation for the parameters.
+\end_layout
+
+\begin_layout Standard
+Here we consider two simple examples of noninformative priors.
+ First of all, if a density takes the form
+\begin_inset Formula 
+\[
+p(x|\mu)=f(x-\mu)
+\]
+
+\end_inset
+
+then the parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is known as a 
+\emph on
+location parameter
+\emph default
+.
+ This family of densities exhibits 
+\emph on
+translation invariance
+\emph default
+ between if we shift 
+\begin_inset Formula $x$
+\end_inset
+
+ by a constant to give 
+\begin_inset Formula $\widehat{x}=x+c$
+\end_inset
+
+, then
+\begin_inset Formula 
+\[
+p(\widehat{x}|\widehat{\mu})=f(\widehat{x}-\widehat{\mu})
+\]
+
+\end_inset
+
+where we have defined 
+\begin_inset Formula $\widehat{\mu}=\mu+c$
+\end_inset
+
+.
+ Thus the density takes the same form in the new variable as in the original
+ one, and so the density is independent of the choice of origin.
+ We would like to choose a prior distribution that reflects this translation
+ invariance property, which can be proved 
+\begin_inset Formula $p(\mu)$
+\end_inset
+
+ is constant.
+ An example of a location parameter would be the mean 
+\begin_inset Formula $\mu$
+\end_inset
+
+ of a Gaussian distribution.
+ As we have seen, the conjugate prior distribution for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ in this case is a Gaussian 
+\begin_inset Formula $p(\mu|\mu_{0},\sigma_{0}^{2})={\cal N}(\mu|\mu_{0},\sigma_{0}^{2})$
+\end_inset
+
+, and we obtain a noninformative prior by taking the limit 
+\begin_inset Formula $\sigma_{0}^{2}\to\infty$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+As a second example, consider a density of the form
+\begin_inset Formula 
+\[
+p(x|\sigma)=\frac{1}{\sigma}f\left(\frac{x}{\sigma}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma>0$
+\end_inset
+
+.
+ The parameter 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ is known as a 
+\emph on
+scale parameter
+\emph default
+, and the density exhibits 
+\emph on
+scale invariance
+\emph default
+ because if we scale 
+\begin_inset Formula $x$
+\end_inset
+
+ by a constant to give 
+\begin_inset Formula $\widehat{x}=cx$
+\end_inset
+
+, then
+\begin_inset Formula 
+\[
+p(\widehat{x}|\widehat{\sigma})=\frac{1}{\widehat{\sigma}}f\left(\frac{\widehat{x}}{\widehat{\sigma}}\right)
+\]
+
+\end_inset
+
+where we have defined 
+\begin_inset Formula $\widehat{\sigma}=c\sigma$
+\end_inset
+
+.
+ We can use this property to prove 
+\begin_inset Formula $p(\sigma)\propto1/\sigma$
+\end_inset
+
+.
+ Note that again this is an improper prior because its integral is divergent.
+ It is sometimes also convenient to think of the prior distribution for
+ a scale parameter in terms of the density of the log of the parameter,
+ so 
+\begin_inset Formula $p(\ln\sigma)=\text{const}$
+\end_inset
+
+.
+ An example of a scale parameter would be the standard deviation 
+\begin_inset Formula $\sigma$
+\end_inset
+
+ of a Gaussian distribution.
 \end_layout
 
 \end_body

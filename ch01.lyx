@@ -423,7 +423,7 @@ ly from a simple function, due to the Jacobian factor.
 \begin_inset Formula 
 \begin{eqnarray}
 p_{y}(y) & = & p_{x}(x)\left|\frac{\d x}{\d y}\right|\nonumber \\
- & = & p_{x}(g(y))\left|g'(y)\right|
+ & = & p_{x}(g(y))\left|g'(y)\right|\label{eq:p_y(y)=p_x(...}
 \end{eqnarray}
 
 \end_inset
