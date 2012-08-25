@@ -3224,5 +3224,460 @@ expectation maximization
 , which will be discussed at length in Chapter 9.
 \end_layout
 
+\begin_layout Section
+The Exponential Family
+\end_layout
+
+\begin_layout Standard
+The probability distributions that we have studied so far in this chapter
+ (with the exception of the Gaussian mixture) are specific examples of a
+ broad class of distributions called the 
+\emph on
+exponential family
+\emph default
+.
+ Members of the exponential family have many important properties in common,
+ and it is illuminating to discuss these properties in some generality.
+\end_layout
+
+\begin_layout Standard
+The exponential family of distributions over 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, given parameters 
+\begin_inset Formula $\bm{\eta}$
+\end_inset
+
+, is defined to be the set of distributions of the form
+\begin_inset Formula 
+\begin{equation}
+p({\bf x}|\bm{\eta})=h({\bf x})g(\bm{\eta})\exp\left\{ \bm{\eta}\trans{\bf u}({\bf x})\right\} \label{eq:p(x | eta)}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ may be scalar or vector, and may be discrete or continuous.
+ Here 
+\begin_inset Formula $\bm{\eta}$
+\end_inset
+
+ are called the 
+\emph on
+natural parameters
+\emph default
+ of the distribution, and 
+\begin_inset Formula ${\bf u}({\bf x})$
+\end_inset
+
+ is some function of 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+.
+ The function 
+\begin_inset Formula $g(\bm{\eta})$
+\end_inset
+
+ can be interpreted as the coefficient that ensures that the distribution
+ is normalized and therefore satisfies
+\begin_inset Formula 
+\begin{equation}
+g(\bm{\eta})\int h({\bf x})\exp\left\{ \bm{\eta}\trans{\bf u}({\bf x})\right\} \d{\bf x}=1\label{eq:condition of g(eta)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider first the Bernoulli distribution
+\begin_inset Formula 
+\[
+p(x|\mu)=\Bern(x|\mu)=\mu^{x}(1-\mu)^{1-x}
+\]
+
+\end_inset
+
+Expressing the right-hand side as the exponential of the logarithm we have
+\begin_inset Formula 
+\begin{eqnarray}
+p(x|\mu) & = & \exp\left\{ x\ln\mu+(1-x)\ln(1-\mu)\right\} \nonumber \\
+ & = & (1-\mu)\exp\left\{ \ln\left(\frac{\mu}{1-\mu}\right)x\right\} 
+\end{eqnarray}
+
+\end_inset
+
+Comparison with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ allows us to identify
+\begin_inset Formula 
+\[
+\eta=\ln\left(\frac{\mu}{1-\mu}\right)
+\]
+
+\end_inset
+
+which can solve for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ to give 
+\begin_inset Formula $\mu=\sigma(\eta)$
+\end_inset
+
+, where
+\begin_inset Formula 
+\[
+\sigma(\eta)=\frac{1}{1+\exp(-\eta)}
+\]
+
+\end_inset
+
+is called the 
+\emph on
+logistic sigmoid
+\emph default
+ function.
+ Thus we can write the Bernoulli distribution using the standard representation
+ 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ in the form
+\begin_inset Formula 
+\[
+p(x|\eta)=\sigma(-\eta)\exp(\eta x)
+\]
+
+\end_inset
+
+Comparison with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ shows that
+\begin_inset Formula 
+\begin{eqnarray}
+u(x) & = & x\\
+h(x) & = & 1\\
+g(\eta) & = & \sigma(-\eta)
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Next consider the multinomial distribution that, for a single observation
+ 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+, takes the form
+\begin_inset Formula 
+\[
+p({\bf x}|\bm{\mu})=\prod_{k=1}^{M}\mu_{k}^{x_{k}}=\exp\left\{ \sum_{k=1}^{M}x_{k}\ln\mu_{k}\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\bf x}=(x_{1},\ldots,x_{N})\trans$
+\end_inset
+
+.
+ We can write this in the standard representation so that
+\begin_inset Formula 
+\[
+p({\bf x}|\bm{\eta})=\exp(\bm{\eta}\trans{\bf x})
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\eta_{k}=\ln\mu_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bm{\eta}=(\eta_{1},\ldots,\eta_{M})\trans$
+\end_inset
+
+.
+ Again, comparing with 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ we have
+\begin_inset Formula 
+\begin{eqnarray}
+{\bf u}({\bf x}) & = & {\bf x}\\
+h({\bf x}) & = & 1\\
+g(\bm{\eta}) & = & 1
+\end{eqnarray}
+
+\end_inset
+
+Note that the parameters 
+\begin_inset Formula $\eta_{k}$
+\end_inset
+
+ are not independent because the parameters 
+\begin_inset Formula $\mu_{k}$
+\end_inset
+
+ are subject to the constraint
+\begin_inset Formula 
+\begin{equation}
+\sum_{k=1}^{M}\mu_{k}=1\label{eq:u_k constraint}
+\end{equation}
+
+\end_inset
+
+In some circumstances, it will be convenient to remove this constraint by
+ expressing the distribution in terms of only 
+\begin_inset Formula $M-1$
+\end_inset
+
+ parameters.
+ Making use of the constraint 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:u_k constraint"
+
+\end_inset
+
+ to give
+\begin_inset Formula 
+\[
+\mu_{k}=\frac{\exp(\eta_{k})}{1+\sum_{j}\exp(\eta_{j})}
+\]
+
+\end_inset
+
+This is called the 
+\emph on
+softmax
+\emph default
+ function, or the 
+\emph on
+normalized exponential
+\emph default
+.
+ In this representation, the multinomial distribution therefore takes the
+ form
+\begin_inset Formula 
+\[
+p({\bf x}|\bm{\eta})=\left(1+\sum_{k=1}^{M-1}\exp(\eta_{k})\right)^{-1}\exp(\bm{\eta}\trans{\bf x})
+\]
+
+\end_inset
+
+This is the standard form of the exponential family, with parameter vector
+ 
+\begin_inset Formula $\bm{\eta}=(\eta_{1},\ldots,\eta_{M-1})\trans$
+\end_inset
+
+ in which
+\begin_inset Formula 
+\begin{eqnarray}
+{\bf u}({\bf x}) & = & {\bf x}\\
+h({\bf x}) & = & 1\\
+g(\bm{\eta}) & = & \left(1+\sum_{k=1}^{M-1}\exp(\eta_{k})\right)^{-1}
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, let us consider the Gaussian distribution.
+ For the univariate Gaussian, we have
+\begin_inset Formula 
+\begin{eqnarray}
+p(x|\mu,\sigma^{2}) & = & \frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right\} \nonumber \\
+ & = & \frac{1}{(2\pi\sigma^{2})^{1/2}}\exp\left\{ -\frac{1}{2\sigma^{2}}x^{2}+\frac{\mu}{\sigma^{2}}x-\frac{1}{2\sigma^{2}}\mu^{2}\right\} 
+\end{eqnarray}
+
+\end_inset
+
+which, after some rearrangement, can be cast in the standard exponential
+ family form 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ with
+\begin_inset Formula 
+\begin{eqnarray}
+\bm{\eta} & = & \begin{pmatrix}\mu/\sigma^{2}\\
+-1/2\sigma^{2}
+\end{pmatrix}\\
+{\bf u}(x) & = & \begin{pmatrix}x\\
+x^{2}
+\end{pmatrix}\\
+h({\bf x)} & = & (2\pi)^{-1/2}\\
+g(\bm{\eta}) & = & (-2\eta_{2})^{1/2}\exp\left(\frac{\eta_{1}^{2}}{4\eta_{2}}\right)
+\end{eqnarray}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Maximum likelihood and sufficient statistics
+\end_layout
+
+\begin_layout Standard
+Let us now consider the problem of estimating the parameter vector 
+\begin_inset Formula $\bm{\eta}$
+\end_inset
+
+ in the general exponential family distribution 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ using the technique of maximum likelihood.
+ Taking the gradient of both sides of 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:condition of g(eta)"
+
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\bm{\eta}$
+\end_inset
+
+, and use 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+, we can obtain the result
+\begin_inset Formula 
+\[
+-\nabla\ln g(\bm{\eta})=\EE[{\bf u}({\bf x})]
+\]
+
+\end_inset
+
+Note that the covariance of 
+\begin_inset Formula ${\bf u}({\bf x})$
+\end_inset
+
+ can be expressed in terms of the second derivatives of 
+\begin_inset Formula $g(\bm{\eta})$
+\end_inset
+
+, and similarly for higher order moments.
+ Thus, provided we can normalize a distribution from the exponential family,
+ we can always find its moments by simple differentiation.
+\end_layout
+
+\begin_layout Standard
+Now consider a set of i.i.d.
+ data denoted by 
+\begin_inset Formula ${\bf X}=\{{\bf x}_{1},\ldots,{\bf x}_{n}\}$
+\end_inset
+
+, for which the likelihood function is given by
+\begin_inset Formula 
+\[
+p({\bf X}|\bm{\eta})=\left(\prod_{n=1}^{N}h({\bf x}_{n})\right)g(\bm{\eta})^{N}\exp\left\{ \bm{\eta}\trans\sum_{n=1}^{N}{\bf u}({\bf x}_{n})\right\} 
+\]
+
+\end_inset
+
+Setting the gradient of 
+\begin_inset Formula $\ln p({\bf X}|\bm{\eta})$
+\end_inset
+
+ with respect to 
+\begin_inset Formula $\bm{\eta}$
+\end_inset
+
+ to zero, we get the following condition to be satisfied by the maximum
+ likelihood estimator 
+\begin_inset Formula $\bm{\eta}_{{\rm ML}}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+-\nabla\ln g(\bm{\eta}_{{\rm ML}})=\frac{1}{N}\sum_{n=1}^{N}{\bf u}({\bf x}_{n})
+\]
+
+\end_inset
+
+which can in principle be solved to obtain 
+\begin_inset Formula $\bm{\eta}_{{\rm ML}}$
+\end_inset
+
+.
+ We see that the 
+\emph on
+sufficient statistic
+\emph default
+ of the distribution 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x | eta)"
+
+\end_inset
+
+ is 
+\begin_inset Formula $\sum_{n}{\bf u}({\bf x}_{n})$
+\end_inset
+
+.
+ For example, for the Gaussian 
+\begin_inset Formula ${\bf u}(x)=(x,x^{2})\trans$
+\end_inset
+
+, so we should keep both the sum of 
+\begin_inset Formula $\{x_{n}\}$
+\end_inset
+
+ and the sum of 
+\begin_inset Formula $\{x_{n}^{2}\}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Conjugate priors
+\end_layout
+
 \end_body
 \end_document
