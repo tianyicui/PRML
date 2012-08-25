@@ -3002,5 +3002,227 @@ mixtures
  periodic variables that can handle multimodality.
 \end_layout
 
+\begin_layout Subsection
+Mixtures of Gaussians
+\end_layout
+
+\begin_layout Standard
+The Gaussian distribution suffers from significant limitations when it comes
+ to modeling real data sets, for example, the `Old Faithful' data set, which
+ forms two dominant clumps, whereas a linear superposition of two Gaussians
+ gives a better characterization of the data set.
+\end_layout
+
+\begin_layout Standard
+Such superpositions, formed by taking linear combinations of more basic
+ distributions such as Gaussians, can be formulated as probabilistic models
+ known as 
+\emph on
+mixture distributions
+\emph default
+.
+ By using a sufficient number of Gaussians, and by adjusting their means
+ and covariances as well as the coefficients in the linear combination,
+ almost any continuous density can be approximated to arbitrary accuracy.
+\end_layout
+
+\begin_layout Standard
+We therefore consider a superposition of 
+\begin_inset Formula $K$
+\end_inset
+
+ Gaussian densities of the form
+\begin_inset Formula 
+\begin{equation}
+p({\bf x})=\sum_{k=1}^{K}\pi_{k}{\cal N}({\bf x}|\bm{\mu}_{k},\bm{\Sigma}_{k})\label{eq:p(x) mixture of Gaussians}
+\end{equation}
+
+\end_inset
+
+which is called a 
+\emph on
+mixture of Gaussians
+\emph default
+.
+ Each Gaussian density 
+\begin_inset Formula ${\cal N}({\bf x}|\bm{\mu}_{k},\bm{\Sigma}_{k})$
+\end_inset
+
+ is called a 
+\emph on
+component
+\emph default
+ of the mixture and has its own mean 
+\begin_inset Formula $\bm{\mu}_{k}$
+\end_inset
+
+ and covariance 
+\begin_inset Formula $\bm{\Sigma}_{k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In this section we shall consider Gaussian components to illustrate the
+ framework of mixture models.
+ More generally, mixture models can comprise linear combinations of other
+ distributions.
+\end_layout
+
+\begin_layout Standard
+The parameters 
+\begin_inset Formula $\pi_{k}$
+\end_inset
+
+ in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x) mixture of Gaussians"
+
+\end_inset
+
+ are called 
+\emph on
+mixing coefficients
+\emph default
+.
+ It's easy to verify they should satisfy 
+\begin_inset Formula $\sum_{k=1}^{K}\pi_{k}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $0\leq p({\bf x})\leq1$
+\end_inset
+
+ for 
+\begin_inset Formula $p({\bf x})$
+\end_inset
+
+ to be probability.
+\end_layout
+
+\begin_layout Standard
+From the sum and product rules, the marginal density is given by
+\begin_inset Formula 
+\[
+p({\bf x})=\sum_{k=1}^{K}p(k)p({\bf x}|k)
+\]
+
+\end_inset
+
+which is equivalent to 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x) mixture of Gaussians"
+
+\end_inset
+
+ in which we can view 
+\begin_inset Formula $\pi_{k}=p(k)$
+\end_inset
+
+ as the prior probability of picking the 
+\begin_inset Formula $k^{{\rm th}}$
+\end_inset
+
+ component, and the density 
+\begin_inset Formula ${\cal N}({\bf x}|\bm{\mu}_{k},\bm{\Sigma}_{k})=p({\bf x}|k)$
+\end_inset
+
+ as the probability of 
+\begin_inset Formula ${\bf x}$
+\end_inset
+
+ conditioned on 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ An important role is played by the posterior probabilities 
+\begin_inset Formula $p(k|{\bf x})$
+\end_inset
+
+, which are also known as 
+\emph on
+responsibilities
+\emph default
+.
+ From Bayes' theorem these are given by
+\begin_inset Formula 
+\begin{eqnarray}
+\gamma_{k}({\bf x}) & \equiv & p(k|{\bf x})\nonumber \\
+ & = & \frac{p(k)p({\bf x}|k)}{\sum_{l}p(l)p({\bf x}|l)}\nonumber \\
+ & = & \frac{\pi_{k}{\cal N}({\bf x}|\bm{\mu}_{k},\bm{\Sigma}_{k})}{\sum_{l}\pi_{l}{\cal N}({\bf x}|\bm{\mu}_{l},\bm{\Sigma}_{l})}
+\end{eqnarray}
+
+\end_inset
+
+We shall discuss the probabilistic interpretation of the mixture distribution
+ in greater detail in Chapter 9.
+\end_layout
+
+\begin_layout Standard
+The form of the Gaussian mixture distribution is governed by the parameters
+ 
+\begin_inset Formula $\bm{\pi}$
+\end_inset
+
+, 
+\begin_inset Formula $\bm{\mu}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bm{\Sigma}$
+\end_inset
+
+, where we have used the notation 
+\begin_inset Formula $\bm{\pi}\equiv\{\pi_{1},\ldots,\pi_{K}\}$
+\end_inset
+
+, 
+\begin_inset Formula $\bm{\mu}\equiv\{\bm{\mu}_{1},\ldots,\bm{\mu}_{K}\}$
+\end_inset
+
+ and 
+\begin_inset Formula $\bm{\Sigma}\equiv\{\bm{\Sigma}_{1},\ldots,\bm{\Sigma}_{K}\}$
+\end_inset
+
+.
+ One way to set the values of these parameters is to use maximum likelihood.
+ From 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:p(x) mixture of Gaussians"
+
+\end_inset
+
+ the log of the likelihood function is given by
+\begin_inset Formula 
+\[
+\ln p({\bf X}|\bm{\pi},\bm{\mu},\bm{\Sigma})=\sum_{n=1}^{N}\ln\left\{ \sum_{k=1}^{K}\pi_{k}{\cal N}({\bf x}_{n}|\bm{\mu}_{k},\bm{\Sigma}_{k})\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula ${\bf X}=\{{\bf x}_{1},\ldots,{\bf x}_{N}\}$
+\end_inset
+
+.
+ We immediately see that the situation is now much more complex than with
+ a single Gaussian, due to the presence of the summation over k inside the
+ logarithm.
+ As a result, the maximum likelihood solution for the parameters no longer
+ has a closed-form analytical solution.
+ One approach to maximizing the likelihood function is to use iterative
+ numerical optimization techniques.
+ Alternatively we can employ a powerful framework called 
+\emph on
+expectation maximization
+\emph default
+, which will be discussed at length in Chapter 9.
+\end_layout
+
 \end_body
 \end_document
